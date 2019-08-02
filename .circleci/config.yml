@@ -1,0 +1,114 @@
+defaults: &defaults
+  working_directory: ~/boilerplate-rails-api
+  docker:
+    - image: circleci/ruby:2.6.3-node
+      environment:
+        PGHOST: 127.0.0.1
+        PGUSER: root
+        RAILS_ENV: test
+
+    - image: circleci/postgres:11-alpine
+      environment:
+        POSTGRES_USER: root
+        POSTGRES_PASSWORD: ""
+
+references:
+  install_bundler: &install_bundler
+    run:
+      name: Installing bundler
+      command: gem i bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
+
+  restore_bundle_cache: &restore_bundle_cache
+    restore_cache:
+      keys:
+        - boilerplate-rails-api-{{ checksum "Gemfile.lock" }}
+
+  bundle_install: &bundle_install
+    run:
+      name: Installing gems
+      command: bundle install --path vendor/bundle
+
+  save_bundle_cache: &save_bundle_cache
+    save_cache:
+      key: boilerplate-rails-api-{{ checksum "Gemfile.lock" }}
+      paths:
+        - vendor/bundle
+
+version: 2
+
+jobs:
+  linters:
+    <<: *defaults
+
+    environment:
+      - RAILS_ENV: test
+
+    steps:
+      - checkout
+
+      - run:
+          name: Installing dependency for undercover gem
+          command: sudo apt-get install cmake
+
+      - <<: *install_bundler
+      - <<: *restore_bundle_cache
+      - <<: *bundle_install
+      - <<: *save_bundle_cache
+
+      - run:
+          name: Running overcommit
+          command: |
+            bundle exec overcommit -s
+            SKIP=AuthorEmail,AuthorName bundle exec overcommit -r
+
+  tests:
+    <<: *defaults
+
+    environment:
+      - CIRCLE_CI: true
+      - RAILS_ENV: test
+      - DB_USERNAME: root
+      - DB_PASSWORD: circle_test
+
+    steps:
+      - checkout
+
+      - run:
+          name: Installing dependency for undercover gem
+          command: sudo apt-get install cmake
+
+      - <<: *install_bundler
+      - <<: *restore_bundle_cache
+      - <<: *bundle_install
+      - <<: *save_bundle_cache
+
+      - run:
+          name: Preparing database config
+          command: cp config/database.yml.ci config/database.yml
+
+      - run:
+          name: Creating database
+          command: bundle exec rails db:create
+
+      - run:
+          name: Loading schema
+          command: bundle exec rails db:schema:load
+
+      - run:
+          name: Running tests
+          command: bundle exec rspec
+
+      - run:
+          name: Coverage
+          command: bundle exec undercover -c origin/develop
+
+      - store_artifacts:
+          path: ~/boilerplate-rails-api/coverage
+          destination: coverage
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - linters
+      - tests
