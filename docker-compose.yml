@@ -1,0 +1,59 @@
+version: "3.7"
+
+volumes:
+  postgres:
+  in_memory_store:
+
+services:
+  db:
+    image: postgres:11-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+
+  in_memory_store:
+    image: redis:5-alpine
+    ports:
+      - 6379:6379
+    volumes:
+      - in_memory_store:/var/lib/redis/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-h", "localhost", "ping"]
+
+  server_app: &server_app
+    build: .
+    command: bundle exec rails server -b 0.0.0.0
+    entrypoint: ./docker-entrypoint.sh
+    volumes:
+      - .:/home/www/boilerplate_rails_api
+    tty: true
+    stdin_open: true
+    environment: &server_app_env
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      REDIS_DB: redis://in_memory_store:6379
+    depends_on:
+      - db
+    ports:
+      - 3000:3000
+    healthcheck:
+      test: ["CMD", "http", "GET", "localhost:3000"]
+
+  server_worker_app:
+    <<: *server_app
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    entrypoint: ""
+    ports: []
+    depends_on:
+      - db
+      - in_memory_store
+    healthcheck:
+      test: ["CMD-SHELL", "ps ax | grep -v grep | grep sidekiq || exit 1"]
