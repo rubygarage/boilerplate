@@ -1,0 +1,55 @@
+PreCommit:
+  AuthorEmail:
+    enabled: true
+    required: false
+
+  AuthorName:
+    enabled: false
+
+  BundleAudit:
+    enabled: true
+
+  Brakeman:
+    enabled: true
+    flags: ['--exit-on-warn', '--quiet', '--summary']
+
+  Fasterer:
+    enabled: true
+    include: '**/*.rb'
+
+  TrailingWhitespace:
+    enabled: true
+    exclude:
+      - 'db/structure.sql'
+
+  RailsBestPractices:
+    enabled: true
+
+  RailsSchemaUpToDate:
+    enabled: true
+    include:
+      - 'db/migrate/*.rb'
+      - 'db/schema.rb'
+      - 'db/structure.sql'
+
+  Reek:
+    enabled: true
+    flags: ['--force-exclusion']
+
+  RuboCop:
+    enabled: true
+    flags: ['--format=emacs', '--force-exclusion', '--display-cop-names']
+    include:
+      - '**/*.gemspec'
+      - '**/*.rake'
+      - '**/*.rb'
+      - '**/*.ru'
+      - '**/Gemfile'
+      - '**/Rakefile'
+
+PostCheckout:
+  ALL:
+    quiet: true # Change all post-checkout hooks to only display output on failure
+
+  IndexTags:
+    enabled: true # Generate a tags file with `ctags` each time HEAD changes

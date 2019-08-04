@@ -1,0 +1,130 @@
+require:
+  - rubocop-rspec
+  - rubocop-performance
+
+AllCops:
+  Exclude:
+    - bin/**/*
+    - db/**/*
+    - vendor/**/*
+    - spec/fixtures/**/*
+    - tmp/**/*
+
+Rails:
+  Enabled: true
+
+# Style -----------------------------------------------------------------------
+
+Style/Documentation:
+  Enabled: false
+
+Style/ParallelAssignment:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - app/concepts/**/*
+    - app/controllers/**/*
+
+Style/Lambda:
+  Exclude:
+    - app/endpoints/**/*.rb
+    - lib/macro/**/*.rb
+
+Style/SignalException:
+  Exclude:
+    - app/concepts/**/*.rb
+
+# Metrics ---------------------------------------------------------------------
+
+Metrics/LineLength:
+  Max: 120
+  Exclude:
+    - Rakefile
+    - lib/taks/**/*.rake
+    - config/routes.rb
+
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*.rb
+    - Rakefile
+    - lib/tasks/**/*.rake
+    - spec/**/*.rb
+    - config/routes.rb
+
+Metrics/AbcSize:
+  Exclude:
+    - app/controllers/concerns/default_endpoint.rb
+    - lib/macro/model.rb
+
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - lib/macro/**/*.rb
+
+# Naming ----------------------------------------------------------------------
+
+Naming/MethodName:
+  Exclude:
+    - lib/macro/**/*.rb
+
+# Lint ------------------------------------------------------------------------
+
+Lint/UnreachableCode:
+  Exclude:
+    - app/concepts/**/*.rb
+
+# Layout ----------------------------------------------------------------------
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/IndentFirstArrayElement:
+  EnforcedStyle: consistent
+
+Layout/ClassStructure:
+  Enabled: true
+  Categories:
+    module_inclusion:
+      - include
+      - prepend
+      - extend
+    associations:
+      - has_one
+      - has_many
+      - belongs_to
+      - has_and_belongs_to_many
+  ExpectedOrder:
+      - module_inclusion
+      - constants
+      - associations
+      - public_class_methods
+      - initializer
+      - public_methods
+      - protected_methods
+      - private_methods
+
+# RSpec -----------------------------------------------------------------------
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 22
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+
+RSpec/MessageChain:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 5
+
+RSpec/FilePath:
+  Exclude:
+    - spec/concepts/**/*.rb
+
+RSpec/ContextWording:
+  Exclude:
+    - spec/support/shared_contexts/**/*.rb
