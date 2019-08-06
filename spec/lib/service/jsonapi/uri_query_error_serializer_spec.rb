@@ -1,0 +1,74 @@
+# frozen_string_literal: true
+
+RSpec.describe Service::Jsonapi::UriQueryErrorSerializer do
+  describe 'class settings' do
+    it { expect(described_class).to be < Service::Jsonapi::BaseErrorSerializer }
+    it { expect(described_class::ERRORS_SOURCE).not_to eq(Service::Jsonapi::BaseErrorSerializer::ERRORS_SOURCE) }
+  end
+
+  describe '.call' do
+    subject(:service) { described_class.call('contract.uri_query' => contract) }
+
+    let(:contract) { instance_double('Contract') }
+
+    before { allow(contract).to receive_message_chain(:errors, :messages) { contract_errors } }
+
+    shared_examples 'serialized jsonapi resource errors' do
+      it 'returns serialized jsonapi errors' do
+        expect(service).to eq(serialized_errors)
+      end
+    end
+
+    context 'when zero level hash' do
+      let(:contract_errors) { { some_attr1: ['error'] } }
+      let(:serialized_errors) do
+        {
+          errors: [
+            {
+              source: { parameter: 'some_attr1' },
+              detail: 'error'
+            }
+          ]
+        }
+      end
+
+      it_behaves_like 'serialized jsonapi resource errors'
+    end
+
+    context 'when nested 1 level hash' do
+      context 'when first element is symbol' do
+        let(:contract_errors) { { some_attr1: [[:some_attr2, ['error']]] } }
+        let(:serialized_errors) do
+          {
+            errors:
+              [
+                {
+                  detail: 'error',
+                  source: { parameter: 'some_attr1[some_attr2]' }
+                }
+              ]
+          }
+        end
+
+        it_behaves_like 'serialized jsonapi resource errors'
+      end
+
+      context 'when first element is integer' do
+        let(:contract_errors) { { some_attr1: [[0, ['error']]] } }
+        let(:serialized_errors) do
+          {
+            errors:
+              [
+                {
+                  detail: 'error',
+                  source: { parameter: 'some_attr1[0]' }
+                }
+              ]
+          }
+        end
+
+        it_behaves_like 'serialized jsonapi resource errors'
+      end
+    end
+  end
+end

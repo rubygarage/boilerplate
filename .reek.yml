@@ -1,0 +1,90 @@
+detectors:
+  IrresponsibleModule:
+    enabled: false
+
+  UncommunicativeModuleName:
+    accept:
+      - BoilerplateRailsApi
+      - V1
+
+  NestedIterators:
+    max_allowed_nesting: 2
+    ignore_iterators:
+      - lambda
+
+  DataClump:
+    exclude:
+      - DefaultEndpoint
+
+  FeatureEnvy:
+    exclude:
+      - DefaultEndpoint#render_response
+
+  TooManyStatements:
+    exclude:
+      - DefaultEndpoint#default_handler
+      - Macro#self.ModelDecorator
+      - Macro#self.LinksBuilder
+      - Macro::Contract::BaseSchemaObject#self.Build
+      - Macro::Contract#self.Schema
+      - Macro#self.Model
+      - Macro#self.Assign
+
+  NilCheck:
+    exclude:
+      - Macro#self.Renderer
+      - Api::V1::Lib::Operation::Paginate#pagy
+
+  UtilityFunction:
+    exclude:
+      - test_matcher
+      - DefaultEndpoint#error_serializer_by_status
+      - Service::Jsonapi::ResourceErrorSerializer#compose_errors
+      - Service::Jsonapi::ResourceErrorSerializer#plain_errors?
+      - Service::Jsonapi::UriQueryErrorSerializer#compose_nested_errors
+      - Macro::Contract::BaseSchemaObject#build_schema
+
+  LongParameterList:
+    max_params: 6
+
+  ControlParameter:
+    exclude:
+      - Macro::Model#self.direction
+      - Service::Pagy#call
+      - Macro#self.Model
+      - Macro#self.Assign
+
+  BooleanParameter:
+    exclude:
+      - Macro#self.Model
+      - Macro#self.Assign
+
+directories:
+  'app/concepts':
+    UtilityFunction:
+      enabled: false
+
+    DuplicateMethodCall:
+      allow_calls:
+        - 'ctx'
+
+    FeatureEnvy:
+      enabled: false
+
+    DataClump:
+      max_copies: 5
+
+  'lib/macro':
+    UncommunicativeMethodName:
+      enabled: false
+
+    DuplicateMethodCall:
+      allow_calls:
+        - 'ctx'
+
+  'spec/support/helpers':
+    UtilityFunction:
+      enabled: false
+
+exclude_paths:
+  - db/

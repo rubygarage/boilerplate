@@ -1,0 +1,34 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: <%= ENV.fetch('DB_HOST') %>
+  port: <%= ENV.fetch('DB_PORT') %>
+  username: <%= ENV.fetch('DB_USERNAME') %>
+  password: <%= ENV.fetch('DB_PASSWORD') %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: boilerplate_rails_api_development
+
+test:
+  <<: *default
+  database: boilerplate_rails_api_test
+
+# without docker
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  port: 5432
+  username: postgres
+  password: postgres
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: boilerplate_rails_api_development
+
+test:
+  <<: *default
+  database: boilerplate_rails_api_test
