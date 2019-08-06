@@ -1,9 +1,11 @@
-<!-- Provide a general summary of your PR in the Title above -->
-<!-- [Type of your PR]/[JIRA-TASK] name of your branch -->
-<!-- Example: Technical/PEO-374 Implement Rails API boilerplate -->
+[Replace this text by the issue key](replace_this_text_by_the_issue_link)
 
-**Jira task:** https://garage.atlassian.net/browse/[your_jira_task]
-**User Story:**
-<!--- User story -->
+### Description
 
-_The link to specs:_ https://docs.google.com/
+Replace this text with a summary of the changes in your merge request.
+
+### Before submitting the merge request make sure the following are checked
+
+- [ ] Followed the style guidelines of this project
+- [ ] Performed a self-review of own code
+- [ ] Wrote the tests that prove that fix is effective/that feature works
