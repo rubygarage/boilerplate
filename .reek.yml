@@ -24,6 +24,7 @@ detectors:
     exclude:
       - DefaultEndpoint#default_handler
       - Macro#self.ModelDecorator
+      - Macro#self.LinksBuilder
       - Macro::Contract::BaseSchemaObject#self.Build
       - Macro::Contract#self.Schema
       - Macro#self.Model

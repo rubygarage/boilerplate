@@ -158,7 +158,7 @@ RSpec.describe DefaultEndpoint do
     it do
       expect(test_class_instance).to receive(:default_handler).and_return(:default_handler)
       expect(ApplicationEndpoint).to receive(:call).with(operation_class, :default_handler, options)
-      test_class_instance.endpoint(operation: operation_class)
+      test_class_instance.endpoint(operation_class)
     end
   end
 end

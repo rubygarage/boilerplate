@@ -15,7 +15,7 @@ module DefaultEndpoint
     end
   end
 
-  def endpoint(operation:, options: {}, &block)
+  def endpoint(operation, options: {}, &block)
     ApplicationEndpoint.call(
       operation,
       default_handler,

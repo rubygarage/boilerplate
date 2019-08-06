@@ -391,44 +391,44 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.4.2)
-  brakeman
-  bundle-audit
-  dox
-  draper
+  brakeman (~> 4.6, >= 4.6.1)
+  bundle-audit (~> 0.1.0)
+  dox (~> 1.1)
+  draper (~> 3.1)
   dry-validation (= 0.11.1)
-  factory_bot_rails
-  fast_jsonapi
-  fasterer
-  ffaker
-  json_matchers
-  jwt_sessions
+  factory_bot_rails (~> 5.0, >= 5.0.2)
+  fast_jsonapi (~> 1.5)
+  fasterer (~> 0.6.0)
+  ffaker (~> 2.11)
+  json_matchers (~> 0.11.1)
+  jwt_sessions (~> 2.4, >= 2.4.2)
   listen (>= 3.0.5, < 3.2)
-  oj
-  overcommit
-  pagy
-  pg
-  pry-byebug
-  pry-rails
-  puma
-  rails (~> 6.0.0.rc2)
-  rails-controller-testing
-  rails_best_practices
+  oj (~> 3.8, >= 3.8.1)
+  overcommit (~> 0.49.0)
+  pagy (~> 3.4, >= 3.4.1)
+  pg (~> 1.1, >= 1.1.4)
+  pry-byebug (~> 3.7)
+  pry-rails (~> 0.3.9)
+  puma (~> 4.0, >= 4.0.1)
+  rails (= 6.0.0.rc2)
+  rails-controller-testing (~> 1.0, >= 1.0.4)
+  rails_best_practices (~> 1.19, >= 1.19.4)
   reek (= 5.3.2)
-  rspec-rails
-  rspec-sidekiq
-  rubocop
-  rubocop-performance
-  rubocop-rails
-  rubocop-rspec
-  shoulda-matchers
-  sidekiq
-  simplecov
-  simplecov-lcov
-  spring
+  rspec-rails (~> 3.8, >= 3.8.2)
+  rspec-sidekiq (~> 3.0, >= 3.0.3)
+  rubocop (~> 0.74.0)
+  rubocop-performance (~> 1.4, >= 1.4.1)
+  rubocop-rails (~> 2.2, >= 2.2.1)
+  rubocop-rspec (~> 1.35)
+  shoulda-matchers (~> 4.1, >= 4.1.2)
+  sidekiq (~> 5.2, >= 5.2.7)
+  simplecov (~> 0.17.0)
+  simplecov-lcov (~> 0.7.0)
+  spring (~> 2.1)
   spring-watcher-listen (~> 2.0.0)
-  trailblazer (~> 2.1.0rc1)
+  trailblazer (= 2.1.0rc13)
   trailblazer-endpoint!
-  undercover
+  undercover (~> 0.3.2)
 
 RUBY VERSION
    ruby 2.6.3p62

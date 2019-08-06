@@ -142,6 +142,7 @@ RSpec.describe Macro do
       end
     end
 
+    # rubocop:disable Rails/DynamicFindBy
     describe '.find_relation' do
       let(:result) { described_class.find_relation(entity, connections, find_by_key, params_key) }
 
@@ -158,5 +159,6 @@ RSpec.describe Macro do
         expect(result).to eq(result_model_expectation)
       end
     end
+    # rubocop:enable Rails/DynamicFindBy
   end
 end

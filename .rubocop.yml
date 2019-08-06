@@ -1,4 +1,5 @@
 require:
+  - rubocop-rails
   - rubocop-rspec
   - rubocop-performance
 
@@ -39,10 +40,6 @@ Style/SignalException:
 
 Metrics/LineLength:
   Max: 120
-  Exclude:
-    - Rakefile
-    - lib/taks/**/*.rake
-    - config/routes.rb
 
 Metrics/BlockLength:
   Exclude:

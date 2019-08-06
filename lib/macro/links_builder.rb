@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module Macro
-  # :reek:TooManyStatements
   def self.LinksBuilder(resource_path: nil, ids: [], **)
     task = ->((ctx, flow_options), **) {
       pagy = ctx[:pagy]

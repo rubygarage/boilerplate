@@ -5,9 +5,8 @@ module Service
     class << self
       include ::Pagy::Backend
 
-      def call(collection, page:, items:, elastic_collection:, **)
-        pagy_method = elastic_collection ? :pagy_searchkick : :pagy
-        send(pagy_method, collection, page: page, items: items)
+      def call(collection, page:, items:, **)
+        pagy(collection, page: page, items: items)
       end
 
       private
