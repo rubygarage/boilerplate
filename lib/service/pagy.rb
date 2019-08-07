@@ -6,7 +6,8 @@ module Service
       include ::Pagy::Backend
 
       def call(collection, page:, items:, **)
-        pagy(collection, page: page, items: items)
+        pagy_method = collection.is_a?(Array) ? :pagy_array : :pagy
+        send(pagy_method, collection, page: page, items: items)
       end
 
       private

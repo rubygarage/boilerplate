@@ -25,3 +25,55 @@ This README would normally document whatever steps are necessary to get the appl
 | ```Service::Jsonapi::ResourceSerializer``` | ```FastJson``` serializer factory |
 | ```Service::Jsonapi::ResourceErrorSerializer``` | Resource error serializer service with strict following Jsonapi specification |
 | ```Service::Jsonapi::UriQueryErrorSerializer``` | URI query error serializer service with strict following Jsonapi specification |
+
+
+### Docker
+
+Install [docker and docker-compose](https://docs.docker.com/compose/install/)
+```
+sudo apt-get install docker docker-compose
+```
+
+#### Run the project
+
+```
+docker-compose up
+```
+
+#### Running the tests
+
+```
+bin/docker rspec
+```
+
+#### Building API documentation
+
+Please note, documentation building task requires an installed Aglio. So you should install it before:
+
+```
+sudo npm install --unsafe-perm --verbose -g aglio
+```
+
+Then you can build api documentation:
+
+```
+bin/docker rails api:doc:v1
+```
+
+and find it into:
+
+```
+./public/api/docs/v1
+```
+
+#### Running Rails console
+
+```
+bin/docker rails c
+```
+
+#### Running linters
+
+```
+overcommit -r
+```
