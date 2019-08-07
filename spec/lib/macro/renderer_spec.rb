@@ -10,7 +10,7 @@ RSpec.describe Macro do
       validation { optional(:include).maybe(:str?) }
 
       def include
-        super.tr(' ', '').split(',').map(&:to_sym) if super
+        super.split(',').map(&:to_sym) if super
       end
     end
 
@@ -31,7 +31,7 @@ RSpec.describe Macro do
       step Trailblazer::Operation::Contract::Build(constant: DummyContract)
       step Trailblazer::Operation::Contract::Validate()
       step ->(ctx, **) { ctx[:some_meta] = { token: 'token' } }
-      step ->(ctx, **) { ctx[:including_options] = %w[str1 str2] }
+      step ->(ctx, **) { ctx[:inclusion_options] = %w[str1 str2] }
       step Macro::Renderer(serializer: 'SerializerClassName', meta: :some_meta)
     end
     # rubocop:enable RSpec/LeakyConstantDeclaration
@@ -56,9 +56,9 @@ RSpec.describe Macro do
     end
 
     describe 'includes cases' do
-      context 'when available_including_options are in ctx' do
-        context 'when available_including_options in ctx' do
-          let(:params) { { include: 'str1, str2' } }
+      context 'when available_inclusion_options are in ctx' do
+        context 'when available_inclusion_options in ctx' do
+          let(:params) { { include: 'str1,str2' } }
           let(:operation) { DummyRendererOperation }
 
           it 'add includes to result renderer' do
@@ -67,9 +67,9 @@ RSpec.describe Macro do
         end
       end
 
-      context 'when available_including_options are not in ctx' do
+      context 'when available_inclusion_options are not in ctx' do
         let(:params) { {} }
-        let(:available_including_options) { nil }
+        let(:available_inclusion_options) { nil }
 
         it 'not add includes to result renderer' do
           expect(result[:renderer]).not_to include(:include)

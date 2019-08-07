@@ -6,7 +6,7 @@ module Macro
       ctx[:renderer] =
         {
           serializer: serializer,
-          include: ctx[:including_options],
+          include: ctx[:inclusion_options],
           links: ctx[:links],
           meta: meta ? ctx[meta] : nil
         }.compact
