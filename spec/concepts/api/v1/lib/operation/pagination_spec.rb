@@ -56,7 +56,7 @@ RSpec.describe Api::V1::Lib::Operation::Pagination do
 
   describe 'Failure' do
     shared_examples 'not successful operation' do
-      it 'sets paginations errors, semantic' do
+      it 'sets pagination validation errors' do
         expect(result['contract.uri_query'].errors.messages).to eq(errors)
         expect(result[:pagy]).to be_nil
         expect(result).to be_failure
@@ -84,7 +84,7 @@ RSpec.describe Api::V1::Lib::Operation::Pagination do
 
     context 'with page number, size < 1' do
       let(:params) { { page: { number: 0, size: 0 } } }
-      let(:error)  { I18n.t('errors.gteq?', num: Jsonapi::Pagination::MINIMAL_VALUE) }
+      let(:error)  { I18n.t('errors.gteq?', num: JsonApi::Pagination::MINIMAL_VALUE) }
       let(:errors) { { page: [[:number, [error]], [:size, [error]]] } }
       let(:error_localizations) { %w[errors.gteq?] }
 

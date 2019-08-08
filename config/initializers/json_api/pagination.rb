@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Jsonapi
+module JsonApi
   module Pagination
     MINIMAL_VALUE = 1
   end

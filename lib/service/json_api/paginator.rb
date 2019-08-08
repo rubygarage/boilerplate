@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Service
-  module Jsonapi
+  module JsonApi
     class Paginator
       QUERY_PAGE_PARAMETER = 'page[number]'
 

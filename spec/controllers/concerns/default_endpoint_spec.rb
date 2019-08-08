@@ -109,7 +109,7 @@ RSpec.describe DefaultEndpoint do
       let(:args) { [{ jsonapi: true, status: :unprocessable_entity }] }
 
       it do
-        expect(Service::Jsonapi::ResourceErrorSerializer).to receive(:call).and_return(true)
+        expect(Service::JsonApi::ResourceErrorSerializer).to receive(:call).and_return(true)
         expect(test_class_instance).to receive(expected_method).with(*args)
         test_matcher(matcher_case).call(result, &test_class_instance.default_handler)
       end
@@ -121,7 +121,7 @@ RSpec.describe DefaultEndpoint do
       let(:args) { [{ jsonapi: true, status: :bad_request }] }
 
       it do
-        expect(Service::Jsonapi::UriQueryErrorSerializer).to receive(:call).and_return(true)
+        expect(Service::JsonApi::UriQueryErrorSerializer).to receive(:call).and_return(true)
         expect(test_class_instance).to receive(expected_method).with(*args)
         test_matcher(matcher_case).call(result, &test_class_instance.default_handler)
       end
@@ -136,7 +136,7 @@ RSpec.describe DefaultEndpoint do
         let(:args) { [{ jsonapi: true, status: :ok }] }
 
         it do
-          expect(Service::Jsonapi::ResourceSerializer).to receive(:call).and_return(true)
+          expect(Service::JsonApi::ResourceSerializer).to receive(:call).and_return(true)
           expect(test_class_instance).to receive(expected_method).with(*args)
           test_matcher(matcher_case).call(result, &test_class_instance.default_handler)
         end

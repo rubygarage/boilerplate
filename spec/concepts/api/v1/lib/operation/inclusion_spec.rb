@@ -31,8 +31,8 @@ RSpec.describe Api::V1::Lib::Operation::Inclusion do
   end
 
   describe 'Failure' do
-    shared_examples 'has inclusion validation errors' do
-      it 'sets inclusion errors' do
+    shared_examples 'not successful operation' do
+      it 'sets inclusion validation errors' do
         expect(result['contract.uri_query'].errors.messages).to eq(errors)
         expect(result).to be_failure
       end
@@ -44,7 +44,7 @@ RSpec.describe Api::V1::Lib::Operation::Inclusion do
       let(:error_localizations) { %w[errors.inclusion_params_valid?] }
 
       include_examples 'errors localizations'
-      include_examples 'has inclusion validation errors'
+      include_examples 'not successful operation'
     end
 
     context 'with not uniq inclusion parameters' do
@@ -53,7 +53,7 @@ RSpec.describe Api::V1::Lib::Operation::Inclusion do
       let(:error_localizations) { %w[errors.inclusion_params_uniq?] }
 
       include_examples 'errors localizations'
-      include_examples 'has inclusion validation errors'
+      include_examples 'not successful operation'
     end
   end
 end

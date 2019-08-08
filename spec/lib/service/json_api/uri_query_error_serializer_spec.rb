@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe Service::Jsonapi::UriQueryErrorSerializer do
+RSpec.describe Service::JsonApi::UriQueryErrorSerializer do
   describe 'class settings' do
-    it { expect(described_class).to be < Service::Jsonapi::BaseErrorSerializer }
-    it { expect(described_class::ERRORS_SOURCE).not_to eq(Service::Jsonapi::BaseErrorSerializer::ERRORS_SOURCE) }
+    it { expect(described_class).to be < Service::JsonApi::BaseErrorSerializer }
+    it { expect(described_class::ERRORS_SOURCE).not_to eq(Service::JsonApi::BaseErrorSerializer::ERRORS_SOURCE) }
   end
 
   describe '.call' do

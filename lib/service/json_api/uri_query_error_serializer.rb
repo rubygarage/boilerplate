@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module Service
-  module Jsonapi
-    class UriQueryErrorSerializer < Service::Jsonapi::BaseErrorSerializer
+  module JsonApi
+    class UriQueryErrorSerializer < Service::JsonApi::BaseErrorSerializer
       ERRORS_SOURCE = 'contract.uri_query'
 
       def initialize(result)
-        super(result, Service::Jsonapi::UriQueryErrorSerializer::ERRORS_SOURCE)
+        super(result, Service::JsonApi::UriQueryErrorSerializer::ERRORS_SOURCE)
       end
 
       private

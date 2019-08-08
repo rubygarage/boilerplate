@@ -39,9 +39,9 @@ detectors:
     exclude:
       - test_matcher
       - DefaultEndpoint#error_serializer_by_status
-      - Service::Jsonapi::ResourceErrorSerializer#compose_errors
-      - Service::Jsonapi::ResourceErrorSerializer#plain_errors?
-      - Service::Jsonapi::UriQueryErrorSerializer#compose_nested_errors
+      - Service::JsonApi::ResourceErrorSerializer#compose_errors
+      - Service::JsonApi::ResourceErrorSerializer#plain_errors?
+      - Service::JsonApi::UriQueryErrorSerializer#compose_nested_errors
       - Macro::Contract::BaseSchemaObject#build_schema
 
   LongParameterList:
