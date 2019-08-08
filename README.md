@@ -7,7 +7,7 @@ This README would normally document whatever steps are necessary to get the appl
 | Operation | Description | HTTP request example |
 | --- | --- | --- |
 | ```Api::V1::Lib::Operation::Pagination``` | JSON API pagination with offset strategy. Accepts ```AciveRelation``` or ```Array``` as collection | ```GET /users?page[number]=1&page[size]=1``` |
-| ```Api::V1::Lib::Operation::Inclusion``` | JSON API inclusion of related resources. Dot-separated relationship path supporting not implemented at this time | ```GET /users?include=items,comments``` |
+| ```Api::V1::Lib::Operation::Inclusion``` | JSON API inclusion of related resources. Dot-separated relationship path supporting not implemented at this time | ```GET /users?include=team,organization``` |
 
 **Trailblazer macroses**
 
