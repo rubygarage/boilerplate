@@ -10,7 +10,7 @@ RSpec.describe Macro do
       validation { optional(:include).maybe(:str?) }
 
       def include
-        super.split(',').map(&:to_sym) if super
+        super&.split(',').map(&:to_sym)
       end
     end
 
