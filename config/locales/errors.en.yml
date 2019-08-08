@@ -1,0 +1,8 @@
+en:
+  errors:
+    hash?: must be a hash
+    int?: must be an integer
+    gteq?: must be greater than or equal to %{num}
+
+    # Custom error messages ---------------------------------------------------
+    pagination_overflow: is out of limits
