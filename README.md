@@ -2,12 +2,19 @@
 
 This README would normally document whatever steps are necessary to get the application up and running.
 
+**Handling JSON API URI query with Trailblazer nested operations**
+
+| Operation | Description | HTTP request example |
+| --- | --- | --- |
+| ```Api::V1::Lib::Operation::Pagination``` | JSON API pagination with offset strategy. Accepts ```AciveRelation``` or ```Array``` as collection | ```GET /users?page[number]=1&page[size]=1``` |
+| ```Api::V1::Lib::Operation::Inclusion``` | JSON API inclusion of related resources. Dot-separated relationship path supporting not implemented at this time | ```GET /users?include=team,organization``` |
+
 **Trailblazer macroses**
 
 | Macros | Description |
 | --- | --- |
 | ```Macro::Assign``` | Provides to assign into context value from other context/context chains |
-| ```Macro::Model``` | Provides to assign model into context. Supports assign by relation chain, relation find_by|
+| ```Macro::Model``` | Provides to assign model into context. Supports assign by relation chain, relation find_by |
 | ```Macro::ModelDelete``` | Provides to delete model |
 | ```Macro::ModelDestroy``` | Provides to destroy model |
 | ```Macro::ModelDecorator``` | Provides to decorate model with specified decorator. Supports object or collection as model |

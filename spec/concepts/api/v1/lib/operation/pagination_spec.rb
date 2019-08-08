@@ -63,12 +63,6 @@ RSpec.describe Api::V1::Lib::Operation::Pagination do
       end
     end
 
-    shared_examples 'errors localizations' do
-      it 'errors localizations exist in i18n' do
-        expect(error_localizations).to be_defined_in_i18n
-      end
-    end
-
     context 'with wrong page type' do
       let(:params) { { page: 'not_a_hash' } }
       let(:errors) { { page: [I18n.t('errors.hash?')] } }

@@ -6,3 +6,5 @@ en:
 
     # Custom error messages ---------------------------------------------------
     pagination_overflow: is out of limits
+    inclusion_params_uniq?: inclusion params not unique
+    inclusion_params_valid?: can't include such association
