@@ -10,7 +10,7 @@ RSpec.describe Macro do
       validation { optional(:include).maybe(:str?) }
 
       def include
-        super&.split(',').map(&:to_sym)
+        super.split(',').map(&:to_sym) if super # rubocop:disable Style/SafeNavigation
       end
     end
 
