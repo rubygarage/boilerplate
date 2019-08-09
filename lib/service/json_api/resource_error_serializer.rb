@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Service
-  module Jsonapi
-    class ResourceErrorSerializer < Service::Jsonapi::BaseErrorSerializer
+  module JsonApi
+    class ResourceErrorSerializer < Service::JsonApi::BaseErrorSerializer
       private
 
       def plain_errors?(errors)

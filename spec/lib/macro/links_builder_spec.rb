@@ -12,7 +12,7 @@ RSpec.describe Macro do
       end
 
       it 'not sets links into result' do
-        expect(Service::Jsonapi::Paginator).not_to receive(:call)
+        expect(Service::JsonApi::Paginator).not_to receive(:call)
         expect(result[:links]).to be_nil
       end
     end
@@ -26,7 +26,7 @@ RSpec.describe Macro do
       end
 
       it 'sets links into result' do
-        expect(Service::Jsonapi::Paginator).to receive(:call).and_return(true)
+        expect(Service::JsonApi::Paginator).to receive(:call).and_return(true)
         expect(Rails).to receive_message_chain(:application, :routes, :url_helpers, :some_path).and_return(true)
         expect(result[:links]).to eq(true)
       end
@@ -47,7 +47,7 @@ RSpec.describe Macro do
       end
 
       it 'sets links into result' do
-        expect(Service::Jsonapi::Paginator).to receive(:call).and_return(true)
+        expect(Service::JsonApi::Paginator).to receive(:call).and_return(true)
         expect(Rails).to(
           receive_message_chain(
             :application, :routes, :url_helpers, :api_v1_resource_another_resources_path

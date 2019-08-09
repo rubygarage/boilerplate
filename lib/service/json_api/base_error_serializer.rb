@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Service
-  module Jsonapi
+  module JsonApi
     class BaseErrorSerializer
       ERRORS_SOURCE = 'contract.default'
 

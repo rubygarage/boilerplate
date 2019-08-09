@@ -31,7 +31,7 @@ module DefaultEndpoint
   end
 
   def render_response(result, status)
-    render(jsonapi: Service::Jsonapi::ResourceSerializer.call(result), status: status)
+    render(jsonapi: Service::JsonApi::ResourceSerializer.call(result), status: status)
   end
 
   def render_head_or_response(result, status)
@@ -54,8 +54,8 @@ module DefaultEndpoint
   end
 
   def error_serializer_by_status(status)
-    return Service::Jsonapi::UriQueryErrorSerializer if status.eql?(:bad_request)
+    return Service::JsonApi::UriQueryErrorSerializer if status.eql?(:bad_request)
 
-    Service::Jsonapi::ResourceErrorSerializer
+    Service::JsonApi::ResourceErrorSerializer
   end
 end

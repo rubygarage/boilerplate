@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Service::Jsonapi::ResourceSerializer do
+RSpec.describe Service::JsonApi::ResourceSerializer do
   describe '.call' do
     class TestSerializer # rubocop:disable RSpec/LeakyConstantDeclaration
       include FastJsonapi::ObjectSerializer

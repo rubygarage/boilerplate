@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Service::Jsonapi::Paginator do
+RSpec.describe Service::JsonApi::Paginator do
   subject(:paginator) { described_class.call(resource_path: resource_path, pagy: pagy) }
 
   describe 'defined constants' do
@@ -9,7 +9,7 @@ RSpec.describe Service::Jsonapi::Paginator do
 
   describe '.call' do
     let(:resource_path) { 'resource_path' }
-    let(:query_page_parameter) { Service::Jsonapi::Paginator::QUERY_PAGE_PARAMETER }
+    let(:query_page_parameter) { Service::JsonApi::Paginator::QUERY_PAGE_PARAMETER }
 
     context 'when only 1 page available' do
       let(:pagy) { OpenStruct.new(page: 1, next: nil, prev: nil, pages: 1) }

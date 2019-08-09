@@ -7,7 +7,7 @@ module Macro
       resource_ids = ids.map { |id| ctx[:params][id] }
       ctx[:links] =
         if resource_path && pagy
-          Service::Jsonapi::Paginator.call(
+          Service::JsonApi::Paginator.call(
             resource_path: Rails.application.routes.url_helpers.public_send(*[resource_path, *resource_ids].compact),
             pagy: pagy
           )
