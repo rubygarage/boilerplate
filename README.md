@@ -1,18 +1,17 @@
 # Boilerplate Rails API
 
-This README would normally document whatever steps are necessary to get the application up and running.
+## Boilerplate features
 
-### Boilerplate features
-
-#### Handling JSON API URI query with Trailblazer nested operations
+### Handling JSON API URI query with Trailblazer nested operations
 
 | Operation | Description | HTTP request example |
 | --- | --- | --- |
-| ```Api::V1::Lib::Operation::Sorting``` | JSON API sorting | ```GET /users?sort=name,-age``` |
-| ```Api::V1::Lib::Operation::Pagination``` | JSON API pagination with offset strategy. Accepts ```AciveRelation``` or ```Array``` as collection | ```GET /users?page[number]=1&page[size]=1``` |
-| ```Api::V1::Lib::Operation::Inclusion``` | JSON API inclusion of related resources. Dot-separated relationship path supporting not implemented at this time | ```GET /users?include=team,organization``` |
+| ```Api::V1::Lib::Operation::Filtering``` | Provides JSON API filtering with ```all_filters``` default matcher | ```GET /users?filter[email-eq]=user@email.com&filter[name-cont]=son&match=any_filters``` |
+| ```Api::V1::Lib::Operation::Sorting``` | Provides JSON API sorting | ```GET /users?sort=name,-age``` |
+| ```Api::V1::Lib::Operation::Inclusion``` | Provides JSON API inclusion of related resources. Dot-separated relationship path supporting not implemented at this time | ```GET /users?include=team,organization``` |
+| ```Api::V1::Lib::Operation::Pagination``` | Provides JSON API pagination with offset strategy. Accepts ```AciveRelation``` or ```Array``` as collection. By default returns 25 items per page | ```GET /users?page[number]=1&page[size]=1``` |
 
-#### Trailblazer macroses
+### Trailblazer macroses
 
 | Macros | Description |
 | --- | --- |
@@ -26,7 +25,7 @@ This README would normally document whatever steps are necessary to get the appl
 | ```Macro::Contract::Schema``` | Provides to use ```Dry::Validation.Schema``` as operation contract |
 | ```Macro::Semantic``` | Provides to set value of semantic marker (```semantic_success``` or ```semantic_failure```) into context |
 
-#### Services
+### Services
 
 | Service | Description |
 | --- | --- |
@@ -35,28 +34,35 @@ This README would normally document whatever steps are necessary to get the appl
 | ```Service::JsonApi::ResourceSerializer``` | ```FastJson``` serializer factory |
 | ```Service::JsonApi::ResourceErrorSerializer``` | Resource error serializer service with strict following Jsonapi specification |
 | ```Service::JsonApi::UriQueryErrorSerializer``` | URI query error serializer service with strict following Jsonapi specification |
+| ```Api::V1::Lib::Service::JsonApi::ColumnsBuilder``` | Auxiliary service for performing validation dependencies for filtering/sorting operations. Build collection with ```Api::V1::Lib::Service::JsonApi::Column``` instances |
 
+### Constants
 
-### Docker
+| Constant | Description |
+| --- | --- |
+| ```JsonApi::Filtering::PREDICATES``` | Available JSON API filter predicates by column type |
+| ```JsonApi::Filtering::OPERATORS``` | Available JSON API filter matchers |
+
+## Docker
 
 Install [docker and docker-compose](https://docs.docker.com/compose/install/)
 ```
 sudo apt-get install docker docker-compose
 ```
 
-#### Run the project
+### Run the project
 
 ```
 docker-compose up
 ```
 
-#### Running the tests
+### Running the tests
 
 ```
 bin/docker rspec
 ```
 
-#### Building API documentation
+### Building API documentation
 
 Please note, documentation building task requires an installed Aglio. So you should install it before:
 
@@ -76,13 +82,13 @@ and find it into:
 ./public/api/docs/v1
 ```
 
-#### Running Rails console
+### Running Rails console
 
 ```
 bin/docker rails c
 ```
 
-#### Running linters
+### Running linters
 
 ```
 overcommit -r

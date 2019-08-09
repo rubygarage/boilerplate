@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
-RSpec.describe Api::V1::Lib::Operation::Sorting do
+RSpec.describe Api::V1::Lib::Operation::Sorting, type: :operation do
   subject(:result) { described_class.call(params: params, available_columns: available_columns) }
 
   let(:params) { {} }
-  let(:available_columns) { %w[attribute_1 attribute_2].map { |item| { name: item, sortable: true } } }
+  let(:available_columns) do
+    create_available_columns(
+      *Array.new(2) { |item| { name: "attribute_#{item.next}", sortable: true } }
+    )
+  end
 
   describe 'Success' do
     context 'when sorting parameter not passing' do
@@ -26,7 +30,7 @@ RSpec.describe Api::V1::Lib::Operation::Sorting do
   end
 
   describe 'Failure' do
-    shared_examples 'not successful operation' do
+    shared_examples 'failed operation' do
       it 'sets sorting validation errors' do
         expect(result['contract.uri_query'].errors.messages).to eq(errors)
         expect(result).to be_failure
@@ -39,7 +43,7 @@ RSpec.describe Api::V1::Lib::Operation::Sorting do
       let(:error_localizations) { %w[errors.str?] }
 
       include_examples 'errors localizations'
-      include_examples 'not successful operation'
+      include_examples 'failed operation'
     end
 
     context 'when sort is an empty string' do
@@ -48,7 +52,7 @@ RSpec.describe Api::V1::Lib::Operation::Sorting do
       let(:error_localizations) { %w[errors.filled?] }
 
       include_examples 'errors localizations'
-      include_examples 'not successful operation'
+      include_examples 'failed operation'
     end
 
     context 'when sortable columnn not unique' do
@@ -57,26 +61,27 @@ RSpec.describe Api::V1::Lib::Operation::Sorting do
       let(:error_localizations) { %w[errors.sort_params_uniq?] }
 
       include_examples 'errors localizations'
-      include_examples 'not successful operation'
+      include_examples 'failed operation'
     end
 
     context 'when sortable columnn not exists' do
       let(:params) { { sort: 'nonexistent_column' } }
-      let(:errors) { { sort: [I18n.t('errors.sort_params_valid?', jsonapi_sort_params: 'nonexistent_column')] } }
+      let(:errors) { { sort: [I18n.t('errors.sort_params_valid?')] } }
       let(:error_localizations) { %w[errors.sort_params_valid?] }
 
       include_examples 'errors localizations'
-      include_examples 'not successful operation'
+      include_examples 'failed operation'
     end
 
     context 'when invalid sortable column' do
-      let(:available_columns) { [{ name: 'attribute_2', sortable: false }] }
+      let(:available_columns) { create_available_columns(name: 'attribute_2', sortable: false) }
+
       let(:params) { { sort: 'attribute_2' } }
-      let(:errors) { { sort: [I18n.t('errors.sort_params_valid?', jsonapi_sort_params: 'attribute_2')] } }
+      let(:errors) { { sort: [I18n.t('errors.sort_params_valid?')] } }
       let(:error_localizations) { %w[errors.sort_params_valid?] }
 
       include_examples 'errors localizations'
-      include_examples 'not successful operation'
+      include_examples 'failed operation'
     end
   end
 end

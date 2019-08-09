@@ -30,6 +30,10 @@ detectors:
       - Macro#self.Model
       - Macro#self.Assign
 
+  TooManyConstants:
+    exclude:
+      - JsonApi::Filtering::Predicates
+
   NilCheck:
     exclude:
       - Macro#self.Renderer
