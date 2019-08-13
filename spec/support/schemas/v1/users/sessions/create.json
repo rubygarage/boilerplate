@@ -1,0 +1,140 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "data",
+    "meta"
+  ],
+  "properties": {
+    "data": {
+      "$id": "#/properties/data",
+      "type": "object",
+      "title": "The Data Schema",
+      "required": [
+        "id",
+        "type",
+        "attributes"
+      ],
+      "properties": {
+        "id": {
+          "$id": "#/properties/data/properties/id",
+          "type": "string",
+          "title": "The Id Schema",
+          "default": "",
+          "examples": [
+            "100"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "type": {
+          "$id": "#/properties/data/properties/type",
+          "type": "string",
+          "title": "The Type Schema",
+          "default": "",
+          "examples": [
+            "account"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "attributes": {
+          "$id": "#/properties/data/properties/attributes",
+          "type": "object",
+          "title": "The Attributes Schema",
+          "required": [
+            "email",
+            "created_at"
+          ],
+          "properties": {
+            "email": {
+              "$id": "#/properties/data/properties/attributes/properties/email",
+              "type": "string",
+              "title": "The Email Schema",
+              "default": "",
+              "examples": [
+                "neal.windler@daniel.biz"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "created_at": {
+              "$id": "#/properties/data/properties/attributes/properties/created_at",
+              "type": "string",
+              "title": "The Created_at Schema",
+              "default": "",
+              "examples": [
+                "2019-08-14T07:18:33.181Z"
+              ],
+              "pattern": "^(.*)$"
+            }
+          }
+        }
+      }
+    },
+    "meta": {
+      "$id": "#/properties/meta",
+      "type": "object",
+      "title": "The Meta Schema",
+      "required": [
+        "csrf",
+        "access",
+        "access_expires_at",
+        "refresh",
+        "refresh_expires_at"
+      ],
+      "properties": {
+        "csrf": {
+          "$id": "#/properties/meta/properties/csrf",
+          "type": "string",
+          "title": "The Csrf Schema",
+          "default": "",
+          "examples": [
+            "MqQM7w74Oe4T69WFBveEFgvfwZo5M7svuhfUCic3UAZ71+iV02FmmJPq6cT1lnsJIrAVoFw+JMJqM29bRNYSCg=="
+          ],
+          "pattern": "^(.*)$"
+        },
+        "access": {
+          "$id": "#/properties/meta/properties/access",
+          "type": "string",
+          "title": "The Access Schema",
+          "default": "",
+          "examples": [
+            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NjU3NzA3MTMsImFjY291bnRfaWQiOjEwMCwidWlkIjoiNzU1MGI3ZjItYzUyMC00OWE5LWIwZDMtMWE1Y2RkMDQ4NWRlIiwiZXhwIjoxNTY1NzcwNzEzfQ.nHYH64kGQ1B8XHP5OdGtzLxBaw6u4v0XMzuWZV_-WZU"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "access_expires_at": {
+          "$id": "#/properties/meta/properties/access_expires_at",
+          "type": "string",
+          "title": "The Access_expires_at Schema",
+          "default": "",
+          "examples": [
+            "2019-08-14T11:18:33.000+03:00"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "refresh": {
+          "$id": "#/properties/meta/properties/refresh",
+          "type": "string",
+          "title": "The Refresh Schema",
+          "default": "",
+          "examples": [
+            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NjU3NzA3MTMsImFjY291bnRfaWQiOjEwMCwidWlkIjoiOTVmZjAxMWItMTg3ZS00MTllLTljODAtOWQxMjA0ZDBmZDFiIiwiZXhwIjoxNTY2MzcxOTEzfQ.HZkAIFd1PWdEujc8r97EVkl9DzhqwvM2fa_b5looT2U"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "refresh_expires_at": {
+          "$id": "#/properties/meta/properties/refresh_expires_at",
+          "type": "string",
+          "title": "The Refresh_expires_at Schema",
+          "default": "",
+          "examples": [
+            "2019-08-21T10:18:33.000+03:00"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    }
+  }
+}

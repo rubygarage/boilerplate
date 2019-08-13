@@ -1,5 +1,6 @@
 en:
   errors:
+    key?: is missing
     hash?: must be a hash
     int?: must be an integer
     gteq?: must be greater than or equal to %{num}
@@ -20,3 +21,7 @@ en:
     filtering_column_valid?: invalid filtering column
     filtering_predicate_valid?: invalid filtering predicate
     filtering_value_valid?: invalid filtering value
+    session:
+      not_found: user not found
+      wrong_credentials: wrong credentials
+

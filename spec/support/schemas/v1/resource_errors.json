@@ -1,0 +1,58 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/errors.json",
+  "type": "object",
+  "title": "The Errors Schema",
+  "required": [
+    "errors"
+  ],
+  "properties": {
+    "errors": {
+      "$id": "#/properties/errors",
+      "type": "array",
+      "title": "The Errors Schema",
+      "items": {
+        "$id": "#/properties/errors/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "detail",
+          "source"
+        ],
+        "properties": {
+          "detail": {
+            "$id": "#/properties/errors/items/properties/detail",
+            "type": "string",
+            "title": "The Detail Schema",
+            "default": "",
+            "examples": [
+              "must be filled"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "source": {
+            "$id": "#/properties/errors/items/properties/source",
+            "type": "object",
+            "title": "The Source Schema",
+            "required": [
+              "pointer"
+            ],
+            "properties": {
+              "pointer": {
+                "$id": "#/properties/errors/items/properties/source/properties/pointer",
+                "type": "string",
+                "title": "The Pointer Schema",
+                "default": "",
+                "examples": [
+                  "/data/attributes/first-name"
+                ],
+                "pattern": "^(.*)$"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

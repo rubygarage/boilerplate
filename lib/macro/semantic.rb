@@ -9,6 +9,6 @@ module Macro
       [Trailblazer::Activity::Right, [ctx, flow_options]]
     }
 
-    { task: task, id: 'semantic' }
+    { task: task, id: "semantic_id#{task.object_id}" }
   end
 end
