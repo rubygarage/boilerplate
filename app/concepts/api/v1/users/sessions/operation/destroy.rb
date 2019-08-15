@@ -8,7 +8,7 @@ module Api::V1::Users::Sessions::Operation
     step Macro::Semantic(success: :destroyed)
 
     def destroy_user_session(_ctx, found_token:, **)
-      Api::V1::Users::Sessions::Service::Tokens::Destroy.call(refresh_token: found_token)
+      Api::V1::Users::Sessions::Service::Tokens::Destroy.call(token: found_token)
     end
   end
 end
