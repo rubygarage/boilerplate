@@ -24,4 +24,4 @@ en:
     session:
       not_found: user not found
       wrong_credentials: wrong credentials
-
+      invalid_token: invalid_token

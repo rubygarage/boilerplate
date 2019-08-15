@@ -52,6 +52,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include ActiveSupport::Testing::TimeHelpers
   config.include Helpers::OperationHelpers, type: :operation
+  config.include Helpers::RootHelpers
 
   config.after(:each, :dox) do |example|
     # allow dox to handle 'multipart/form-data' requests

@@ -2,4 +2,5 @@
 
 class ApiController < ApplicationController
   include DefaultEndpoint
+  include Authentication
 end

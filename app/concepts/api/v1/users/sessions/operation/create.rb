@@ -10,12 +10,16 @@ module Api::V1::Users::Sessions::Operation
     step :authenticate
     fail Macro::Semantic(failure: :unauthorized)
     fail Macro::AddContractError(base: 'errors.session.wrong_credentials'), fail_fast: true
-    step Api::V1::Lib::Step::CreateUserTokens
+    step :set_user_tokens
     step Macro::Semantic(success: :created)
     step Macro::Renderer(serializer: Api::V1::Users::Sessions::Serializer::Create, meta: :tokens)
 
     def authenticate(ctx, model:, **)
       model.authenticate(ctx['contract.default'].password)
+    end
+
+    def set_user_tokens(ctx, model:, **)
+      ctx[:tokens] = Api::V1::Users::Sessions::Service::Tokens::Create.call(account_id: model.id)
     end
   end
 end

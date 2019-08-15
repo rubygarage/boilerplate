@@ -42,4 +42,27 @@ RSpec.describe 'Api::V1::Users::Sessions::Operation::Create', :dox, type: :reque
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    include ApiDoc::V1::Users::Session::Destroy
+
+    let(:headers) { { 'X-Refresh-Token': create_token(:refresh, account: account) } }
+
+    before { delete '/api/v1/users/session', headers: headers, as: :json }
+
+    describe 'Success' do
+      it 'clears user session' do
+        expect(response).to be_no_content
+        expect(response.body).to be_empty
+      end
+    end
+
+    describe 'Fail' do
+      describe 'Unauthorized' do
+        let(:headers) { { 'X-Refresh-Token': 'wrong_token' } }
+
+        include_examples 'renders unauthenticated errors'
+      end
+    end
+  end
 end
