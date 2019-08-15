@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       namespace :users do
-        resource :registration, only: :create
+      	resource :registration, only: :create
         resource :session, only: %i[create destroy] do
           scope module: :session do
             resource :refresh, only: :create
