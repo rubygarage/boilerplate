@@ -5,10 +5,18 @@ en:
     gteq?: must be greater than or equal to %{num}
     str?: must be a string
     filled?: must be filled
+    array?: must be an array
+    included_in?:
+      arg:
+        default: "must be one of: %{list}"
 
     # Custom error messages ---------------------------------------------------
     pagination_overflow: is out of limits
     inclusion_params_uniq?: inclusion params not unique
     inclusion_params_valid?: can't include such association
     sort_params_uniq?: sort params not unique
-    sort_params_valid?: invalid jsonapi sort request with %{jsonapi_sort_params}
+    sort_params_valid?: invalid sort params
+    filters_uniq?: filters not unique
+    filtering_column_valid?: invalid filtering column
+    filtering_predicate_valid?: invalid filtering predicate
+    filtering_value_valid?: invalid filtering value

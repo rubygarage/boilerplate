@@ -5,9 +5,10 @@ module Api::V1::Lib::Operation
     step :sort_params_passed?, Output(:failure) => End(:success)
     step Macro::Contract::Schema(Api::V1::Lib::Contract::SortingPreValidation, name: :uri_query)
     step Contract::Validate(name: :uri_query)
+    step :set_validation_dependencies
     step Macro::Contract::Schema(
       Api::V1::Lib::Contract::SortingValidation,
-      inject: %i[available_columns],
+      inject: %i[available_sortable_columns],
       name: :uri_query
     )
     step Contract::Validate(name: :uri_query), id: :sorting_validation
@@ -17,12 +18,13 @@ module Api::V1::Lib::Operation
       params[:sort]
     end
 
+    def set_validation_dependencies(ctx, available_columns:, **)
+      ctx[:available_sortable_columns] = available_columns.select(&:sortable).map(&:name).to_set
+    end
+
     def order_options(ctx, **)
       ctx[:order_options] = ctx['contract.uri_query'].sort.map do |jsonapi_sort_parameter|
-        order_type, attribute =
-          jsonapi_sort_parameter.scan(JsonApi::Sorting::JSONAPI_SORT_PATTERN).flatten
-
-        { attribute.to_sym => order_type ? :desc : :asc }
+        { jsonapi_sort_parameter.column.to_sym => jsonapi_sort_parameter.order.to_sym }
       end
     end
   end

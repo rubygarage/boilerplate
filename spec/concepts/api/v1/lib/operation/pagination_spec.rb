@@ -14,9 +14,14 @@ RSpec.describe Api::V1::Lib::Operation::Pagination do
     end
 
     context 'without params' do
+      let(:collection) { (0..50).to_a }
       let(:params) { {} }
 
       include_examples 'successful operation'
+
+      it 'returns default number of items ' do
+        expect(result[:model].size).to eq(Pagy::VARS[:items])
+      end
     end
 
     context 'without params, page is nil' do
