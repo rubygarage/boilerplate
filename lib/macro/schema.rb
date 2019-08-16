@@ -11,7 +11,7 @@ module Macro
       }
 
       task = Trailblazer::Activity::TaskBuilder::Binary(step)
-      { task: task, id: "contract.#{name}.build_schema_id#{schema.object_id}" }
+      { task: task, id: "contract.#{name}.build_schema_id#{task.object_id}" }
     end
 
     class BaseSchemaObject

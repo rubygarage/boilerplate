@@ -6,7 +6,7 @@ module Api::V1::Lib::Operation
     step Contract::Validate(name: :uri_query), fail_fast: true
     step :pagy
     step :valid_page?
-    fail :overflow
+    fail Macro::AddContractError(name: :uri_query, page: [:number, [I18n.t('errors.pagination_overflow')]])
 
     def pagy(ctx, model:, **)
       ctx[:pagy], ctx[:model] =
@@ -19,10 +19,6 @@ module Api::V1::Lib::Operation
 
     def valid_page?(_ctx, pagy:, **)
       !pagy.overflow?
-    end
-
-    def overflow(ctx, **)
-      ctx['contract.uri_query'].errors.add(:page, [:number, [I18n.t('errors.pagination_overflow')]])
     end
   end
 end

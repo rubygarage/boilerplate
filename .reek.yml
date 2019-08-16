@@ -29,6 +29,7 @@ detectors:
       - Macro::Contract#self.Schema
       - Macro#self.Model
       - Macro#self.Assign
+      - Macro#self.AddContractError
 
   TooManyConstants:
     exclude:

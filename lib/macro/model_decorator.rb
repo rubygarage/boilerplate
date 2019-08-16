@@ -11,6 +11,6 @@ module Macro
       [Trailblazer::Activity::Right, [ctx, flow_options]]
     }
 
-    { task: task, id: 'model_decorator' }
+    { task: task, id: "model_decorator_id#{task.object_id}" }
   end
 end

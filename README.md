@@ -6,7 +6,7 @@
 
 | Operation | Description | HTTP request example |
 | --- | --- | --- |
-| ```Api::V1::Lib::Operation::Filtering``` | Provides JSON API filtering with ```all_filters``` default matcher | ```GET /users?filter[email-eq]=user@email.com&filter[name-cont]=son&match=any_filters``` |
+| ```Api::V1::Lib::Operation::Filtering``` | Provides JSON API filtering with ```all_filters``` as default matcher | ```GET /users?filter[email-eq]=user@email.com&filter[name-cont]=son&match=any_filters``` |
 | ```Api::V1::Lib::Operation::Sorting``` | Provides JSON API sorting | ```GET /users?sort=name,-age``` |
 | ```Api::V1::Lib::Operation::Inclusion``` | Provides JSON API inclusion of related resources. Dot-separated relationship path supporting not implemented at this time | ```GET /users?include=team,organization``` |
 | ```Api::V1::Lib::Operation::Pagination``` | Provides JSON API pagination with offset strategy. Accepts ```AciveRelation``` or ```Array``` as collection. By default returns 25 items per page | ```GET /users?page[number]=1&page[size]=1``` |
@@ -24,6 +24,7 @@
 | ```Macro::Renderer``` | Provides to render operation result with specified serializer with strict following Jsonapi specification |
 | ```Macro::Contract::Schema``` | Provides to use ```Dry::Validation.Schema``` as operation contract |
 | ```Macro::Semantic``` | Provides to set value of semantic marker (```semantic_success``` or ```semantic_failure```) into context |
+| ```Macro::AddContractError``` | Provides to set custom error to namespaced contract) |
 
 ### Services
 
@@ -64,13 +65,7 @@ bin/docker rspec
 
 ### Building API documentation
 
-Please note, documentation building task requires an installed Aglio. So you should install it before:
-
-```
-sudo npm install --unsafe-perm --verbose -g aglio
-```
-
-Then you can build api documentation:
+Building api documentation is pretty easy, just run:
 
 ```
 bin/docker rails api:doc:v1
@@ -79,7 +74,7 @@ bin/docker rails api:doc:v1
 and find it into:
 
 ```
-./public/api/docs/v1
+./public/api/docs/v1/index.html
 ```
 
 ### Running Rails console

@@ -1,7 +1,9 @@
 FROM ruby:2.6.3-alpine
 
 RUN apk add bash git openssh httpie libxml2-dev libxslt-dev postgresql-dev \
-tzdata nodejs imagemagick make cmake g++ postgresql-client less
+tzdata npm nodejs imagemagick make cmake g++ postgresql-client less
+
+RUN npm install -g snowboard
 
 ENV APP_USER app
 ENV APP_USER_HOME /home/$APP_USER
@@ -17,7 +19,7 @@ WORKDIR $APP_HOME
 
 USER $APP_USER
 
-COPY Gemfile Gemfile.lock ./
+COPY Gemfile Gemfile.lock .ruby-version ./
 
 RUN gem i bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
 

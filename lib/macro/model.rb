@@ -14,7 +14,7 @@ module Macro
       [Model.direction(ctx[:model].present?), [ctx, flow_options]]
     }
 
-    { task: task, id: "#{entity}_model" }
+    { task: task, id: "#{entity}_model_id#{task.object_id}" }
   end
 
   module Model
