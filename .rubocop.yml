@@ -122,6 +122,10 @@ RSpec/FilePath:
   Exclude:
     - spec/concepts/**/*.rb
 
+RSpec/DescribeClass:
+  Exclude:
+    - spec/tasks/**/*.rb
+
 RSpec/ContextWording:
   Exclude:
     - spec/support/shared_contexts/**/*.rb
