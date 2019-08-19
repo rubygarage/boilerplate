@@ -107,9 +107,19 @@ RSpec.describe ApplicationEndpoint do
     describe ':forbidden case matcher' do
       let(:handler_context) { 'forbidden handler context' }
       let(:result_condition) { false }
-      let(:result_options) { { 'result.policy.default' => instance_double('Policy', failure?: true) } }
 
-      include_examples 'matched endpoint'
+      context 'when result policy failure' do
+        let(:result_options) { { 'result.policy.default' => instance_double('Policy', failure?: true) } }
+
+        include_examples 'matched endpoint'
+      end
+
+      context 'when semantic' do
+        let(:semantic_name) { :semantic_failure }
+        let(:semantic_context) { :forbidden }
+
+        include_examples 'matched endpoint'
+      end
     end
 
     describe ':gone case matcher' do

@@ -1,0 +1,64 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "data",
+    "meta"
+  ],
+  "properties": {
+    "data": {
+      "$id": "#/properties/data",
+      "type": "null",
+      "title": "The Data Schema",
+      "default": null,
+      "examples": [
+        null
+      ]
+    },
+    "meta": {
+      "$id": "#/properties/meta",
+      "type": "object",
+      "title": "The Meta Schema",
+      "required": [
+        "csrf",
+        "access",
+        "access_expires_at"
+      ],
+      "properties": {
+        "csrf": {
+          "$id": "#/properties/meta/properties/csrf",
+          "type": "string",
+          "title": "The Csrf Schema",
+          "default": "",
+          "examples": [
+            "/phK2gVUY7L4i/L4KsUB1ivK/zkiwHhJNy6mw0TMGxUV4Fwi9mtkSM+ELExEzc6fu6qrl0EhnLfb+LhuoiaqFA=="
+          ],
+          "pattern": "^(.*)$"
+        },
+        "access": {
+          "$id": "#/properties/meta/properties/access",
+          "type": "string",
+          "title": "The Access Schema",
+          "default": "",
+          "examples": [
+            "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NjYyOTk5NzgsImV4cCI6MTU2NjI5OTk3OCwidWlkIjoiMzM2ZGVkNzItYmM3ZS00YmUzLWI1ZGQtZGZhYWRhYjZlODU4In0.sExeqTE0hPAGy5moytutOonjqbbpqG4h4V8lCZnX454"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "access_expires_at": {
+          "$id": "#/properties/meta/properties/access_expires_at",
+          "type": "string",
+          "title": "The Access_expires_at Schema",
+          "default": "",
+          "examples": [
+            "2019-08-20T14:19:38.000+03:00"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    }
+  }
+}

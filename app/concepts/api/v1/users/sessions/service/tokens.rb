@@ -8,8 +8,18 @@ module Api::V1::Users::Sessions::Service::Tokens
   end
 
   module Destroy
-    def self.call(token:)
-      JWTSessions::Session.new.flush_by_token(token)
+    def self.call(refresh_token:)
+      JWTSessions::Session.new.flush_by_token(refresh_token)
+    end
+  end
+
+  module Refresh
+    def self.call(payload:, refresh_token:)
+      session = JWTSessions::Session.new(payload: payload)
+      session.refresh(refresh_token) do
+        session.flush_by_token(refresh_token)
+        return false
+      end
     end
   end
 end

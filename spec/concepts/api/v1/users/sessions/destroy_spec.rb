@@ -4,8 +4,7 @@ RSpec.describe Api::V1::Users::Sessions::Operation::Destroy do
   subject(:result) { described_class.call(found_token: refresh_token) }
 
   describe 'Success' do
-    let(:password) { FFaker::Internet.password }
-    let(:account) { create(:account, password: password) }
+    let(:account) { create(:account) }
     let(:refresh_token) { create_token(:refresh, account: account) }
 
     it 'clears user session' do

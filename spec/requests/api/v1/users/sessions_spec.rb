@@ -16,7 +16,7 @@ RSpec.describe 'Api::V1::Users::Sessions::Operation::Create', :dox, type: :reque
 
       it 'renders user whose session was created' do
         expect(response).to be_created
-        expect(response.body).to match_json_schema('v1/users/sessions/create')
+        expect(response.body).to match_json_schema('v1/users/session/create')
       end
     end
 
@@ -59,8 +59,6 @@ RSpec.describe 'Api::V1::Users::Sessions::Operation::Create', :dox, type: :reque
 
     describe 'Fail' do
       describe 'Unauthorized' do
-        let(:headers) { { 'X-Refresh-Token': 'wrong_token' } }
-
         include_examples 'renders unauthenticated errors'
       end
     end
