@@ -4,7 +4,7 @@ class ApplicationEndpoint < Trailblazer::Endpoint
   MATCHER = Dry::Matcher.new(
     created: Dry::Matcher::Case.new(
       match: ->(result) {
-        result.success? && (result['model.action'] == :new || result[:semantic_success] == :created)
+        result.success? && result[:semantic_success] == :created
       }
     ),
     destroyed: Dry::Matcher::Case.new(

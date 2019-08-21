@@ -1,0 +1,9 @@
+en:
+  user_mailer:
+    subject: Email confirmation
+    confirmation:
+      title: Email verification
+      confirm: Confirm
+      message: my email
+      email: Email
+      confirmation_url: Confirmation url

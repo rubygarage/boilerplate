@@ -95,5 +95,9 @@ directories:
     NilCheck:
       enabled: false
 
+  'app/workers':
+    UtilityFunction:
+      enabled: false
+
 exclude_paths:
   - db/

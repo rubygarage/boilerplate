@@ -14,7 +14,8 @@ RSpec.describe Api::V1::Users::Sessions::Operation::Create do
       expect(Api::V1::Users::Sessions::Service::Tokens::Create).to receive(:call).and_call_original
       expect(result[:semantic_success]).to eq(:created)
       expect(result[:tokens]).to include(:access, :refresh, :csrf, :access_expires_at, :refresh_expires_at)
-      expect(result[:renderer]).to include(:serializer, :meta)
+      expect(result[:renderer]).to include(serializer: Api::V1::Lib::Serializer::Account)
+      expect(result[:renderer]).to include(:meta)
       expect(result).to be_success
     end
   end
