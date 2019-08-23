@@ -42,8 +42,8 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
     + Body
 
             {
-              "email": "chia@will.co.uk",
-              "password": "HgmCzEEt49DcEm6"
+              "email": "franklin@hodkiewiczjenkins.us",
+              "password": "rHdA0I1rBBD"
             }
 
 + Response 201
@@ -56,19 +56,19 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
 
             {
               "data": {
-                "id": "302",
+                "id": "868",
                 "type": "account",
                 "attributes": {
-                  "email": "chia@will.co.uk",
-                  "created_at": "2019-08-15T08:16:52.930Z"
+                  "email": "franklin@hodkiewiczjenkins.us",
+                  "created_at": "2019-08-17T13:56:23.498Z"
                 }
               },
               "meta": {
-                "csrf": "6pH6Dkb2intYG6wGpYP5KONfAmo3mQbkIifTjdVq1BmH6ML13MSUbUbKbtp5Z7ZYn5uXWxCh2WdFynMaHjGoyw==",
-                "access": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NjU4NjA2MTMsImFjY291bnRfaWQiOjMwMiwidWlkIjoiYTVjODIyZGUtNWQ3NC00NmI5LWJhOGQtOWJiZjdlNjFiZDk5IiwiZXhwIjoxNTY1ODYwNjEzfQ.SJrzbmhuvUImfI9dByPniCkiWNyixObhss8GPHQS7WY",
-                "access_expires_at": "2019-08-15T12:16:53.000+03:00",
-                "refresh": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NjU4NjA2MTMsImFjY291bnRfaWQiOjMwMiwidWlkIjoiOWI4Y2RlMjEtYjhjNC00OTBjLWEyNTAtNzU3ZGZjMzFjOGI0IiwiZXhwIjoxNTY2NDYxODEzfQ.yfZbpN6gArZXq-ofLEgdSa_lI7XIx_7Uc_qgMb9RGU4",
-                "refresh_expires_at": "2019-08-22T11:16:53.000+03:00"
+                "csrf": "ucDAtTtz5fhasNhjUTlnxda9VTqZRWU7HxBGenXATr5uRO6roL94J14aUYMvqe63r2Qhyn6VTb1gpHrWheeL5A==",
+                "access": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NjYwNTM3ODMsImFjY291bnRfaWQiOjg2OCwidWlkIjoiMzFlNTAwYjctZDk3Yi00ZTgxLTk1ZTEtNWE5ZWFhNTdmYWE1IiwiZXhwIjoxNTY2MDUzNzgzfQ.__dVyZe3eIWW3AUWJfdr4j51CG6E21l9WaRF-qDZUr8",
+                "access_expires_at": "2019-08-17T17:56:23.000+03:00",
+                "refresh": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NjYwNTM3ODMsInVpZCI6ImY0YTFjZDZjLTJhYmUtNGRhYi04MDRkLTYzNjFkNGUzNmZiNyIsImV4cCI6MTU2NjY1NDk4M30.kd_RckWgBfFJAbfHt5VsgzSmXlmECdptfRpZ0MGI9TQ",
+                "refresh_expires_at": "2019-08-24T16:56:23.000+03:00"
               }
             }
 
@@ -120,8 +120,8 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
     + Body
 
             {
-              "email": "_jeri@pollich.name",
-              "password": "5dY558jYK"
+              "email": "_sally@green.ca",
+              "password": "zg2ejjMgdvS"
             }
 
 + Response 404
@@ -141,8 +141,8 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
     + Body
 
             {
-              "email": "adelia@deckowrodriguez.info",
-              "password": "_bdOt5NArRBhJHU"
+              "email": "yanira@johnston.info",
+              "password": "_c51ghoD6B"
             }
 
 + Response 401
@@ -160,6 +160,48 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
                     "pointer": "/base"
                   },
                   "detail": "wrong credentials"
+                }
+              ]
+            }
+
+### Destroy user session (Sign Out) [DELETE /api/v1/users/session]
+
+
++ Request clears user session
+**DELETE**&nbsp;&nbsp;`/api/v1/users/session`
+
+    + Headers
+
+            Accept: application/json
+            X-Refresh-Token: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1NjYwNTM3ODMsInVpZCI6ImYyNjYwMjZlLTIzMzEtNDg2MS1iM2M4LWI3ZmE4YTZiNTJiMyIsImV4cCI6MTU2NjY1NDk4M30.0Owv7mVryS3LEkwRb3uuTc0PY3H6wVGIlNiJSzPtWd8
+            Content-Type: application/json
+
++ Response 204
+
++ Request renders auth errors
+**DELETE**&nbsp;&nbsp;`/api/v1/users/session`
+
+    + Headers
+
+            Accept: application/json
+            X-Refresh-Token: wrong_token
+            Content-Type: application/json
+
++ Response 401
+
+    + Headers
+
+            Content-Type: application/vnd.api+json; charset=utf-8
+
+    + Body
+
+            {
+              "errors": [
+                {
+                  "source": {
+                    "pointer": "/base"
+                  },
+                  "detail": "invalid_token"
                 }
               ]
             }

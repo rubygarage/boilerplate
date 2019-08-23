@@ -44,8 +44,8 @@ detectors:
     exclude:
       - test_matcher
       - DefaultEndpoint#error_serializer_by_status
-      - Service::JsonApi::ResourceErrorSerializer#compose_errors
-      - Service::JsonApi::ResourceErrorSerializer#plain_errors?
+      - Service::JsonApi::ErrorDataStructureParser#compose_errors
+      - Service::JsonApi::ErrorDataStructureParser#plain_errors?
       - Service::JsonApi::UriQueryErrorSerializer#compose_nested_errors
       - Macro::Contract::BaseSchemaObject#build_schema
 
@@ -89,6 +89,10 @@ directories:
 
   'spec/support/helpers':
     UtilityFunction:
+      enabled: false
+    ControlParameter:
+      enabled: false
+    NilCheck:
       enabled: false
 
 exclude_paths:
