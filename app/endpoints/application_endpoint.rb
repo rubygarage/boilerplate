@@ -24,7 +24,7 @@ class ApplicationEndpoint < Trailblazer::Endpoint
     ),
     forbidden: Dry::Matcher::Case.new(
       match: ->(result) {
-        result.failure? && result['result.policy.default']&.failure?
+        result.failure? && (result['result.policy.default']&.failure? || result[:semantic_failure] == :forbidden)
       }
     ),
     gone: Dry::Matcher::Case.new(
