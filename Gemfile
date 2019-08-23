@@ -33,6 +33,7 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.13'
 gem 'jwt_sessions', '~> 2.4', '>= 2.4.2'
 
 group :development, :test do
+  gem 'bullet', '~> 6.0', '>= 6.0.1'
   gem 'factory_bot_rails', '~> 5.0', '>= 5.0.2'
   gem 'ffaker', '~> 2.11'
   gem 'pry-byebug', '~> 3.7'

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# :nocov:
 namespace :api do
   namespace :doc do
     desc 'Generate API Blueprint documentation'
@@ -35,3 +36,4 @@ namespace :api do
     end
   end
 end
+# :nocov:
