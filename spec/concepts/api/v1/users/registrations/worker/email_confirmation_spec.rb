@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Api::V1::Users::EmailConfirmationWorker, type: :worker do
-  describe 'class settings' do
-    it { expect(described_class.new).to be_a(Sidekiq::Worker) }
-  end
-
+RSpec.describe Api::V1::Users::Registrations::Worker::EmailConfirmation, type: :worker do
   describe '.perform' do
     subject(:worker) do
       described_class.new.perform(

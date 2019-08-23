@@ -32,3 +32,6 @@ en:
       user_password:
         eql?: should match to password
     email_uniq?: email not unique
+    verification:
+      invalid_email_token: invalid email token
+      user_account_already_verified: user account already verified

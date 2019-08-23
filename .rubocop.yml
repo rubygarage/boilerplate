@@ -22,6 +22,10 @@ Style/Documentation:
 Style/ParallelAssignment:
   Enabled: false
 
+Style/RescueModifier:
+  Exclude:
+    - app/concepts/api/v1/lib/service/email_token.rb
+
 Style/ClassAndModuleChildren:
   Exclude:
     - app/concepts/**/*
@@ -36,6 +40,10 @@ Style/Lambda:
 Style/SignalException:
   Exclude:
     - app/concepts/**/*.rb
+
+Rails/SkipsModelValidations:
+    Exclude:
+      - app/concepts/api/v1/users/verifications/operation/show.rb
 
 # Metrics ---------------------------------------------------------------------
 

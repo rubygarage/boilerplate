@@ -11,7 +11,7 @@ RSpec.describe Api::V1::Users::Registrations::Operation::Create do
   describe 'Success' do
     it 'creates user account, sends confirmation link' do
       expect(Api::V1::Lib::Service::EmailToken).to receive(:create).and_call_original
-      expect(Api::V1::Users::EmailConfirmationWorker).to receive(:perform_async).and_call_original
+      expect(Api::V1::Users::Registrations::Worker::EmailConfirmation).to receive(:perform_async).and_call_original
       expect { result }.to change(Account, :count).from(0).to(1)
       expect(result[:semantic_success]).to eq(:created)
       expect(result[:email_token]).not_to be_nil

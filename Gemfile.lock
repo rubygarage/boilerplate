@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/trailblazer/trailblazer-endpoint.git
+  remote: https://github.com/trailblazer/trailblazer-endpoint.git
   revision: 0c80379a4ae977aa427092aade2aa07882f9381d
   specs:
     trailblazer-endpoint (0.0.1)

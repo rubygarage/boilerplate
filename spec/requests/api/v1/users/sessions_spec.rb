@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Api::V1::Users::Sessions::Operation::Create', :dox, type: :request do
+RSpec.describe 'Api::V1::Users::Sessions', :dox, type: :request do
   include ApiDoc::V1::Users::Session::Api
 
   let(:password) { FFaker::Internet.password }
