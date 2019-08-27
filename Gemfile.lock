@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/trailblazer/trailblazer-endpoint.git
+  remote: git://github.com/trailblazer/trailblazer-endpoint.git
   revision: 0c80379a4ae977aa427092aade2aa07882f9381d
   specs:
     trailblazer-endpoint (0.0.1)
@@ -135,7 +135,7 @@ GEM
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.2)
       dry-equalizer (~> 0.2)
-    dry-matcher (0.8.0)
+    dry-matcher (0.8.1)
       dry-core (>= 0.4.7)
     dry-types (0.12.3)
       concurrent-ruby (~> 1.0)
@@ -203,7 +203,7 @@ GEM
     minitest (5.11.3)
     msgpack (1.3.1)
     nio4r (2.4.0)
-    nokogiri (1.10.3)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     oj (3.8.1)
     overcommit (0.49.0)
