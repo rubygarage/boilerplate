@@ -28,7 +28,7 @@ module Api::V1::Users::Registrations::Contract
     validation :email, if: :default do
       configure do
         def email_uniq?(value)
-          !Account.find_by(email: value)
+          !Account.exists?(email: value)
         end
       end
 
