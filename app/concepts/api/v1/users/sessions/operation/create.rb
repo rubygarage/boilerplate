@@ -12,7 +12,7 @@ module Api::V1::Users::Sessions::Operation
     fail Macro::AddContractError(base: 'errors.session.wrong_credentials'), fail_fast: true
     step :set_user_tokens
     step Macro::Semantic(success: :created)
-    step Macro::Renderer(serializer: Api::V1::Users::Sessions::Serializer::Create, meta: :tokens)
+    step Macro::Renderer(serializer: Api::V1::Lib::Serializer::Account, meta: :tokens)
 
     def authenticate(ctx, model:, **)
       model.authenticate(ctx['contract.default'].password)

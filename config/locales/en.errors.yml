@@ -7,9 +7,12 @@ en:
     str?: must be a string
     filled?: must be filled
     array?: must be an array
+    format?: invalid format
     included_in?:
       arg:
         default: "must be one of: %{list}"
+    min_size?: "size cannot be less than %{num}"
+    max_size?: "size cannot be greater than %{num}"
 
     # Custom error messages ---------------------------------------------------
     pagination_overflow: is out of limits
@@ -25,3 +28,7 @@ en:
       not_found: user not found
       wrong_credentials: wrong credentials
       invalid_token: invalid_token
+    rules:
+      user_password:
+        eql?: should match to password
+    email_uniq?: email not unique

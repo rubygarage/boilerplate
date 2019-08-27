@@ -7,7 +7,9 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 
 %w[api_doc support].each do |dir|
-  Dir[Rails.root.join('spec', dir, '**', '*.rb')].each { |file| require file }
+  Dir[Rails.root.join('spec', dir, '**', '*.rb')].each do |file|
+    require file unless file[/\A.+_spec\.rb\z/]
+  end
 end
 
 abort('The Rails environment is running in production mode!') if Rails.env.production?

@@ -26,6 +26,7 @@ Style/ClassAndModuleChildren:
   Exclude:
     - app/concepts/**/*
     - app/controllers/**/*
+    - app/workers/**/*
 
 Style/Lambda:
   Exclude:

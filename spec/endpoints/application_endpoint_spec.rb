@@ -44,19 +44,10 @@ RSpec.describe ApplicationEndpoint do
     describe ':create case matcher' do
       let(:handler_context) { 'create handler context' }
       let(:result_condition) { true }
+      let(:semantic_name) { :semantic_success }
+      let(:semantic_context) { :created }
 
-      context 'when result model action new' do
-        let(:result_options) { { 'model.action' => :new } }
-
-        include_examples 'matched endpoint'
-      end
-
-      context 'when semantic' do
-        let(:semantic_name) { :semantic_success }
-        let(:semantic_context) { :created }
-
-        include_examples 'matched endpoint'
-      end
+      include_examples 'matched endpoint'
     end
 
     describe ':destroyed case matcher' do
