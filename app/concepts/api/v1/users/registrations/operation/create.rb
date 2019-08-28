@@ -12,7 +12,7 @@ module Api::V1::Users::Registrations::Operation
     step Macro::Renderer(serializer: Api::V1::Lib::Serializer::Account)
 
     def set_email_token(ctx, model:, **)
-      ctx[:email_token] = Api::V1::Lib::Service::EmailToken.create(account_id: model.id)
+      ctx[:email_token] = Api::V1::Users::Lib::Service::EmailToken.create(account_id: model.id)
     end
 
     def send_confirmation_link(_ctx, model:, email_token:, **)

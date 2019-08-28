@@ -24,7 +24,7 @@ Style/ParallelAssignment:
 
 Style/RescueModifier:
   Exclude:
-    - app/concepts/api/v1/lib/service/email_token.rb
+    - app/concepts/api/v1/users/lib/service/email_token.rb
 
 Style/ClassAndModuleChildren:
   Exclude:

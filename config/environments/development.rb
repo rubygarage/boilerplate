@@ -41,6 +41,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.default_sender_email = 'no-reply@localhost'
   config.user_verification_path = 'http://localhost:3000/api/v1/users/verification'
+  config.user_reset_password_path = 'http://localhost:3000/api/v1/users/reset_password'
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

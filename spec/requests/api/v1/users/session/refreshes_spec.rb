@@ -20,9 +20,11 @@ RSpec.describe 'Api::V1::Users::Sessions::Refreshes', :dox, type: :request do
       end
     end
 
-    describe 'Fail' do
+    describe 'Failure' do
       describe 'Unauthorized' do
-        include_examples 'renders unauthenticated errors'
+        context 'when user unauthenticated' do
+          include_examples 'renders unauthenticated errors'
+        end
       end
 
       describe 'Forbidden' do

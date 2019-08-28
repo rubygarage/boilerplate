@@ -19,7 +19,9 @@ module Api::V1::Users::Sessions::Operation
     end
 
     def set_user_tokens(ctx, model:, **)
-      ctx[:tokens] = Api::V1::Users::Sessions::Service::Tokens::Create.call(account_id: model.id)
+      ctx[:tokens] = Api::V1::Users::Lib::Service::SessionToken::Create.call(
+        account_id: model.id, namespace: Constants::TokenNamespace::SESSION
+      )
     end
   end
 end

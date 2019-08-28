@@ -1,25 +1,54 @@
 # frozen_string_literal: true
 
-module Api::V1::Users::Sessions::Service::Tokens # rubocop:disable Style/ClassAndModuleChildren
+module Api::V1::Users::Lib::Service::SessionToken # rubocop:disable Style/ClassAndModuleChildren, Metrics/ModuleLength
   RSpec.describe Create do
     describe '.call' do
-      subject(:service) { described_class.call(account_id: account_id) }
+      subject(:service) { described_class.call(params) }
 
       let(:account_id) { rand(1..10) }
       let(:jwt_session_instance) { instance_double(JWTSessions::Session) }
 
-      it 'delegates tokens bundle creation to JWTSessions' do
-        expect(JWTSessions::Session)
-          .to receive(:new)
-          .with(payload: { account_id: account_id })
-          .and_return(jwt_session_instance)
-        expect(jwt_session_instance).to receive(:login).with(no_args)
-        service
+      shared_examples 'returns tokens bundle' do
+        it 'returns tokens bundle' do
+          expect(service).to be_an_instance_of(Hash)
+          expect(service).to include(:access, :access_expires_at, :refresh, :refresh_expires_at, :csrf)
+        end
       end
 
-      it 'returns tokens bundle' do
-        expect(service).to be_an_instance_of(Hash)
-        expect(service).to include(:access, :access_expires_at, :refresh, :refresh_expires_at, :csrf)
+      context 'when not namespaced token' do
+        let(:params) { { account_id: account_id } }
+
+        it 'delegates tokens bundle creation to JWTSessions' do
+          expect(Api::V1::Users::Lib::Service::TokenNamespace).not_to receive(:call)
+          expect(JWTSessions::Session)
+            .to receive(:new)
+            .with(payload: { account_id: account_id })
+            .and_return(jwt_session_instance)
+          expect(jwt_session_instance).to receive(:login).with(no_args)
+          service
+        end
+
+        include_examples 'returns tokens bundle'
+      end
+
+      context 'when namespaced token' do
+        let(:namespace) { :namespace }
+        let(:params) { { account_id: account_id, namespace: namespace } }
+
+        it 'delegates tokens bundle creation to JWTSessions' do
+          expect(Api::V1::Users::Lib::Service::TokenNamespace)
+            .to receive(:call)
+            .with(namespace, account_id)
+            .and_call_original
+          expect(JWTSessions::Session)
+            .to receive(:new)
+            .with(payload: { account_id: account_id, namespace: "#{namespace}-#{account_id}" })
+            .and_return(jwt_session_instance)
+          expect(jwt_session_instance).to receive(:login).with(no_args)
+          service
+        end
+
+        include_examples 'returns tokens bundle'
       end
     end
   end
@@ -42,6 +71,21 @@ module Api::V1::Users::Sessions::Service::Tokens # rubocop:disable Style/ClassAn
         expect(service).to include(:access_expiration, :access_uid, :expiration, :csrf)
         expect { JWTSessions::Session.new.flush_by_token(refresh_token) }
           .to raise_error(JWTSessions::Errors::Unauthorized)
+      end
+    end
+  end
+
+  RSpec.describe DestroyAll do
+    describe '.call' do
+      subject(:service) { described_class.call(namespace: namespace) }
+
+      let(:namespace) { :namespace }
+      let(:jwt_session_instance) { instance_double(JWTSessions::Session) }
+
+      it 'delegates all tokens bundles flushing to JWTSessions' do
+        expect(jwt_session_instance).to receive(:flush_namespaced).with(no_args)
+        expect(JWTSessions::Session).to receive(:new).with(namespace: namespace).and_return(jwt_session_instance)
+        service
       end
     end
   end

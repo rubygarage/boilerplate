@@ -10,7 +10,7 @@ RSpec.describe Api::V1::Users::Sessions::Refreshes::Operation::Create do
     let(:refresh_token) { create_token(:refresh, :expired, account: account) }
 
     it 'refreshes user session' do
-      expect(Api::V1::Users::Sessions::Service::Tokens::Refresh).to receive(:call).and_call_original
+      expect(Api::V1::Users::Lib::Service::SessionToken::Refresh).to receive(:call).and_call_original
       expect(result[:tokens]).to include(:access, :access_expires_at, :csrf)
       expect(result[:semantic_success]).to eq(:created)
       expect(result[:renderer]).to include(:serializer, :meta)

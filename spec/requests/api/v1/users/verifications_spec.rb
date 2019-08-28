@@ -7,14 +7,12 @@ RSpec.describe 'Api::V1::Users::Verifications', :dox, type: :request do
   let(:email_token) { create_token(:email, account: account) }
   let(:confirmation_url) { "/api/v1/users/verification?email_token=#{email_token}" }
 
+  before { get confirmation_url }
+
   describe 'GET #show' do
     include ApiDoc::V1::Users::Verification::Show
 
     describe 'Success' do
-      let(:params) { { email_token: email_token } }
-
-      before { get confirmation_url }
-
       it 'verifies user account' do
         expect(response).to be_no_content
       end
@@ -22,22 +20,20 @@ RSpec.describe 'Api::V1::Users::Verifications', :dox, type: :request do
 
     describe 'Failure' do
       describe 'Unprocessable Entity' do
-        let(:email_token) { 'invalid_token' }
+        context 'when wrong params' do
+          let(:email_token) { 'invalid_token' }
 
-        before { get confirmation_url }
-
-        include_examples 'renders unprocessable entity errors'
+          include_examples 'renders unprocessable entity errors'
+        end
       end
 
       describe 'Not found' do
-        let(:params) { { email_token: email_token } }
+        context 'when user account not found' do
+          let(:not_exising_account) { instance_double('Account', id: account.id.next) }
+          let(:email_token) { create_token(:email, account: not_exising_account) }
 
-        before do
-          account.destroy
-          get confirmation_url
+          include_examples 'returns not found status'
         end
-
-        include_examples 'returns not found status'
       end
     end
   end

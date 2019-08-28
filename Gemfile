@@ -63,6 +63,7 @@ end
 group :test do
   gem 'dox', '~> 1.1'
   gem 'json_matchers', '~> 0.11.1', require: 'json_matchers/rspec'
+  gem 'mock_redis', '~> 0.21.0'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.4'
   gem 'rspec-sidekiq', '~> 3.0', '>= 3.0.3'
   gem 'shoulda-matchers', '~> 4.1', '>= 4.1.2'
