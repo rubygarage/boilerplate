@@ -1,9 +1,12 @@
 en:
   user_mailer:
-    subject: Email confirmation
     confirmation:
+      subject: Email confirmation
       title: Email verification
       confirm: Confirm
       message: my email
       email: Email
       confirmation_url: Confirmation url
+    notification:
+      subject: Your account has been verified successfully
+      title: Your account has been verified successfully

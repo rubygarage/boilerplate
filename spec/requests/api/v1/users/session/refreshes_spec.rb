@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Api::V1::Users::Sessions::Refreshes::Operation::Create', :dox, type: :request do
+RSpec.describe 'Api::V1::Users::Sessions::Refreshes', :dox, type: :request do
   include ApiDoc::V1::Users::Session::Refresh::Api
 
   describe 'POST #create' do
