@@ -16,7 +16,7 @@ RSpec.describe 'Api::V1::Users::Sessions::Refreshes', :dox, type: :request do
 
       it 'renders refreshed tokens bundle in meta' do
         expect(response).to be_created
-        expect(response.body).to match_json_schema('v1/users/session/refresh/create')
+        expect(response).to match_json_schema('v1/users/session/refresh/create')
       end
     end
 

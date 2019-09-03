@@ -16,6 +16,9 @@ Rails.application.routes.draw do
           end
         end
         resource :reset_password, only: %i[create show update]
+        namespace :account do
+          resource :profile, only: :show
+        end
       end
     end
   end
