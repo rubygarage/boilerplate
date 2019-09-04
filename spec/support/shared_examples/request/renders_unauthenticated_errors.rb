@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples 'renders unauthenticated errors' do
-  context 'with invalid refresh token' do
-    let(:headers) { { 'X-Refresh-Token': 'invalid_token' } }
+  context 'with invalid access/refresh token' do
+    let(:headers) { {} }
 
     it 'renders auth errors' do
       expect(response).to be_unauthorized

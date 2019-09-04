@@ -14,7 +14,28 @@ module ApiDoc
         end
 
         document :create do
-          action 'Create user account (Sign Up)'
+          action 'Create user account (Sign Up)' do
+            params(
+              email: {
+                type: :string,
+                required: :required,
+                value: FFaker::Internet.email,
+                description: 'Email for user account'
+              },
+              password: {
+                type: :string,
+                required: :required,
+                value: 'password',
+                description: 'Password for user account'
+              },
+              password_confirmation: {
+                type: :string,
+                required: :required,
+                value: 'password',
+                description: 'Password confirmation for user account'
+              }
+            )
+          end
         end
       end
     end

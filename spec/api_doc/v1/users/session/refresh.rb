@@ -9,7 +9,7 @@ module ApiDoc
 
           document :api do
             resource 'Session Refresh' do
-              endpoint '/session/refresh'
+              endpoint '/users/session/refresh'
               group 'Session'
             end
           end

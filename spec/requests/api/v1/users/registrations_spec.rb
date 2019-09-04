@@ -17,7 +17,7 @@ RSpec.describe 'Api::V1::Users::Registrations', :dox, type: :request do
 
       it 'renders user whose account was created' do
         expect(response).to be_created
-        expect(response.body).to match_json_schema('v1/users/registration/create')
+        expect(response).to match_json_schema('v1/users/registration/create')
       end
     end
 

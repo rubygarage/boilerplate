@@ -14,7 +14,14 @@ module ApiDoc
         end
 
         document :show do
-          action 'Verificate user account'
+          action 'Verificate user account' do
+            params(
+              email_token: {
+                type: :string,
+                required: :required
+              }
+            )
+          end
         end
       end
     end

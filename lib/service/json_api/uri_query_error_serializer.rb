@@ -14,7 +14,7 @@ module Service
       def compose_nested_errors(field, attribute_errors)
         attribute_errors.map do |nested_field, errors|
           {
-            source: { parameter: "#{field}[#{nested_field}]" },
+            source: { pointer: "#{field}[#{nested_field}]" },
             detail: errors.join(', ')
           }
         end
@@ -25,7 +25,7 @@ module Service
           if attribute_errors.flatten.any? { |item| !item.is_a?(String) }
             compose_nested_errors(field, attribute_errors)
           else
-            { source: { parameter: field.to_s }, detail: attribute_errors.join }
+            { source: { pointer: field.to_s }, detail: attribute_errors.join }
           end
         end
       end

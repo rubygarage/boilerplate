@@ -12,4 +12,8 @@ module Authentication
       )
     end
   end
+
+  def current_account
+    @current_account ||= Account.find_by(id: payload['account_id'])
+  end
 end

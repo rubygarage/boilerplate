@@ -25,7 +25,7 @@ RSpec.describe Service::JsonApi::UriQueryErrorSerializer do
         {
           errors: [
             {
-              source: { parameter: 'some_attr1' },
+              source: { pointer: 'some_attr1' },
               detail: 'error'
             }
           ]
@@ -44,7 +44,7 @@ RSpec.describe Service::JsonApi::UriQueryErrorSerializer do
               [
                 {
                   detail: 'error',
-                  source: { parameter: 'some_attr1[some_attr2]' }
+                  source: { pointer: 'some_attr1[some_attr2]' }
                 }
               ]
           }
@@ -61,7 +61,7 @@ RSpec.describe Service::JsonApi::UriQueryErrorSerializer do
               [
                 {
                   detail: 'error',
-                  source: { parameter: 'some_attr1[0]' }
+                  source: { pointer: 'some_attr1[0]' }
                 }
               ]
           }

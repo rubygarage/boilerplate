@@ -14,7 +14,22 @@ module ApiDoc
         end
 
         document :create do
-          action 'Create user session (Sign In)'
+          action 'Create user session (Sign In)' do
+            params(
+              email: {
+                type: :string,
+                required: :required,
+                value: FFaker::Internet.email,
+                description: 'Email of existing user account'
+              },
+              password: {
+                type: :string,
+                required: :required,
+                value: 'password',
+                description: 'Password for this user account'
+              }
+            )
+          end
         end
 
         document :destroy do
