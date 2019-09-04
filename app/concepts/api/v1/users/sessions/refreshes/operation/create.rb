@@ -10,8 +10,9 @@ module Api::V1::Users::Sessions::Refreshes::Operation
     step Macro::Renderer(meta: :tokens)
 
     def refresh_user_tokens(ctx, payload:, found_token:, **)
-      ctx[:tokens] =
-        Api::V1::Users::Sessions::Service::Tokens::Refresh.call(payload: payload, refresh_token: found_token)
+      ctx[:tokens] = Api::V1::Users::Lib::Service::SessionToken::Refresh.call(
+        payload: payload, refresh_token: found_token
+      )
     end
   end
 end

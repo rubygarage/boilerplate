@@ -10,3 +10,8 @@ en:
     notification:
       subject: Your account has been verified successfully
       title: Your account has been verified successfully
+    reset_password:
+      subject: Reset password
+      title: Reset user account password
+      reset: Reset
+      message: current user account password for

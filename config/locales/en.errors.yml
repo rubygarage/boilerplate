@@ -35,3 +35,6 @@ en:
     verification:
       invalid_email_token: invalid email token
       user_account_already_verified: user account already verified
+    email_token:
+      already_used: current email token is already used
+      not_found: current email token not found

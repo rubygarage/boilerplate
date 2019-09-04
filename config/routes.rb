@@ -15,6 +15,7 @@ Rails.application.routes.draw do
             resource :refresh, only: :create
           end
         end
+        resource :reset_password, only: %i[create show update]
       end
     end
   end

@@ -23,9 +23,11 @@ RSpec.describe 'Api::V1::Users::Registrations', :dox, type: :request do
 
     describe 'Failure' do
       describe 'Unprocessable Entity' do
-        let(:params) { {} }
+        context 'when wrong params' do
+          let(:params) { {} }
 
-        include_examples 'renders unprocessable entity errors'
+          include_examples 'renders unprocessable entity errors'
+        end
       end
     end
   end

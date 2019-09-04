@@ -9,6 +9,7 @@ module DefaultEndpoint
       match.not_found    { head(:not_found) }
       match.forbidden    { head(:forbidden) }
       match.gone         { head(:gone) }
+      match.accepted     { head(:accepted) }
       match.invalid      { |result| render_errors(result, :unprocessable_entity) }
       match.success      { |result| success_response(result) }
       match.bad_request  { |result| render_errors(result, :bad_request) }

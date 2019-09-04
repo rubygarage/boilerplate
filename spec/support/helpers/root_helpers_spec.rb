@@ -18,18 +18,22 @@ RSpec.describe Helpers::RootHelpers, type: :helper do
           expect(email_token).to be_an_instance_of(String)
           expect(decode_email_token(email_token)).to include(:account_id, :exp)
           expect(decode_email_token(email_token)[:account_id]).to be_an_instance_of(Integer)
+          expect(decode_email_token(email_token)[:namespace]).to be_nil
         end
       end
 
       context 'with optional params' do
         context 'with account' do
-          let(:params) { { account: account } }
+          let(:exp_time) { 1.hour.from_now.to_i }
+          let(:params) { { account: account, namespace: 'namespace', exp: exp_time } }
 
           it 'creates unexpired email token with account_id value' do
             expect(JWT).to receive(:encode).and_call_original
             expect(email_token).to be_an_instance_of(String)
             expect(decode_email_token(email_token)).to include(:account_id, :exp)
             expect(decode_email_token(email_token)[:account_id]).to eq('account_id')
+            expect(decode_email_token(email_token)[:namespace]).to eq('namespace')
+            expect(decode_email_token(email_token)[:exp]).to eq(exp_time)
           end
         end
 

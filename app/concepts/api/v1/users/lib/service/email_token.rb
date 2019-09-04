@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-module Api::V1::Lib::Service
+module Api::V1::Users::Lib::Service
   class EmailToken
-    TOKEN_LIFETIME = 24
     ERROR_MESSAGE = 'Secret key is not assigned'
+    TOKEN_LIFETIME = 24.hours
 
     class << self
-      def create(payload, exp = TOKEN_LIFETIME.hours.from_now)
+      def create(payload, exp = TOKEN_LIFETIME.from_now.to_i)
         check_secret_key
-        payload[:exp] = exp.to_i
+        payload[:exp] = exp
         JWT.encode(payload, Constants::Shared::HMAC_SECRET)
       end
 

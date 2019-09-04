@@ -31,6 +31,7 @@ RSpec.describe ApplicationEndpoint do
         match.not_found { handler_context }
         match.forbidden { handler_context }
         match.gone { handler_context }
+        match.accepted { handler_context }
         match.invalid { handler_context }
         match.bad_request { handler_context }
         match.success { handler_context }
@@ -129,6 +130,15 @@ RSpec.describe ApplicationEndpoint do
 
         include_examples 'matched endpoint'
       end
+    end
+
+    describe ':accepted case matcher' do
+      let(:handler_context) { 'accepted handler context' }
+      let(:result_condition) { true }
+      let(:semantic_name) { :semantic_success }
+      let(:semantic_context) { :accepted }
+
+      include_examples 'matched endpoint'
     end
 
     describe ':bad_request case matcher' do

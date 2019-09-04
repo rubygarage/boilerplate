@@ -22,23 +22,29 @@ RSpec.describe 'Api::V1::Users::Sessions', :dox, type: :request do
 
     describe 'Failure' do
       describe 'Unprocessable Entity' do
-        let(:params) { {} }
+        context 'when wrong params' do
+          let(:params) { {} }
 
-        include_examples 'renders unprocessable entity errors'
+          include_examples 'renders unprocessable entity errors'
+        end
       end
 
       describe 'Not Found' do
-        let(:params) { { email: "_#{account.email}", password: password } }
+        context 'when user account not found' do
+          let(:params) { { email: "_#{account.email}", password: password } }
 
-        it 'returns not found status' do
-          expect(response).to be_not_found
+          it 'returns not found status' do
+            expect(response).to be_not_found
+          end
         end
       end
 
       describe 'Unauthorized' do
-        let(:params) { { email: account.email, password: "_#{password}" } }
+        context 'when user unauthenticated' do
+          let(:params) { { email: account.email, password: "_#{password}" } }
 
-        include_examples 'renders unauthenticated errors'
+          include_examples 'renders unauthenticated errors'
+        end
       end
     end
   end
@@ -57,9 +63,11 @@ RSpec.describe 'Api::V1::Users::Sessions', :dox, type: :request do
       end
     end
 
-    describe 'Fail' do
+    describe 'Failure' do
       describe 'Unauthorized' do
-        include_examples 'renders unauthenticated errors'
+        context 'when user unauthenticated' do
+          include_examples 'renders unauthenticated errors'
+        end
       end
     end
   end

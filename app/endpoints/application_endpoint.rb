@@ -32,6 +32,11 @@ class ApplicationEndpoint < Trailblazer::Endpoint
         result.failure? && result[:semantic_failure] == :gone
       }
     ),
+    accepted: Dry::Matcher::Case.new(
+      match: ->(result) {
+        result.success? && result[:semantic_success] == :accepted
+      }
+    ),
     invalid: Dry::Matcher::Case.new(
       match: ->(result) {
         result.failure? && result['contract.default']&.errors.present?

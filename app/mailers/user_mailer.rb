@@ -11,4 +11,10 @@ class UserMailer < ApplicationMailer
     @email = email
     mail(to: email, subject: I18n.t('user_mailer.notification.subject'))
   end
+
+  def reset_password(email, token, path)
+    @email = email
+    @reset_password_url = URI.parse("#{path}?email_token=#{token}").to_s
+    mail(to: email, subject: I18n.t('user_mailer.reset_password.subject'))
+  end
 end

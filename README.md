@@ -30,10 +30,11 @@
 
 | Service | Description |
 | --- | --- |
-| ```Service::Pagy``` | Wrapes active record or elastic collection into ```Pagy``` |
+| ```Service::Pagy``` | Wrapes active record collection / array into ```Pagy``` |
 | ```Service::JsonApi::Paginator``` | Buildes pagination links with ```Pagy``` |
 | ```Service::JsonApi::ResourceSerializer``` | ```FastJson``` serializer factory |
 | ```Service::JsonApi::ResourceErrorSerializer``` | Resource error serializer service with strict following Jsonapi specification |
+| ```Service::JsonApi::HashErrorSerializer``` | Hash error serializer service with strict following Jsonapi specification |
 | ```Service::JsonApi::UriQueryErrorSerializer``` | URI query error serializer service with strict following Jsonapi specification |
 | ```Api::V1::Lib::Service::JsonApi::ColumnsBuilder``` | Auxiliary service for performing validation dependencies for filtering/sorting operations. Build collection with ```Api::V1::Lib::Service::JsonApi::Column``` instances |
 
@@ -43,6 +44,21 @@
 | --- | --- |
 | ```JsonApi::Filtering::PREDICATES``` | Available JSON API filter predicates by column type |
 | ```JsonApi::Filtering::OPERATORS``` | Available JSON API filter matchers |
+| ```JsonApi::Pagination::MINIMAL_VALUE``` | Pagination per page configuration |
+| ```Constants::TokenNamespace::SESSION``` | Session JWT token namespace |
+| ```Constants::TokenNamespace::RESET_PASSWORD``` | Reset password JWT token namespace |
+
+### Application base classes
+
+| Class | Description |
+| --- | --- |
+| ```ApplicationEndpoint``` | Base class that responsible for handling statuses of HTTP-responses, works with DefaultEndpoint concern |
+| ```ApiController``` | Base application controller class that available for unauthorized users |
+| ```ApplicationOperation``` | Base application operation class |
+| ```ApplicationContract``` | Base application contract class. Use it for build/update entity. Otherwise use ```Dry::Validation.Schema``` |
+| ```ApplicationSerializer``` | Base application serializer class |
+| ```ApplicationWorker``` | Base application worker class |
+
 
 ## Docker
 

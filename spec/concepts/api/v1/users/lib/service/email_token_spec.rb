@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Api::V1::Lib::Service::EmailToken do
+RSpec.describe Api::V1::Users::Lib::Service::EmailToken do
   let(:account) { instance_double('Account', id: rand(1..42)) }
   let(:account_id) { account.id }
   let(:payload) { { account_id: account_id } }
@@ -8,7 +8,7 @@ RSpec.describe Api::V1::Lib::Service::EmailToken do
   describe 'defined constants' do
     it { expect(described_class).to be_const_defined(:ERROR_MESSAGE) }
     it { expect(described_class).to be_const_defined(:TOKEN_LIFETIME) }
-    it { expect(described_class::TOKEN_LIFETIME).to eq(24) }
+    it { expect(described_class::TOKEN_LIFETIME).to eq(24.hours) }
   end
 
   context 'when hmac secret exists' do
@@ -19,11 +19,13 @@ RSpec.describe Api::V1::Lib::Service::EmailToken do
     end
 
     describe '.read' do
-      let(:token) { create_token(:email, account: account) }
+      let(:token) { create_token(:email, account: account, namespace: :namespace) }
 
       context 'with valid token' do
         it 'includes token payload' do
           expect(described_class.read(token)).to include(account_id: account_id)
+          expect(described_class.read(token)).to include(:exp)
+          expect(described_class.read(token)).to include(:namespace)
         end
       end
 
