@@ -39,7 +39,7 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
     + Headers
 
             Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5
-            Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Njc1OTMzNDgsImFjY291bnRfaWQiOjcxMjQsIm5hbWVzcGFjZSI6bnVsbCwidWlkIjoiZDkyY2NiMTAtNTI4OC00NGMyLWIzZGUtNDBiNjNjMmFhMzE4IiwiZXhwIjoxNTY3NTkzMzQ4fQ.qLaQuRpFjA5tSeXgmdRPmoJouMj67w_LcYhQQfkl_Ss
+            Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Njc3NzM0NDIsImFjY291bnRfaWQiOjc1MDgsIm5hbWVzcGFjZSI6bnVsbCwidWlkIjoiMTZmOGQ3NGQtZGJmZi00MTdjLTg0ZTktMjlmYWI2ODQ4MWJhIiwiZXhwIjoxNTY3NzczNDQyfQ.zO9XqJNeJ9Nr946uSzX_5t2SbUXN0_a87kcBUh_Wx0Y
 
 + Response 200
 
@@ -51,15 +51,15 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
 
             {
               "data": {
-                "id": "1360",
+                "id": "1400",
                 "type": "user-profile",
                 "attributes": {
-                  "name": "Harriett Welch"
+                  "name": "Teofila Klocko"
                 },
                 "relationships": {
                   "account": {
                     "data": {
-                      "id": "7124",
+                      "id": "7508",
                       "type": "account"
                     }
                   }
@@ -67,11 +67,11 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
               },
               "included": [
                 {
-                  "id": "7124",
+                  "id": "7508",
                   "type": "account",
                   "attributes": {
-                    "email": "terrell.kertzmann@keebler.us",
-                    "created_at": "2019-09-04T09:35:48.219Z"
+                    "email": "hien_nitzsche@prosacco.ca",
+                    "created_at": "2019-09-06T11:37:22.882Z"
                   }
                 }
               ]
@@ -109,7 +109,7 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
     + Headers
 
             Accept: text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5
-            Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Njc1OTMzNDgsImFjY291bnRfaWQiOjcxMjgsIm5hbWVzcGFjZSI6bnVsbCwidWlkIjoiZTNhZTRiNzUtZDZhMS00MWVlLWFlNDgtN2RjZGYwYjgwMWFjIiwiZXhwIjoxNTY3NTkzMzQ4fQ.QxIDP9URaB43NBqbb9LbiDIIJO-Iln8F5SLIizN08Cs
+            Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Njc3NzM0NDIsImFjY291bnRfaWQiOjc1MTIsIm5hbWVzcGFjZSI6bnVsbCwidWlkIjoiYTI2OGFjYTUtZGJkNy00MzJlLTgyNGEtNWY5YmE1YTZiYWI3IiwiZXhwIjoxNTY3NzczNDQyfQ.61PigOL1SYzFhalpUesT9nvjyW9nwkcH911VgrseSRg
 
 + Response 400
 
@@ -139,7 +139,7 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
 ### Create user account (Sign Up) [POST /api/v1/users/registration]
 
 + Parameters
-    + email: `suzanna.dibbert%40purdy.name` (string, required) - Email for user account
+    + email: `lane_runolfsdottir%40lemkerath.ca` (string, required) - Email for user account
     + password: `password` (string, required) - Password for user account
     + password_confirmation: `password` (string, required) - Password confirmation for user account
 
@@ -154,7 +154,7 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
     + Body
 
             {
-              "email": "alonzo.schaden@farrell.com",
+              "email": "taina.tromp@gulgowski.us",
               "password": "Password1!",
               "password_confirmation": "Password1!"
             }
@@ -169,11 +169,11 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
 
             {
               "data": {
-                "id": "7129",
+                "id": "7513",
                 "type": "account",
                 "attributes": {
-                  "email": "alonzo.schaden@farrell.com",
-                  "created_at": "2019-09-04T09:35:48.448Z"
+                  "email": "taina.tromp@gulgowski.us",
+                  "created_at": "2019-09-06T11:37:23.031Z"
                 }
               }
             }
@@ -224,7 +224,7 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
 ### Create user account reset password token [POST /api/v1/users/reset_password]
 
 + Parameters
-    + email: `alvina_treutel%40gorczanyhartmann.us` (string, required) - Email of existing user account
+    + email: `meaghan%40feestcrist.biz` (string, required) - Email of existing user account
 
 + Request returns accepted status
 **POST**&nbsp;&nbsp;`/api/v1/users/reset_password`
@@ -237,7 +237,7 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
     + Body
 
             {
-              "email": "claud_reilly@kunzetillman.co.uk"
+              "email": "sophia@brakus.info"
             }
 
 + Response 202
@@ -288,7 +288,7 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
     + Body
 
             {
-              "email": "_glennie@herzog.co.uk"
+              "email": "_sima_lehner@blockwitting.biz"
             }
 
 + Response 404
@@ -303,7 +303,7 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
     + email_token: `valid.jwt.token` (string, required) - Valid and existing JWT email reset password token
 
 + Request verifies user account
-**GET**&nbsp;&nbsp;`/api/v1/users/reset_password?email_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50X2lkIjo3MTMzLCJuYW1lc3BhY2UiOiJyZXNldC1wYXNzd29yZCIsImV4cCI6MTU2NzY3NjE0OH0.uPsUJbYyWxnoS9K01spmxKmG5uuDOACUWEJeVEADZaM`
+**GET**&nbsp;&nbsp;`/api/v1/users/reset_password?email_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50X2lkIjo3NTE3LCJuYW1lc3BhY2UiOiJyZXNldC1wYXNzd29yZCIsImV4cCI6MTU2Nzg1NjI0M30.JvoTvTFlQjtAEHHqPV0yvuHY4UBeogqTAc0pp49KNTI`
 
     + Headers
 
@@ -338,7 +338,7 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
             }
 
 + Request returns not found status
-**GET**&nbsp;&nbsp;`/api/v1/users/reset_password?email_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50X2lkIjo3MTM2LCJuYW1lc3BhY2UiOm51bGwsImV4cCI6MTU2NzY3NjE0OH0.Y776Zf0c0akELgLAjkpnMDFPwgaAnKYQBERUV3vGScQ`
+**GET**&nbsp;&nbsp;`/api/v1/users/reset_password?email_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50X2lkIjo3NTIwLCJuYW1lc3BhY2UiOm51bGwsImV4cCI6MTU2Nzg1NjI0M30.SjpeITLaFLZiNnChFhc1GPbKJw5eiFgFzBkCk-Fj5Gs`
 
     + Headers
 
@@ -368,7 +368,7 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
     + Body
 
             {
-              "email_token": "eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50X2lkIjo3MTM2LCJuYW1lc3BhY2UiOiJyZXNldC1wYXNzd29yZCIsImV4cCI6MTU2NzY3NjE0OH0.LwQOvmsBkXW_GGmuKfiB06T8LjRCBXz3ANJ9_5YtgNo",
+              "email_token": "eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50X2lkIjo3NTIwLCJuYW1lc3BhY2UiOiJyZXNldC1wYXNzd29yZCIsImV4cCI6MTU2Nzg1NjI0M30.43k-0jafKXB9XoOnteAxNpCLnSylAaW5zJm0f69clkU",
               "password": "Password1!",
               "password_confirmation": "Password1!"
             }
@@ -386,7 +386,7 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
     + Body
 
             {
-              "email_token": "eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50X2lkIjo3MTM3LCJuYW1lc3BhY2UiOiJyZXNldC1wYXNzd29yZCIsImV4cCI6MTU2NzY3NjE0OH0._QqNeJIvbtBRPSQg4hlliI0ZyFJMW3R8rjsTOSdT1mQ",
+              "email_token": "eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50X2lkIjo3NTIxLCJuYW1lc3BhY2UiOiJyZXNldC1wYXNzd29yZCIsImV4cCI6MTU2Nzg1NjI0M30.CwewaxT_siD4eM4qSwg1nIR9k4aRv0ruAA47Er5Msvs",
               "password": "Password1!",
               "password_confirmation": "Password1!_"
             }
@@ -425,7 +425,7 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
     + Headers
 
             Accept: application/json
-            X-Refresh-Token: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Njc1ODk3NDgsInVpZCI6ImZjZTJiM2E5LWQ2NTYtNGEyMS05MjZmLTY0OWU1ZGRmY2NmNiIsImV4cCI6MTU2ODE5NDU0OH0.5F6QYX5jlRStVmcfrNi5PCKsYoCk8xKe_LPe1R1bRPY
+            X-Refresh-Token: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Njc3Njk4NDMsInVpZCI6IjI3NzMyMWMwLTRmZDEtNDk3Mi1iNDkwLWMyYmI3MmUzNDI5NSIsImV4cCI6MTU2ODM3NDY0M30.EVzxjZUCG5CEYkBWbqsAzKjwGJNHzuccY4RE-su0n1s
             Content-Type: application/json
 
 + Response 201
@@ -439,9 +439,9 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
             {
               "data": null,
               "meta": {
-                "csrf": "wxWdgLeRHwEVNJ0Wu2YAItY9g9ewJATfr6bQaq197GRZka8s/2G0OJZRaYhnpj5MXn7zn5AKQqrbXKiMKfOqgg==",
-                "access": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Njc1ODk3NDgsImV4cCI6MTU2NzU4OTc0OCwidWlkIjoiNTc2ZTA3NmUtNGFiZS00ZjhhLWFjMjctNGM3NmE5Y2Y4Zjc4In0.n302Fe84q7uIxoianWNlwJfMY5TJrsFb3lCchliNKAY",
-                "access_expires_at": "2019-09-04T12:35:48.000+03:00"
+                "csrf": "TcQ+w/c7OktemqhFiSR0fosUagyubg5/MCzLX0iIlLyACWwmmnQ4M/HDiYoCifuT+/WvCNFMF7qUh7txzywfUQ==",
+                "access": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Njc3Njk4NDMsImV4cCI6MTU2Nzc2OTg0MywidWlkIjoiMWQ5OTY4YjgtMWIwYy00ODRjLWIwMmYtZGQzZjI5YzQ2NTVlIn0.NZYNnPdHe7b29cbOQK8zuQnn9TVAaJ1nuZy7vu8JM_I",
+                "access_expires_at": "2019-09-06T14:37:23.000+03:00"
               }
             }
 
@@ -478,7 +478,7 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
     + Headers
 
             Accept: application/json
-            X-Refresh-Token: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Njc1OTMzNDgsInVpZCI6ImVhY2RkOTI0LTIzMzAtNDBiMS04YWUwLTRiYjNiNjk2N2U5NiIsImV4cCI6MTU2ODE5NDU0OH0.wuF320O7_u5rRP9xoc2zCss4YWNnWrg6u8297m9g7Hs
+            X-Refresh-Token: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Njc3NzM0NDMsInVpZCI6IjNhNDM3M2VjLTA1MmMtNDcxNi04ZWE1LTVkMmNjOGE5YmJmZiIsImV4cCI6MTU2ODM3NDY0M30.LERUTBFLyC5kyX92q8kM0-HGku13jlzbWEPLa1RrMfY
             Content-Type: application/json
 
 + Response 403
@@ -493,7 +493,7 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
 ### Create user session (Sign In) [POST /api/v1/users/session]
 
 + Parameters
-    + email: `maryellen.beier%40kessler.ca` (string, required) - Email of existing user account
+    + email: `kenyetta.jaskolski%40gibson.us` (string, required) - Email of existing user account
     + password: `password` (string, required) - Password for this user account
 
 + Request renders user whose session was created
@@ -507,8 +507,8 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
     + Body
 
             {
-              "email": "celeste.walsh@douglas.com",
-              "password": "AIW4p1ibD"
+              "email": "sherita@gulgowskiokon.biz",
+              "password": "qnfsccKiF"
             }
 
 + Response 201
@@ -521,19 +521,19 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
 
             {
               "data": {
-                "id": "7140",
+                "id": "7524",
                 "type": "account",
                 "attributes": {
-                  "email": "celeste.walsh@douglas.com",
-                  "created_at": "2019-09-04T09:35:48.738Z"
+                  "email": "sherita@gulgowskiokon.biz",
+                  "created_at": "2019-09-06T11:37:23.271Z"
                 }
               },
               "meta": {
-                "csrf": "SlqjWMydKBj2DIHv9Qs4+7hXUQIBhImfFzo86yTWc3RQiQifU6GdmoI8NzMTvS0c7XQ6xLwZtJVWFrYIpa745Q==",
-                "access": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Njc1OTMzNDgsImFjY291bnRfaWQiOjcxNDAsIm5hbWVzcGFjZSI6InVzZXItYWNjb3VudC03MTQwIiwidWlkIjoiOWZmMmMwODAtNzBmMi00YTJkLWIzMzUtNjRkYjVmYmI1MjE2IiwiZXhwIjoxNTY3NTkzMzQ4fQ.TookzWOKefrEGbzPnlWX1CPnu_AE4ydd0-MnriRh_mo",
-                "access_expires_at": "2019-09-04T13:35:48.000+03:00",
-                "refresh": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Njc1OTMzNDgsInVpZCI6IjBmMjQ4YzM3LTUxNGQtNDdjYS04OTE1LWMyMmQ0YjFmMWQzNiIsImV4cCI6MTU2ODE5NDU0OH0.03ne9UQqtYVW0GKNegqAg6HpQFFAOuayuGrf7qZeja8",
-                "refresh_expires_at": "2019-09-11T12:35:48.000+03:00"
+                "csrf": "ICXEReyL9bihINGh+kQQR3kRADhC4oNYTlOcl13ilyt8tKxg8RyxZZjOKwsT4VPFF37e0eeCBdIPKR3pf9cUmw==",
+                "access": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Njc3NzM0NDMsImFjY291bnRfaWQiOjc1MjQsIm5hbWVzcGFjZSI6InVzZXItYWNjb3VudC03NTI0IiwidWlkIjoiYjkxMTRjZDMtNmViZC00MWQ4LWJiNzYtMGFiNjBmY2YyZDc3IiwiZXhwIjoxNTY3NzczNDQzfQ.oIziZprKrtYQiil3p_IQuzM3G1X3bIj8UR4mJauG-Kw",
+                "access_expires_at": "2019-09-06T15:37:23.000+03:00",
+                "refresh": "eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Njc3NzM0NDMsInVpZCI6IjI2NzNjZjllLTBkNmYtNDY1Ny1iZjliLTZjYjExZjBmN2E5MSIsImV4cCI6MTU2ODM3NDY0M30.-gpaeap0fwxkG5tKZZSNugIeAqG1ts2S87GGN8Sk-do",
+                "refresh_expires_at": "2019-09-13T14:37:23.000+03:00"
               }
             }
 
@@ -585,8 +585,8 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
     + Body
 
             {
-              "email": "_shane@treutel.info",
-              "password": "3_eXVuemPOXd"
+              "email": "_nannie.hoeger@handsenger.us",
+              "password": "ai8N3sItnlgudEc"
             }
 
 + Response 404
@@ -606,8 +606,8 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
     + Body
 
             {
-              "email": "eliz@hoegerboyle.com",
-              "password": "_2VBnaxhfmmk5BJn"
+              "email": "sabra@schulist.us",
+              "password": "_rYYZUp5Z"
             }
 
 + Response 401
@@ -638,7 +638,7 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
     + Headers
 
             Accept: application/json
-            X-Refresh-Token: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Njc1OTMzNDgsInVpZCI6IjczMTkyZjFhLTY3ZGYtNDZkNi1hMjkyLTc4YzRhZWUwMDIxZSIsImV4cCI6MTU2ODE5NDU0OH0.FxBR6RacNpPZLQVG_5u09NIku6fSaPwI3FyYI_ZCpwo
+            X-Refresh-Token: eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1Njc3NzM0NDMsInVpZCI6Ijc4MWY5MDVjLTZmZjEtNDAyMi1hZmY4LWRmMTI1NzBjZjg3MiIsImV4cCI6MTU2ODM3NDY0M30.adfkeji3kmeGK4IqO3r3os9O01Rw7sHcsAT8DBQBup0
             Content-Type: application/json
 
 + Response 204
@@ -682,7 +682,7 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
     + email_token: `` (string, required)
 
 + Request verifies user account
-**GET**&nbsp;&nbsp;`/api/v1/users/verification?email_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50X2lkIjo3MTQ0LCJuYW1lc3BhY2UiOm51bGwsImV4cCI6MTU2NzY3NjE0OH0.bD62qEv1cMp2chLktQkMcp0S6AxDzhl9fdZF2i4S4Os`
+**GET**&nbsp;&nbsp;`/api/v1/users/verification?email_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50X2lkIjo3NTI4LCJuYW1lc3BhY2UiOm51bGwsImV4cCI6MTU2Nzg1NjI0M30.iecenIBI9afFL0WFMcksWhCo4ejFZRfJ3XM_Tc_GSzc`
 
     + Headers
 
@@ -717,7 +717,7 @@ This API is implemented according to the [JSON API spec v1.1](https://jsonapi.or
             }
 
 + Request returns not found status
-**GET**&nbsp;&nbsp;`/api/v1/users/verification?email_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50X2lkIjo3MTQ2LCJuYW1lc3BhY2UiOm51bGwsImV4cCI6MTU2NzY3NjE0OH0.97nwaxdermxYRFuzDCulmZvqq44IENDetTBRwQXcy7w`
+**GET**&nbsp;&nbsp;`/api/v1/users/verification?email_token=eyJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50X2lkIjo3NTMwLCJuYW1lc3BhY2UiOm51bGwsImV4cCI6MTU2Nzg1NjI0M30.L2CSDBGSxTKnwSnJ8hD0UgU6o-rIDOdINRCNY-67GMk`
 
     + Headers
 

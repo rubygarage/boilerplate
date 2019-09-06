@@ -21,6 +21,7 @@ RSpec.describe Api::V1::Users::ResetPasswords::Operation::Update do
     it 'updates user account password, destroy all users sessions' do
       expect(Api::V1::Users::Lib::Operation::DecryptEmailToken).to receive(:call).and_call_original
       expect(Api::V1::Users::Lib::Operation::CheckEmailTokenRedisEquality).to receive(:call).and_call_original
+      expect(Api::V1::Users::Lib::Worker::EmailNotification).to receive(:perform_async).and_call_original
       expect(Api::V1::Users::Lib::Service::RedisAdapter).to receive(:delete_token).with(email_token).and_call_original
       expect(Api::V1::Users::Lib::Service::SessionToken::DestroyAll).to receive(:call).and_call_original
       expect(result).to be_success
