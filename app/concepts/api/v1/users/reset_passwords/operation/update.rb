@@ -7,8 +7,15 @@ module Api::V1::Users::ResetPasswords::Operation
     step Contract::Build(constant: Api::V1::Users::ResetPasswords::Contract::Update)
     step Contract::Validate()
     step Contract::Persist()
+    step :send_notification
     step :destroy_redis_email_token
     step :destroy_all_user_sessions
+
+    def send_notification(_ctx, model:, **)
+      Api::V1::Users::Lib::Worker::EmailNotification.perform_async(
+        email: model.email, user_mailer: :reset_password_successful
+      )
+    end
 
     def destroy_redis_email_token(_ctx, email_token:, **)
       Api::V1::Users::Lib::Service::RedisAdapter.delete_token(email_token)

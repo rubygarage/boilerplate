@@ -22,7 +22,9 @@ module Api::V1::Users::Verifications::Operation
     end
 
     def send_notification(_ctx, model:, **)
-      Api::V1::Users::Verifications::Worker::EmailNotification.perform_async(email: model.email)
+      Api::V1::Users::Lib::Worker::EmailNotification.perform_async(
+        email: model.email, user_mailer: :verification_successful
+      )
     end
   end
 end
