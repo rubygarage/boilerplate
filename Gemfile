@@ -6,7 +6,7 @@ ruby(File.read(File.join(File.dirname(__FILE__), '.ruby-version')).strip)
 
 # System
 gem 'pg', '~> 1.1', '>= 1.1.4'
-gem 'puma', '~> 4.2'
+gem 'puma', '~> 4.2', '>= 4.2.1'
 gem 'rails', '~> 6.0'
 gem 'sidekiq', '~> 6.0', '>= 6.0.1'
 
@@ -23,7 +23,7 @@ gem 'fast_jsonapi', '~> 1.5'
 gem 'oj', '~> 3.9', '>= 3.9.2'
 
 # Pagination
-gem 'pagy', '~> 3.5', '>= 3.5.1'
+gem 'pagy', '~> 3.6'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -35,19 +35,19 @@ gem 'jwt_sessions', '~> 2.4', '>= 2.4.3'
 group :development, :test do
   gem 'bullet', '~> 6.0', '>= 6.0.2'
   gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
-  gem 'ffaker', '~> 2.12'
+  gem 'ffaker', '~> 2.13'
   gem 'pry-byebug', '~> 3.7'
   gem 'pry-rails', '~> 0.3.9'
-  gem 'rspec-rails', '~> 3.8', '>= 3.8.2'
+  gem 'rspec-rails', '~> 3.9'
 
   # Code quality
-  gem 'brakeman', '~> 4.6', '>= 4.6.1', require: false
+  gem 'brakeman', '~> 4.7', '>= 4.7.1', require: false
   gem 'bundle-audit', '~> 0.1.0', require: false
   gem 'fasterer', '~> 0.7.1', require: false
   gem 'overcommit', '~> 0.51.0', require: false
   gem 'rails_best_practices', '~> 1.19', '>= 1.19.4', require: false
   gem 'reek', '5.3.2', require: false
-  gem 'rubocop', '~> 0.75.0', require: false
+  gem 'rubocop', '~> 0.76.0', require: false
   gem 'rubocop-performance', '~> 1.5', require: false
   gem 'rubocop-rails', '~> 2.3', '>= 2.3.2', require: false
   gem 'rubocop-rspec', '~> 1.36', require: false
@@ -63,7 +63,7 @@ end
 group :test do
   gem 'dox', '~> 1.1'
   gem 'json_matchers', '~> 0.11.1', require: 'json_matchers/rspec'
-  gem 'mock_redis', '~> 0.21.0'
+  gem 'mock_redis', '~> 0.22.0'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.4'
   gem 'rspec-sidekiq', '~> 3.0', '>= 3.0.3'
   gem 'shoulda-matchers', '~> 4.1', '>= 4.1.2'

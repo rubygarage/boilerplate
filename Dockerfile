@@ -1,4 +1,4 @@
-FROM ruby:2.6.3-alpine
+FROM ruby:2.6.5-alpine
 
 RUN apk add bash git openssh httpie libxml2-dev libxslt-dev postgresql-dev \
 tzdata npm nodejs imagemagick make cmake g++ postgresql-client less
