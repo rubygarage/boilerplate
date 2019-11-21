@@ -3,7 +3,7 @@
 module Helpers
   module RootHelpers
     # :reek:TooManyStatements
-    def create_token(type, access_token = :unexpired, account: nil, exp: nil, namespace: nil) # rubocop:disable Metrics/AbcSize, Metrics/LineLength
+    def create_token(type, access_token = :unexpired, account: nil, exp: nil, namespace: nil) # rubocop:disable Metrics/AbcSize
       payload, current_time = { account_id: account&.id || rand(1..42), namespace: namespace }, Time.now.to_i
 
       time =
