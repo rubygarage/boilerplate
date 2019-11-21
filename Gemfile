@@ -6,8 +6,8 @@ ruby(File.read(File.join(File.dirname(__FILE__), '.ruby-version')).strip)
 
 # System
 gem 'pg', '~> 1.1', '>= 1.1.4'
-gem 'puma', '~> 4.2', '>= 4.2.1'
-gem 'rails', '~> 6.0'
+gem 'puma', '~> 4.3'
+gem 'rails', '~> 6.0', '>= 6.0.1'
 gem 'sidekiq', '~> 6.0', '>= 6.0.1'
 
 # Trailblazer bundle
@@ -23,7 +23,7 @@ gem 'fast_jsonapi', '~> 1.5'
 gem 'oj', '~> 3.9', '>= 3.9.2'
 
 # Pagination
-gem 'pagy', '~> 3.6'
+gem 'pagy', '~> 3.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -43,12 +43,12 @@ group :development, :test do
   # Code quality
   gem 'brakeman', '~> 4.7', '>= 4.7.1', require: false
   gem 'bundle-audit', '~> 0.1.0', require: false
-  gem 'fasterer', '~> 0.7.1', require: false
+  gem 'fasterer', '~> 0.8.0', require: false
   gem 'overcommit', '~> 0.51.0', require: false
   gem 'rails_best_practices', '~> 1.19', '>= 1.19.4', require: false
   gem 'reek', '5.3.2', require: false
   gem 'rubocop', '~> 0.76.0', require: false
-  gem 'rubocop-performance', '~> 1.5', require: false
+  gem 'rubocop-performance', '~> 1.5', '>= 1.5.1', require: false
   gem 'rubocop-rails', '~> 2.3', '>= 2.3.2', require: false
   gem 'rubocop-rspec', '~> 1.36', require: false
 end
