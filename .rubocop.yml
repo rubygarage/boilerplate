@@ -34,12 +34,12 @@ Style/ClassAndModuleChildren:
 
 Style/Lambda:
   Exclude:
-    - app/endpoints/**/*.rb
-    - lib/macro/**/*.rb
+    - app/endpoints/**/*
+    - lib/macro/**/*
 
 Style/SignalException:
   Exclude:
-    - app/concepts/**/*.rb
+    - app/concepts/**/*
 
 Rails/SkipsModelValidations:
     Exclude:
@@ -52,10 +52,10 @@ Metrics/LineLength:
 
 Metrics/BlockLength:
   Exclude:
-    - config/**/*.rb
+    - config/**/*
     - Rakefile
     - lib/tasks/**/*.rake
-    - spec/**/*.rb
+    - spec/**/*
     - config/routes.rb
 
 Metrics/AbcSize:
@@ -66,26 +66,26 @@ Metrics/AbcSize:
 Metrics/MethodLength:
   Max: 15
   Exclude:
-    - lib/macro/**/*.rb
+    - lib/macro/**/*
 
 # Naming ----------------------------------------------------------------------
 
 Naming/MethodName:
   Exclude:
-    - lib/macro/**/*.rb
+    - lib/macro/**/*
 
 # Lint ------------------------------------------------------------------------
 
 Lint/UnreachableCode:
   Exclude:
-    - app/concepts/**/*.rb
+    - app/concepts/**/*
 
 # Layout ----------------------------------------------------------------------
 
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
-Layout/IndentFirstArrayElement:
+Layout/FirstArrayElementIndentation:
   EnforcedStyle: consistent
 
 Layout/ClassStructure:
@@ -129,12 +129,17 @@ RSpec/NestedGroups:
 
 RSpec/FilePath:
   Exclude:
-    - spec/concepts/**/*.rb
+    - spec/concepts/**/*
 
 RSpec/DescribeClass:
   Exclude:
-    - spec/tasks/**/*.rb
+    - spec/tasks/**/*
 
 RSpec/ContextWording:
   Exclude:
-    - spec/support/shared_contexts/**/*.rb
+    - spec/support/shared_contexts/**/*
+
+# Rails -----------------------------------------------------------------------
+
+Rails/RakeEnvironment:
+  Enabled: false
