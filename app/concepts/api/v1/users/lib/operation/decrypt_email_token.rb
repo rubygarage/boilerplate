@@ -8,7 +8,7 @@ module Api::V1::Users::Lib::Operation
     step :set_payload
     fail Macro::AddContractError(base: 'errors.verification.invalid_email_token'), fail_fast: true
     step :set_model
-    fail Macro::Semantic(failure: :not_found), fail_fast: true
+    fail Macro::Semantic(failure: :not_found)
 
     def set_payload(ctx, email_token:, **)
       ctx[:payload] = Api::V1::Users::Lib::Service::EmailToken.read(email_token)

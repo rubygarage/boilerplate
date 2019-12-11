@@ -3,7 +3,7 @@
 module Api::V1::Users::ResetPasswords::Operation
   class Update < ApplicationOperation
     step Subprocess(Api::V1::Users::Lib::Operation::DecryptEmailToken), fast_track: true
-    step Subprocess(Api::V1::Users::Lib::Operation::CheckEmailTokenRedisEquality), fast_track: true
+    step Subprocess(Api::V1::Users::Lib::Operation::CheckEmailTokenRedisEquality)
     step Contract::Build(constant: Api::V1::Users::ResetPasswords::Contract::Update)
     step Contract::Validate()
     step Contract::Persist()

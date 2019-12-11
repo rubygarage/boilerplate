@@ -23,7 +23,7 @@ gem 'fast_jsonapi', '~> 1.5'
 gem 'oj', '~> 3.10'
 
 # Pagination
-gem 'pagy', '~> 3.7'
+gem 'pagy', '~> 3.7', '>= 3.7.1'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

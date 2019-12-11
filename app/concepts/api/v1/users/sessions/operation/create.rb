@@ -9,7 +9,7 @@ module Api::V1::Users::Sessions::Operation
     fail Macro::AddContractError(base: 'errors.session.not_found'), fail_fast: true
     step :authenticate
     fail Macro::Semantic(failure: :unauthorized)
-    fail Macro::AddContractError(base: 'errors.session.wrong_credentials'), fail_fast: true
+    fail Macro::AddContractError(base: 'errors.session.wrong_credentials')
     step :set_user_tokens
     step Macro::Semantic(success: :created)
     step Macro::Renderer(serializer: Api::V1::Lib::Serializer::Account, meta: :tokens)
