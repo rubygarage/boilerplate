@@ -2,6 +2,8 @@
 
 ## Boilerplate features
 
+Project wiki: https://github.com/rubygarage/boilerplate/wiki
+
 ### Handling JSON API URI query with Trailblazer nested operations
 
 | Operation | Description | HTTP request example |

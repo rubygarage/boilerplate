@@ -30,6 +30,14 @@ RSpec.describe Api::V1::Users::ResetPasswords::Operation::Update do
   end
 
   describe 'Failure' do
+    context 'when email token decryption errors' do
+      include_examples 'has email token decryption errors'
+    end
+
+    context 'when email token redis equality errors' do
+      include_examples 'has email token equality errors'
+    end
+
     context 'when password errors' do
       shared_examples 'empty params' do
         let(:errors) { { password: [I18n.t('errors.filled?')] } }
@@ -97,14 +105,6 @@ RSpec.describe Api::V1::Users::ResetPasswords::Operation::Update do
         include_examples 'errors localizations'
         include_examples 'has validation errors'
       end
-    end
-
-    context 'when email token decryption errors' do
-      include_examples 'has email token decryption errors'
-    end
-
-    context 'when email token redis equality errors' do
-      include_examples 'has email token equality errors'
     end
   end
 end
