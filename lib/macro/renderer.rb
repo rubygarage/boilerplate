@@ -2,7 +2,7 @@
 
 module Macro
   def self.Renderer(serializer: ApplicationSerializer, meta: nil, **)
-    task = ->((ctx, flow_options), **) {
+    step = ->(ctx, **) {
       ctx[:renderer] =
         {
           serializer: serializer,
@@ -10,10 +10,8 @@ module Macro
           links: ctx[:links],
           meta: meta ? ctx[meta] : nil
         }.compact
-
-      [Trailblazer::Activity::Right, [ctx, flow_options]]
     }
-
+    task = Trailblazer::Activity::TaskBuilder::Binary(step)
     { task: task, id: 'renderer' }
   end
 end

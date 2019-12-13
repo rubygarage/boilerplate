@@ -2,7 +2,7 @@
 
 module Macro
   def self.LinksBuilder(resource_path: nil, ids: [], **)
-    task = ->((ctx, flow_options), **) {
+    step = ->(ctx, **) {
       pagy = ctx[:pagy]
       resource_ids = ids.map { |id| ctx[:params][id] }
       ctx[:links] =
@@ -12,10 +12,8 @@ module Macro
             pagy: pagy
           )
         end
-
-      [Trailblazer::Activity::Right, [ctx, flow_options]]
     }
-
+    task = Trailblazer::Activity::TaskBuilder::Binary(step)
     { task: task, id: 'links_builder' }
   end
 end
