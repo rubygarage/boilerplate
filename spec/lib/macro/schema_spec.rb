@@ -71,6 +71,11 @@ RSpec.describe Macro do
         expect(result['contract.default'].schema.options).to include(dependency: dependency)
       end
     end
+
+    it 'has uniqueness id' do
+      expect(described_class::Contract::Schema(SchemaContract)[:id])
+        .not_to eq(described_class::Contract::Schema(SchemaContract)[:id])
+    end
   end
 
   describe 'BaseSchemaObject::NullStruct' do

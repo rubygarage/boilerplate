@@ -92,5 +92,9 @@ RSpec.describe Macro do
         end
       end
     end
+
+    it 'has uniqueness id' do
+      expect(described_class::Renderer()[:id]).not_to eq(described_class::Renderer()[:id])
+    end
   end
 end

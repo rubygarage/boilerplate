@@ -18,7 +18,7 @@ RSpec.describe DefaultEndpoint do
   describe '#default_handler' do
     def test_matcher(for_case = {})
       Dry::Matcher.new(
-        %i[created destroyed unauthorized not_found forbidden gone accepted invalid bad_request success].map do |matcher| # rubocop:disable Metrics/LineLength
+        %i[created destroyed unauthorized not_found forbidden gone accepted invalid bad_request success].map do |matcher| # rubocop:disable Layout/LineLength
           [matcher, Dry::Matcher::Case.new(match: ->(_) { for_case[matcher] })]
         end.to_h
       )

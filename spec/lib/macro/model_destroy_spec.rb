@@ -33,5 +33,9 @@ RSpec.describe Macro do
         expect(result.first).to be(Trailblazer::Activity::Left)
       end
     end
+
+    it 'has uniqueness id' do
+      expect(described_class::ModelDestroy()[:id]).not_to eq(described_class::ModelDestroy()[:id])
+    end
   end
 end

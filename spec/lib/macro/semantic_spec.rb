@@ -29,5 +29,9 @@ RSpec.describe Macro do
 
       include_examples 'sets semantic into context'
     end
+
+    it 'has uniqueness id' do
+      expect(described_class::Semantic()[:id]).not_to eq(described_class::Semantic()[:id])
+    end
   end
 end

@@ -42,5 +42,10 @@ RSpec.describe Macro do
         expect(ctx[to]).to be_nil
       end
     end
+
+    it 'has uniqueness id' do
+      params = { to: :path }
+      expect(described_class::Assign(params)[:id]).not_to eq(described_class::Assign(params)[:id])
+    end
   end
 end

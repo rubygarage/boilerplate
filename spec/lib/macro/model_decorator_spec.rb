@@ -2,32 +2,47 @@
 
 RSpec.describe Macro do
   describe '.ModelDecorator' do
-    subject(:result) { DecoratorDummyOperation.call(params: {}, model: model) }
+    subject(:result) { described_class::ModelDecorator(**params)[:task].call(ctx) }
 
-    # rubocop:disable RSpec/LeakyConstantDeclaration
-    Decorator = Class.new(ApplicationDecorator) do
-      define_method(:new_method) {}
+    let(:context_target) { :model }
+    let(:to) { nil }
+    let(:decorator) { nil }
+    let(:params) { { decorator: decorator, to: to }.compact }
+    let(:model) { instance_double('Object') }
+    let(:ctx) { { model: model, decorator: Decorator } }
+
+    Decorator = Class.new(ApplicationDecorator) # rubocop:disable RSpec/LeakyConstantDeclaration
+    OtherDecorator = Class.new(Decorator) # rubocop:disable RSpec/LeakyConstantDeclaration
+
+    context 'when object is not enumerable, no arguments passed' do
+      it 'changes context target to decorated object with decorator from context' do
+        expect { result }.to change { ctx[context_target] }.from(model).to be_an_instance_of(Decorator)
+      end
     end
 
-    DecoratorDummyOperation = Class.new(Trailblazer::Operation) do
-      step Macro::ModelDecorator(decorator: Decorator)
-    end
-    # rubocop:enable RSpec/LeakyConstantDeclaration
+    context 'when all arguments passed' do
+      let(:to) { :some_context }
+      let(:context_target) { to }
+      let(:decorator) { OtherDecorator }
 
-    context 'when object is not enumerable' do
-      let(:model) { instance_double('Object') }
-
-      it 'returns decorated object' do
-        expect(result[:model]).to be_an_instance_of(Decorator)
+      it 'creates context target with decorated object with passed decorator' do
+        expect { result }.to change { ctx[context_target] }.from(nil).to be_an_instance_of(OtherDecorator)
       end
     end
 
     context 'when object is enumerable' do
       let(:model) { [instance_double('Object')] }
 
-      it 'returns decorated collection' do
-        expect(result[:model]).to be_an_instance_of(Draper::CollectionDecorator)
+      it 'changes context target to decorated collection' do
+        expect { result }
+          .to change { ctx[context_target] }
+          .from(model)
+          .to be_an_instance_of(Draper::CollectionDecorator)
       end
+    end
+
+    it 'has uniqueness id' do
+      expect(described_class::ModelDecorator()[:id]).not_to eq(described_class::ModelDecorator()[:id])
     end
   end
 end

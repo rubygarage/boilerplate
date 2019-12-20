@@ -56,5 +56,9 @@ RSpec.describe Macro do
         expect(result[:links]).to eq(true)
       end
     end
+
+    it 'has uniqueness id' do
+      expect(described_class::LinksBuilder()[:id]).not_to eq(described_class::LinksBuilder()[:id])
+    end
   end
 end

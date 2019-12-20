@@ -4,13 +4,12 @@ module Macro
   module Contract
     def self.Schema(schema, name: 'default', inject: [])
       schema_object_class = BaseSchemaObject.Build(schema)
-
-      step = ->(ctx, **) {
-        dependencies = inject.each_with_object({}) { |option, memo| memo[option] = ctx[option] }
-        ctx["contract.#{name}"] = schema_object_class.new(schema, dependencies)
-      }
-
-      task = Trailblazer::Activity::TaskBuilder::Binary(step)
+      task = Trailblazer::Activity::TaskBuilder::Binary(
+        ->(ctx, **) {
+          dependencies = inject.each_with_object({}) { |option, memo| memo[option] = ctx[option] }
+          ctx["contract.#{name}"] = schema_object_class.new(schema, dependencies)
+        }
+      )
       { task: task, id: "contract.#{name}.build_schema_id#{task.object_id}" }
     end
 
