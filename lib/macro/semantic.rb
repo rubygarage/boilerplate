@@ -2,11 +2,12 @@
 
 module Macro
   def self.Semantic(success: nil, failure: nil, **)
-    step = ->(ctx, **) {
-      ctx[:semantic_success], ctx[:semantic_failure] = success, failure
-      true
-    }
-    task = Trailblazer::Activity::TaskBuilder::Binary(step)
-    { task: task, id: "semantic_id#{task.object_id}" }
+    task = Trailblazer::Activity::TaskBuilder::Binary(
+      ->(ctx, **) {
+        ctx[:semantic_success], ctx[:semantic_failure] = success, failure
+        true
+      }
+    )
+    { task: task, id: "#{name}/#{__method__}_id_#{task.object_id}".underscore }
   end
 end

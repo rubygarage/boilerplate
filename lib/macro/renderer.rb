@@ -2,16 +2,17 @@
 
 module Macro
   def self.Renderer(serializer: ApplicationSerializer, meta: nil, **)
-    step = ->(ctx, **) {
-      ctx[:renderer] =
-        {
-          serializer: serializer,
-          include: ctx[:inclusion_options],
-          links: ctx[:links],
-          meta: meta ? ctx[meta] : nil
-        }.compact
-    }
-    task = Trailblazer::Activity::TaskBuilder::Binary(step)
-    { task: task, id: 'renderer' }
+    task = Trailblazer::Activity::TaskBuilder::Binary(
+      ->(ctx, **) {
+        ctx[:renderer] =
+          {
+            serializer: serializer,
+            include: ctx[:inclusion_options],
+            links: ctx[:links],
+            meta: meta ? ctx[meta] : nil
+          }.compact
+      }
+    )
+    { task: task, id: "#{name}/#{__method__}_id_#{task.object_id}".underscore }
   end
 end
