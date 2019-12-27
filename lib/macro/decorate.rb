@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 module Macro
-  def self.ModelDecorator(decorator: nil, to: :model, **)
+  def self.Decorate(decorator: nil, from: :model, to: :model, **)
     task = Trailblazer::Activity::TaskBuilder::Binary(
       ->(ctx, **) {
-        model = ctx[:model]
+        model = ctx[from]
         ctx[to] = (decorator || ctx[:decorator]).public_send(
           (model.is_a?(Enumerable) ? :decorate_collection : :decorate), model
         )

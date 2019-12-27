@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
 RSpec.describe Macro do
-  describe '.ModelDecorator' do
-    subject(:result) { described_class::ModelDecorator(**params)[:task].call(ctx) }
+  describe '.Decorate' do
+    subject(:result) { described_class::Decorate(**params)[:task].call(ctx) }
 
     let(:context_target) { :model }
+    let(:from) { nil }
     let(:to) { nil }
     let(:decorator) { nil }
-    let(:params) { { decorator: decorator, to: to }.compact }
+    let(:params) { { decorator: decorator, from: from, to: to }.compact }
     let(:model) { instance_double('Object') }
-    let(:ctx) { { model: model, decorator: Decorator } }
+    let(:other_model) { instance_double('Object') }
+    let(:ctx) { { model: model, other_model: other_model, decorator: Decorator } }
 
     Decorator = Class.new(ApplicationDecorator) # rubocop:disable RSpec/LeakyConstantDeclaration
     OtherDecorator = Class.new(Decorator) # rubocop:disable RSpec/LeakyConstantDeclaration
@@ -21,11 +23,13 @@ RSpec.describe Macro do
     end
 
     context 'when all arguments passed' do
+      let(:from) { :other_model }
       let(:to) { :some_context }
       let(:context_target) { to }
       let(:decorator) { OtherDecorator }
 
-      it 'creates context target with decorated object with passed decorator' do
+      it 'creates context target with decorated object with passed decorator from passed target' do
+        expect(OtherDecorator).to receive(:decorate).with(other_model).and_call_original
         expect { result }.to change { ctx[context_target] }.from(nil).to be_an_instance_of(OtherDecorator)
       end
     end
@@ -42,7 +46,7 @@ RSpec.describe Macro do
     end
 
     it 'has uniqueness id' do
-      expect(described_class::ModelDecorator()[:id]).not_to eq(described_class::ModelDecorator()[:id])
+      expect(described_class::Decorate()[:id]).not_to eq(described_class::Decorate()[:id])
     end
   end
 end

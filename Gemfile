@@ -5,10 +5,10 @@ source 'https://rubygems.org'
 ruby(File.read(File.join(File.dirname(__FILE__), '.ruby-version')).strip)
 
 # System
-gem 'pg', '~> 1.1', '>= 1.1.4'
+gem 'pg', '~> 1.2'
 gem 'puma', '~> 4.3', '>= 4.3.1'
 gem 'rails', '~> 6.0', '>= 6.0.2.1'
-gem 'sidekiq', '~> 6.0', '>= 6.0.1'
+gem 'sidekiq', '~> 6.0', '>= 6.0.4'
 
 # Trailblazer bundle
 gem 'dry-validation', '0.11.1'
@@ -48,8 +48,8 @@ group :development, :test do
   gem 'rails_best_practices', '~> 1.19', '>= 1.19.4', require: false
   gem 'reek', '5.3.2', require: false
   gem 'rubocop', '~> 0.78.0', require: false
-  gem 'rubocop-performance', '~> 1.5', '>= 1.5.1', require: false
-  gem 'rubocop-rails', '~> 2.4', require: false
+  gem 'rubocop-performance', '~> 1.5', '>= 1.5.2', require: false
+  gem 'rubocop-rails', '~> 2.4', '>= 2.4.1', require: false
   gem 'rubocop-rspec', '~> 1.37', '>= 1.37.1', require: false
 end
 
