@@ -21,7 +21,7 @@ Project wiki: https://github.com/rubygarage/boilerplate/wiki
 | ```Macro::Model``` | Provides to assign model into context. Supports assign by relation chain, relation find_by |
 | ```Macro::ModelDelete``` | Provides to delete model |
 | ```Macro::ModelDestroy``` | Provides to destroy model |
-| ```Macro::ModelDecorator``` | Provides to decorate model with specified decorator. Supports object or collection as model |
+| ```Macro::Decorate``` | Provides to decorate ctx object with specified decorator. Supports object or collection as model |
 | ```Macro::LinksBuilder``` | Provides to proxy resource path to ```Service::JsonApi::Paginator``` and sets composed links into context |
 | ```Macro::Renderer``` | Provides to render operation result with specified serializer with strict following Jsonapi specification |
 | ```Macro::Contract::Schema``` | Provides to use ```Dry::Validation.Schema``` as operation contract |

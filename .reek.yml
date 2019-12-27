@@ -23,7 +23,7 @@ detectors:
   TooManyStatements:
     exclude:
       - DefaultEndpoint#default_handler
-      - Macro#self.ModelDecorator
+      - Macro#self.Decorate
       - Macro#self.LinksBuilder
       - Macro::Contract::BaseSchemaObject#self.Build
       - Macro::Contract#self.Schema
@@ -58,6 +58,7 @@ detectors:
       - Service::Pagy#call
       - Macro#self.Model
       - Macro#self.Assign
+      - Macro#self.Decorate
 
   BooleanParameter:
     exclude:
