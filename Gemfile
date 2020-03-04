@@ -6,7 +6,7 @@ ruby(File.read(File.join(File.dirname(__FILE__), '.ruby-version')).strip)
 
 # System
 gem 'pg', '~> 1.2'
-gem 'puma', '~> 4.3', '>= 4.3.1'
+gem 'puma', '~> 4.3'
 gem 'rails', '~> 6.0', '>= 6.0.2.1'
 gem 'sidekiq', '~> 6.0', '>= 6.0.4'
 
