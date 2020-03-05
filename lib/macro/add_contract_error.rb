@@ -10,6 +10,6 @@ module Macro
         )
       }
     )
-    { task: task, id: "#{name}/#{__method__}_id_#{task.object_id}".underscore }
+    { task: task, id: "#{self.name}/#{__method__}_id_#{task.object_id}".underscore }
   end
 end

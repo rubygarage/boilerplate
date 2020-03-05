@@ -34,8 +34,14 @@ RSpec.describe Macro do
       end
     end
 
-    it 'has uniqueness id' do
-      expect(described_class::ModelDestroy()[:id]).not_to eq(described_class::ModelDestroy()[:id])
+    describe 'macro id' do
+      it 'has formatted id' do
+        expect(described_class::ModelDestroy({})[:id]).to macro_id_with('model_destroy')
+      end
+
+      it 'has uniqueness id' do
+        expect(described_class::ModelDestroy()[:id]).not_to eq(described_class::ModelDestroy()[:id])
+      end
     end
   end
 end

@@ -2,6 +2,7 @@
 
 module Api::V1::Users::Sessions::Refreshes::Operation
   class Create < ApplicationOperation
+    step Macro::Inject(session: 'services.session_token')
     step Rescue(JWTSessions::Errors::Unauthorized) {
       step :refresh_user_tokens
     }
@@ -9,10 +10,8 @@ module Api::V1::Users::Sessions::Refreshes::Operation
     step Macro::Semantic(success: :created)
     step Macro::Renderer(meta: :tokens)
 
-    def refresh_user_tokens(ctx, payload:, found_token:, **)
-      ctx[:tokens] = Api::V1::Users::Lib::Service::SessionToken::Refresh.call(
-        payload: payload, refresh_token: found_token
-      )
+    def refresh_user_tokens(ctx, session:, payload:, found_token:, **)
+      ctx[:tokens] = session.refresh(payload: payload, refresh_token: found_token)
     end
   end
 end

@@ -90,7 +90,7 @@ RSpec.describe 'Api::V1::Users::ResetPasswords', :dox, type: :request do
     let(:params) { { email_token: email_token, password: password, password_confirmation: password_confirmation } }
 
     before do
-      Api::V1::Users::Lib::Service::SessionToken::Create.call(
+      Api::V1::Users::Lib::Service::SessionToken.create(
         account_id: account.id,
         namespace: Constants::TokenNamespace::SESSION
       )

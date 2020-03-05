@@ -57,8 +57,14 @@ RSpec.describe Macro do
       end
     end
 
-    it 'has uniqueness id' do
-      expect(described_class::LinksBuilder()[:id]).not_to eq(described_class::LinksBuilder()[:id])
+    describe 'macro id' do
+      it 'has formatted id' do
+        expect(described_class::LinksBuilder({})[:id]).to macro_id_with('links_builder')
+      end
+
+      it 'has uniqueness id' do
+        expect(described_class::LinksBuilder()[:id]).not_to eq(described_class::LinksBuilder()[:id])
+      end
     end
   end
 end

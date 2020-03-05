@@ -34,8 +34,14 @@ RSpec.describe Macro do
       end
     end
 
-    it 'has uniqueness id' do
-      expect(described_class::ModelDelete()[:id]).not_to eq(described_class::ModelDelete()[:id])
+    describe 'macro id' do
+      it 'has formatted id' do
+        expect(described_class::ModelDelete({})[:id]).to macro_id_with('model_delete')
+      end
+
+      it 'has uniqueness id' do
+        expect(described_class::ModelDelete()[:id]).not_to eq(described_class::ModelDelete()[:id])
+      end
     end
   end
 end

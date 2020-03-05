@@ -99,6 +99,11 @@ RSpec.describe Macro do
         end
       end
     end
+
+    it 'has uniqueness id' do
+      params = { entity: :object }
+      expect(described_class::Model(params)[:id]).not_to eq(described_class::Model(params)[:id])
+    end
   end
 
   describe Macro::Model do

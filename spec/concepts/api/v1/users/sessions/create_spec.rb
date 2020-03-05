@@ -11,7 +11,7 @@ RSpec.describe Api::V1::Users::Sessions::Operation::Create do
     let(:params) { { email: account.email, password: password } }
 
     it 'sets tokens bundle into context' do
-      expect(Api::V1::Users::Lib::Service::SessionToken::Create).to receive(:call).and_call_original
+      expect(Api::V1::Users::Lib::Service::SessionToken).to receive(:create).and_call_original
       expect(result[:semantic_success]).to eq(:created)
       expect(result[:tokens]).to include(:access, :refresh, :csrf, :access_expires_at, :refresh_expires_at)
       expect(result[:renderer]).to include(serializer: Api::V1::Lib::Serializer::Account)
