@@ -22,6 +22,9 @@ Style/Documentation:
 Style/ParallelAssignment:
   Enabled: false
 
+Style/RegexpLiteral:
+  Enabled: false
+
 Style/RescueModifier:
   Exclude:
     - app/concepts/api/v1/users/lib/service/email_token.rb

@@ -26,7 +26,8 @@ Project wiki: https://github.com/rubygarage/boilerplate/wiki
 | ```Macro::Renderer``` | Provides to render operation result with specified serializer with strict following Jsonapi specification |
 | ```Macro::Contract::Schema``` | Provides to use ```Dry::Validation.Schema``` as operation contract |
 | ```Macro::Semantic``` | Provides to set value of semantic marker (```semantic_success``` or ```semantic_failure```) into context |
-| ```Macro::AddContractError``` | Provides to set custom error to namespaced contract) |
+| ```Macro::AddContractError``` | Provides to set custom error to namespaced contract |
+| ```Macro::Inject``` | Provides to set dependency injection in operations |
 
 ### Services
 

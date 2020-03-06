@@ -49,8 +49,14 @@ RSpec.describe Macro do
       include_examples 'sets custom error to contract'
     end
 
-    it 'has uniqueness id' do
-      expect(described_class::AddContractError()[:id]).not_to eq(described_class::AddContractError()[:id])
+    describe 'macro id' do
+      it 'has formatted id' do
+        expect(described_class::AddContractError({})[:id]).to macro_id_with('add_contract_error')
+      end
+
+      it 'has uniqueness id' do
+        expect(described_class::AddContractError()[:id]).not_to eq(described_class::AddContractError()[:id])
+      end
     end
   end
 end

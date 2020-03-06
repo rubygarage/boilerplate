@@ -2,6 +2,7 @@
 
 module Api::V1::Users::Lib::Operation
   class DecryptEmailToken < ApplicationOperation
+    step Macro::Inject(jwt: 'services.email_token')
     step Macro::Contract::Schema(Api::V1::Users::Lib::Contract::DecryptEmailTokenValidation)
     step Contract::Validate(), fail_fast: true
     step Macro::Assign(to: :email_token, path: %w[contract.default email_token])
@@ -10,8 +11,8 @@ module Api::V1::Users::Lib::Operation
     step :set_model
     fail Macro::Semantic(failure: :not_found)
 
-    def set_payload(ctx, email_token:, **)
-      ctx[:payload] = Api::V1::Users::Lib::Service::EmailToken.read(email_token)
+    def set_payload(ctx, jwt:, email_token:, **)
+      ctx[:payload] = jwt.read(email_token)
     end
 
     def set_model(ctx, payload:, **)

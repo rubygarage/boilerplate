@@ -8,9 +8,6 @@ module Macro
         ctx[to] = value || path.drop(1).inject(ctx[path.first], method_name)
       }
     )
-    {
-      task: task,
-      id: "#{name}/#{__method__}_#{path.join('.')}_to_#{to}_id_#{task.object_id}".underscore
-    }
+    { task: task, id: "#{name}/#{__method__}_#{path.join('.')}_to_#{to}_id_#{task.object_id}".underscore }
   end
 end

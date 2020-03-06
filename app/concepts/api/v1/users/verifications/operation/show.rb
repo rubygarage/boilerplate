@@ -2,6 +2,7 @@
 
 module Api::V1::Users::Verifications::Operation
   class Show < ApplicationOperation
+    step Macro::Inject(worker: Api::V1::Users::Lib::Worker::EmailNotification)
     step Subprocess(Api::V1::Users::Lib::Operation::DecryptEmailToken), fast_track: true
     step :user_account_not_verified?
     fail Macro::AddContractError(base: 'errors.verification.user_account_already_verified')
@@ -21,10 +22,8 @@ module Api::V1::Users::Verifications::Operation
       model.create_user
     end
 
-    def send_notification(_ctx, model:, **)
-      Api::V1::Users::Lib::Worker::EmailNotification.perform_async(
-        email: model.email, user_mailer: :verification_successful
-      )
+    def send_notification(_ctx, worker:, model:, **)
+      worker.perform_async(email: model.email, user_mailer: :verification_successful)
     end
   end
 end
