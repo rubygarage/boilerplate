@@ -18,16 +18,16 @@ Project wiki: https://github.com/rubygarage/boilerplate/wiki
 | Macros | Description |
 | --- | --- |
 | ```Macro::Assign``` | Provides to assign into context value from other context/context chains |
+| ```Macro::AddContractError``` | Provides to set custom error to namespaced contract |
+| ```Macro::Contract::Schema``` | Provides to use ```Dry::Validation.Schema``` as operation contract |
+| ```Macro::Decorate``` | Provides to decorate ctx object with specified decorator. Supports object or collection as model |
+| ```Macro::Inject``` | Provides to set dependency injection in operations |
+| ```Macro::LinksBuilder``` | Provides to proxy resource path to ```Service::JsonApi::Paginator``` and sets composed links into context |
 | ```Macro::Model``` | Provides to assign model into context. Supports assign by relation chain, relation find_by |
 | ```Macro::ModelDelete``` | Provides to delete model |
 | ```Macro::ModelDestroy``` | Provides to destroy model |
-| ```Macro::Decorate``` | Provides to decorate ctx object with specified decorator. Supports object or collection as model |
-| ```Macro::LinksBuilder``` | Provides to proxy resource path to ```Service::JsonApi::Paginator``` and sets composed links into context |
 | ```Macro::Renderer``` | Provides to render operation result with specified serializer with strict following Jsonapi specification |
-| ```Macro::Contract::Schema``` | Provides to use ```Dry::Validation.Schema``` as operation contract |
 | ```Macro::Semantic``` | Provides to set value of semantic marker (```semantic_success``` or ```semantic_failure```) into context |
-| ```Macro::AddContractError``` | Provides to set custom error to namespaced contract |
-| ```Macro::Inject``` | Provides to set dependency injection in operations |
 
 ### Services
 
@@ -59,6 +59,7 @@ Project wiki: https://github.com/rubygarage/boilerplate/wiki
 | ```ApiController``` | Base application controller class that available for unauthorized users |
 | ```ApplicationOperation``` | Base application operation class |
 | ```ApplicationContract``` | Base application contract class. Use it for build/update entity. Otherwise use ```Dry::Validation.Schema``` |
+| ```ApplicationDecorator``` | Base application decorator class |
 | ```ApplicationSerializer``` | Base application serializer class |
 | ```ApplicationWorker``` | Base application worker class |
 

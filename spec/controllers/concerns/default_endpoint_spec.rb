@@ -18,9 +18,9 @@ RSpec.describe DefaultEndpoint do
   describe '#default_handler' do
     def test_matcher(for_case = {})
       Dry::Matcher.new(
-        %i[created destroyed unauthorized not_found forbidden gone accepted invalid bad_request success].map do |matcher| # rubocop:disable Layout/LineLength
-          [matcher, Dry::Matcher::Case.new(match: ->(_) { for_case[matcher] })]
-        end.to_h
+        %i[created destroyed unauthorized not_found forbidden gone accepted invalid bad_request success].index_with do |matcher| # rubocop:disable Layout/LineLength
+          Dry::Matcher::Case.new(match: ->(_) { for_case[matcher] })
+        end
       )
     end
 
@@ -99,14 +99,6 @@ RSpec.describe DefaultEndpoint do
       let(:matcher_case) { { gone: true } }
       let(:expected_method) { :head }
       let(:args) { [:gone] }
-
-      it_behaves_like('calls specific method')
-    end
-
-    context 'when gone matcher' do
-      let(:matcher_case) { { accepted: true } }
-      let(:expected_method) { :head }
-      let(:args) { [:accepted] }
 
       it_behaves_like('calls specific method')
     end
