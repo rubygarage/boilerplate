@@ -45,8 +45,12 @@ Style/SignalException:
     - app/concepts/**/*
 
 Rails/SkipsModelValidations:
-    Exclude:
-      - app/concepts/api/v1/users/verifications/operation/show.rb
+  Exclude:
+    - app/concepts/api/v1/users/verifications/operation/show.rb
+
+Rails/IndexWith:
+  Exclude:
+    - lib/macro/schema.rb
 
 # Metrics ---------------------------------------------------------------------
 

@@ -5,10 +5,10 @@ source 'https://rubygems.org'
 ruby(File.read(File.join(File.dirname(__FILE__), '.ruby-version')).strip)
 
 # System
-gem 'pg', '~> 1.2'
-gem 'puma', '~> 4.3'
-gem 'rails', '~> 6.0', '>= 6.0.2.1'
-gem 'sidekiq', '~> 6.0', '>= 6.0.4'
+gem 'pg', '~> 1.2', '>= 1.2.3'
+gem 'puma', '~> 4.3', '>= 4.3.3'
+gem 'rails', '~> 6.0', '>= 6.0.2.2'
+gem 'sidekiq', '~> 6.0', '>= 6.0.6'
 
 # Trailblazer bundle
 gem 'dry-container', '~> 0.7.2'
@@ -17,14 +17,14 @@ gem 'trailblazer', '~> 2.1'
 gem 'trailblazer-endpoint', github: 'trailblazer/trailblazer-endpoint'
 
 # Decorator
-gem 'draper', '~> 3.1'
+gem 'draper', '~> 4.0', '>= 4.0.1'
 
 # JSON:API Serializer
 gem 'fast_jsonapi', '~> 1.5'
-gem 'oj', '~> 3.10'
+gem 'oj', '~> 3.10', '>= 3.10.6'
 
 # Pagination
-gem 'pagy', '~> 3.7', '>= 3.7.1'
+gem 'pagy', '~> 3.7', '>= 3.7.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -34,24 +34,24 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.13'
 gem 'jwt_sessions', '~> 2.4', '>= 2.4.3'
 
 group :development, :test do
-  gem 'bullet', '~> 6.0', '>= 6.0.2'
+  gem 'bullet', '~> 6.1'
   gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
-  gem 'ffaker', '~> 2.13'
-  gem 'pry-byebug', '~> 3.7'
+  gem 'ffaker', '~> 2.14'
+  gem 'pry-byebug', '~> 3.9'
   gem 'pry-rails', '~> 0.3.9'
-  gem 'rspec-rails', '~> 3.9'
+  gem 'rspec-rails', '~> 4.0'
 
   # Code quality
-  gem 'brakeman', '~> 4.7', '>= 4.7.2', require: false
+  gem 'brakeman', '~> 4.8', '>= 4.8.1', require: false
   gem 'bundle-audit', '~> 0.1.0', require: false
-  gem 'fasterer', '~> 0.8.1', require: false
-  gem 'overcommit', '~> 0.52.0', require: false
-  gem 'rails_best_practices', '~> 1.19', '>= 1.19.4', require: false
+  gem 'fasterer', '~> 0.8.3', require: false
+  gem 'overcommit', '~> 0.52.1', require: false
+  gem 'rails_best_practices', '~> 1.20', require: false
   gem 'reek', '5.3.2', require: false
   gem 'rubocop', '~> 0.78.0', require: false
   gem 'rubocop-performance', '~> 1.5', '>= 1.5.2', require: false
-  gem 'rubocop-rails', '~> 2.4', '>= 2.4.1', require: false
-  gem 'rubocop-rspec', '~> 1.37', '>= 1.37.1', require: false
+  gem 'rubocop-rails', '~> 2.5', '>= 2.5.2', require: false
+  gem 'rubocop-rspec', '~> 1.38', '>= 1.38.1', require: false
 end
 
 group :development do
@@ -67,8 +67,8 @@ group :test do
   gem 'mock_redis', '~> 0.22.0'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.4'
   gem 'rspec-sidekiq', '~> 3.0', '>= 3.0.3'
-  gem 'shoulda-matchers', '~> 4.1', '>= 4.1.2'
-  gem 'simplecov', '~> 0.17.1', require: false
-  gem 'simplecov-lcov', '~> 0.7.0', require: false
-  gem 'undercover', '~> 0.3.2', require: false
+  gem 'shoulda-matchers', '~> 4.3'
+  gem 'simplecov', '~> 0.18.5', require: false
+  gem 'simplecov-lcov', '~> 0.8.0', require: false
+  gem 'undercover', '~> 0.3.4', require: false
 end
