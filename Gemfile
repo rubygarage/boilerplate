@@ -31,7 +31,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 # Authentication
 gem 'bcrypt', '~> 3.1', '>= 3.1.13'
-gem 'jwt_sessions', '~> 2.4', '>= 2.4.3'
+gem 'jwt_sessions', '~> 2.5'
 
 group :development, :test do
   gem 'bullet', '~> 6.1'
