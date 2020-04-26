@@ -35,7 +35,7 @@ gem 'jwt_sessions', '~> 2.5'
 
 group :development, :test do
   gem 'bullet', '~> 6.1'
-  gem 'factory_bot_rails', '~> 5.1', '>= 5.1.1'
+  gem 'factory_bot_rails', '~> 5.2'
   gem 'ffaker', '~> 2.14'
   gem 'pry-byebug', '~> 3.9'
   gem 'pry-rails', '~> 0.3.9'
