@@ -215,7 +215,7 @@ GEM
     overcommit (0.53.0)
       childprocess (>= 0.6.3, < 4)
       iniparse (~> 1.4)
-    pagy (3.8.0)
+    pagy (3.8.1)
     parallel (1.19.1)
     parser (2.6.5.0)
       ast (~> 2.4.0)
