@@ -42,7 +42,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0'
 
   # Code quality
-  gem 'brakeman', '~> 4.8', '>= 4.8.1', require: false
+  gem 'brakeman', '~> 4.8', require: false
   gem 'bundle-audit', '~> 0.1.0', require: false
   gem 'fasterer', '~> 0.8.3', require: false
   gem 'overcommit', '~> 0.53.0', require: false
