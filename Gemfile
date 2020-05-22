@@ -49,7 +49,7 @@ group :development, :test do
   gem 'rails_best_practices', '~> 1.20', require: false
   gem 'reek', '5.3.2', require: false
   gem 'rubocop', '~> 0.78.0', require: false
-  gem 'rubocop-performance', '~> 1.5', '>= 1.5.2', require: false
+  gem 'rubocop-performance', '~> 1.6', require: false
   gem 'rubocop-rails', '~> 2.5', '>= 2.5.2', require: false
   gem 'rubocop-rspec', '~> 1.39', require: false
 end
