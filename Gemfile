@@ -47,7 +47,7 @@ group :development, :test do
   gem 'fasterer', '~> 0.8.3', require: false
   gem 'overcommit', '~> 0.53.0', require: false
   gem 'rails_best_practices', '~> 1.20', require: false
-  gem 'reek', '5.3.2', require: false
+  gem 'reek', '6.0.1', require: false
   gem 'rubocop', '~> 0.78.0', require: false
   gem 'rubocop-performance', '~> 1.6', require: false
   gem 'rubocop-rails', '~> 2.5', '>= 2.5.2', require: false
