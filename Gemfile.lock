@@ -86,7 +86,7 @@ GEM
     childprocess (3.0.0)
     code_analyzer (0.5.1)
       sexp_processor
-    coderay (1.1.2)
+    coderay (1.1.3)
     colorize (0.8.1)
     concurrent-ruby (1.1.6)
     connection_pool (2.2.2)
