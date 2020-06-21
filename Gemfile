@@ -66,7 +66,7 @@ group :test do
   gem 'json_matchers', '~> 0.11.1', require: 'json_matchers/rspec'
   gem 'mock_redis', '~> 0.22.0'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.4'
-  gem 'rspec-sidekiq', '~> 3.0', '>= 3.0.3'
+  gem 'rspec-sidekiq', '~> 3.1'
   gem 'shoulda-matchers', '~> 4.3'
   gem 'simplecov', '~> 0.18.5', require: false
   gem 'simplecov-lcov', '~> 0.8.0', require: false
