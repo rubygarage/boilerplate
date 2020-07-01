@@ -96,7 +96,7 @@ GEM
     declarative-builder (0.1.0)
       declarative-option (< 0.2.0)
     declarative-option (0.1.0)
-    diff-lcs (1.4.3)
+    diff-lcs (1.4.4)
     disposable (0.4.7)
       declarative (>= 0.0.9, < 1.0.0)
       declarative-builder (< 0.2.0)
