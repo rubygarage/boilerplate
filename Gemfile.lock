@@ -85,7 +85,7 @@ GEM
       thor (>= 0.18, < 2)
     byebug (11.1.3)
     childprocess (4.0.0)
-    code_analyzer (0.5.1)
+    code_analyzer (0.5.2)
       sexp_processor
     coderay (1.1.3)
     colorize (0.8.1)
