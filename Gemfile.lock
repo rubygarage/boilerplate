@@ -316,7 +316,7 @@ GEM
       activesupport
       rack (>= 1.1)
       rubocop (>= 0.72.0)
-    rubocop-rspec (1.40.0)
+    rubocop-rspec (1.41.0)
       rubocop (>= 0.68.1)
     ruby-progressbar (1.10.1)
     ruby_parser (3.14.2)
@@ -423,7 +423,7 @@ DEPENDENCIES
   rubocop (~> 0.78.0)
   rubocop-performance (~> 1.6)
   rubocop-rails (~> 2.5, >= 2.5.2)
-  rubocop-rspec (~> 1.40)
+  rubocop-rspec (~> 1.41)
   shoulda-matchers (~> 4.3)
   sidekiq (~> 6.1)
   simplecov (~> 0.18.5)
