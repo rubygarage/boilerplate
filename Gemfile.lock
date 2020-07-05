@@ -351,12 +351,12 @@ GEM
       trailblazer-macro (>= 2.1.0, < 2.2.0)
       trailblazer-macro-contract (>= 2.1.0, < 2.2.0)
       trailblazer-operation
-    trailblazer-activity (0.10.1)
-      trailblazer-context (>= 0.2.0, < 0.3.0)
-    trailblazer-activity-dsl-linear (0.2.8)
+    trailblazer-activity (0.11.0)
+      trailblazer-context (>= 0.3.0, < 0.4.0)
+    trailblazer-activity-dsl-linear (0.2.9)
       trailblazer-activity (>= 0.9.1, < 1.0.0)
-    trailblazer-context (0.2.0)
-    trailblazer-developer (0.0.13)
+    trailblazer-context (0.3.0)
+    trailblazer-developer (0.0.14)
       hirb
       representable
       trailblazer-activity (>= 0.10.0, < 1.0.0)
