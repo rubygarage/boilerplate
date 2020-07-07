@@ -173,7 +173,7 @@ GEM
       json_schema
     json_schema (0.20.9)
     jwt (2.2.1)
-    jwt_sessions (2.5.1)
+    jwt_sessions (2.5.2)
       jwt (>= 2.1.1, < 3)
     kwalify (0.7.2)
     launchy (2.5.0)
