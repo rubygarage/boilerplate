@@ -380,7 +380,7 @@ GEM
       rugged (>= 0.27, < 1.1)
     unicode-display_width (1.6.1)
     uniform_notifier (1.13.0)
-    websocket-driver (0.7.2)
+    websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     zeitwerk (2.3.1)
