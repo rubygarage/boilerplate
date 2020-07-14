@@ -21,7 +21,7 @@ gem 'draper', '~> 4.0', '>= 4.0.1'
 
 # JSON:API Serializer
 gem 'fast_jsonapi', '~> 1.5'
-gem 'oj', '~> 3.10', '>= 3.10.6'
+gem 'oj', '~> 3.10'
 
 # Pagination
 gem 'pagy', '~> 3.8'
