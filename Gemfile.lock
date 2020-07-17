@@ -356,10 +356,10 @@ GEM
     trailblazer-activity-dsl-linear (0.2.9)
       trailblazer-activity (>= 0.9.1, < 1.0.0)
     trailblazer-context (0.3.0)
-    trailblazer-developer (0.0.14)
+    trailblazer-developer (0.0.15)
       hirb
       representable
-      trailblazer-activity (>= 0.10.0, < 1.0.0)
+      trailblazer-activity (>= 0.11.0, < 1.0.0)
       trailblazer-activity-dsl-linear
     trailblazer-macro (2.1.2)
       trailblazer-activity (>= 0.10.0, < 1.0.0)
