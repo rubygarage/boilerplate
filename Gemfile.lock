@@ -361,7 +361,7 @@ GEM
       representable
       trailblazer-activity (>= 0.11.0, < 1.0.0)
       trailblazer-activity-dsl-linear
-    trailblazer-macro (2.1.2)
+    trailblazer-macro (2.1.3)
       trailblazer-activity (>= 0.10.0, < 1.0.0)
       trailblazer-activity-dsl-linear (>= 0.2.7, < 1.0.0)
       trailblazer-operation (>= 0.6.2)
