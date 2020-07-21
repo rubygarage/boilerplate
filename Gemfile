@@ -30,7 +30,7 @@ gem 'pagy', '~> 3.8'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 # Authentication
-gem 'bcrypt', '~> 3.1', '>= 3.1.13'
+gem 'bcrypt', '~> 3.1'
 gem 'jwt_sessions', '~> 2.5'
 
 group :development, :test do
