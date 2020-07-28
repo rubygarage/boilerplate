@@ -33,9 +33,9 @@ module Api::V1::Lib::Service::JsonApi # rubocop:disable Style/ClassAndModuleChil
     end
 
     context 'when required parameter not passed' do
-      let(:params) { {} }
+      let(:params) { { type: :string } }
 
-      it { expect { column_instance }.to raise_error(ArgumentError, 'missing keyword: name') }
+      it { expect { column_instance }.to raise_error(ArgumentError, 'missing keyword: :name') }
     end
   end
 

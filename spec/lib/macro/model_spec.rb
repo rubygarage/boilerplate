@@ -3,11 +3,11 @@
 RSpec.describe Macro do
   describe '.Model' do
     subject(:result) do
-      described_class::Model(**params)[:task].call(ctx, flow_options)
+      described_class::Model(**params)[:task].call(ctx, **flow_options)
     end
 
     let(:params) {}
-    let(:flow_options) { {} }
+    let(:flow_options) { { options: [] } }
     let(:item_id) { 1 }
     let(:items) { instance_double('Items') }
     let(:sub_object) { instance_double('SubObject', items: items) }

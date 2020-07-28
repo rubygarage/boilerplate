@@ -418,6 +418,7 @@ DEPENDENCIES
   rails-controller-testing (~> 1.0)
   rails_best_practices (~> 1.20)
   reek (= 6.0.1)
+  reform (~> 2.2.4)
   rspec-rails (~> 4.0)
   rspec-sidekiq (~> 3.1)
   rubocop (~> 0.78.0)
@@ -435,7 +436,7 @@ DEPENDENCIES
   undercover (~> 0.3.4)
 
 RUBY VERSION
-   ruby 2.6.5p114
+   ruby 2.7.1p83
 
 BUNDLED WITH
-   2.0.2
+   2.1.4

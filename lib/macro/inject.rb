@@ -3,7 +3,7 @@
 module Macro
   def self.Inject(**deps)
     task = Trailblazer::Activity::TaskBuilder::Binary(
-      ->(ctx, **) {
+      ->((ctx, flow_options), _) {
         deps.each { |key, value| ctx[key] = value.is_a?(String) ? Container[value] : value }
       }
     )
