@@ -64,7 +64,7 @@ module Macro
           true
         end
 
-        def method_missing(*) # rubocop:disable Style/MethodMissingSuper
+        def method_missing(*)
           nil
         end
       end

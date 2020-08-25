@@ -14,7 +14,7 @@ RSpec.describe Api::V1::Lib::Operation::Filtering, type: :operation do
       { name: 'attribute_2', type: :number, filterable: true },
       { name: 'attribute_3', type: :boolean, filterable: true },
       { name: 'attribute_4', type: :date, filterable: true },
-      { name: 'attribute_5', filterable: true } # rubocop:disable Style/BracesAroundHashParameters
+      { name: 'attribute_5', filterable: true }
     )
   end
 
