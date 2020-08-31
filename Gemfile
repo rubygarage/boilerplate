@@ -10,6 +10,12 @@ gem 'puma', '~> 4.3'
 gem 'rails', '~> 6.0'
 gem 'sidekiq', '~> 6.1'
 
+# Admin panel
+gem 'activeadmin', '~> 2.7'
+
+# Admin's authentication/authorization
+gem 'devise', '~> 4.7'
+
 # Trailblazer bundle
 gem 'dry-container', '~> 0.7.2'
 gem 'dry-validation', '0.11.1'
@@ -62,11 +68,13 @@ group :development do
 end
 
 group :test do
+  gem 'capybara', '~> 3.33'
   gem 'dox', '~> 1.2'
   gem 'json_matchers', '~> 0.11.1', require: 'json_matchers/rspec'
   gem 'mock_redis', '~> 0.22.0'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
+  gem 'selenium-webdriver', '~> 3.142'
   gem 'shoulda-matchers', '~> 4.3'
   gem 'simplecov', '~> 0.18.5', require: false
   gem 'simplecov-lcov', '~> 0.8.0', require: false

@@ -59,6 +59,7 @@ Layout/LineLength:
 
 Metrics/BlockLength:
   Exclude:
+    - app/admin/**/*
     - config/**/*
     - Rakefile
     - lib/tasks/**/*.rake
