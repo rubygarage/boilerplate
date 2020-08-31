@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'shrine/storage/s3'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -11,6 +13,18 @@ Rails.application.configure do
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
+
+  s3_options = {
+    access_key_id: Rails.application.credentials.dig(:aws, :access_key_id),
+    secret_access_key: Rails.application.credentials.dig(:aws, :secret_access_key),
+    region: Rails.application.credentials.dig(:aws, :region),
+    bucket: Rails.application.credentials.dig(:aws, :bucket)
+  }
+
+  Shrine.storages = {
+    cache: Shrine::Storage::S3.new(prefix: 'cache', **s3_options),
+    store: Shrine::Storage::S3.new(prefix: 'store', **s3_options)
+  }
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local = false
