@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'shrine/storage/file_system'
+require 'shrine/storage/memory'
 
 # The test environment is used exclusively to run your application's
 # test suite. You never need to work with it otherwise. Remember that
@@ -25,9 +25,11 @@ Rails.application.configure do
 
   # Files Uploader
   Shrine.storages = {
-    cache: Shrine::Storage::FileSystem.new('public', prefix: 'uploads/cache'),
-    store: Shrine::Storage::FileSystem.new('public', prefix: 'uploads')
+    cache: Shrine::Storage::Memory.new,
+    store: Shrine::Storage::Memory.new
   }
+
+  config.use_transactional_fixtures = false
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true

@@ -19,7 +19,7 @@ Rails.application.configure do
   # Files Uploader
   Shrine.storages = {
     cache: Shrine::Storage::FileSystem.new('public', prefix: 'uploads/cache'),
-    store: Shrine::Storage::FileSystem.new('public', prefix: 'uploads')
+    store: Shrine::Storage::FileSystem.new('public', prefix: 'uploads/store')
   }
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.

@@ -14,16 +14,9 @@ Rails.application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
 
-  s3_options = {
-    access_key_id: Rails.application.credentials.dig(:aws, :access_key_id),
-    secret_access_key: Rails.application.credentials.dig(:aws, :secret_access_key),
-    region: Rails.application.credentials.dig(:aws, :region),
-    bucket: Rails.application.credentials.dig(:aws, :bucket)
-  }
-
   Shrine.storages = {
-    cache: Shrine::Storage::S3.new(prefix: 'cache', **s3_options),
-    store: Shrine::Storage::S3.new(prefix: 'store', **s3_options)
+    cache: Shrine::Storage::S3.new(prefix: 'cache', **Rails.application.credentials.aws),
+    store: Shrine::Storage::S3.new(prefix: 'store', **Rails.application.credentials.aws)
   }
 
   # Full error reports are disabled and caching is turned on.
