@@ -327,7 +327,7 @@ GEM
     ruby_parser (3.14.2)
       sexp_processor (~> 4.9)
     rugged (1.0.1)
-    sexp_processor (4.15.0)
+    sexp_processor (4.15.1)
     shoulda-matchers (4.3.0)
       activesupport (>= 4.2.0)
     sidekiq (6.1.1)
