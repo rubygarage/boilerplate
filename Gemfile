@@ -36,7 +36,7 @@ gem 'jwt_sessions', '~> 2.5'
 group :development, :test do
   gem 'bullet', '~> 6.1'
   gem 'factory_bot_rails', '~> 6.1'
-  gem 'ffaker', '~> 2.16'
+  gem 'ffaker', '~> 2.17'
   gem 'pry-byebug', '~> 3.9'
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec-rails', '~> 4.0'
@@ -48,7 +48,7 @@ group :development, :test do
   gem 'overcommit', '~> 0.55.0', require: false
   gem 'rails_best_practices', '~> 1.20', require: false
   gem 'reek', '6.0.1', require: false
-  gem 'rubocop', '~> 0.78.0', require: false
+  gem 'rubocop', '~> 0.89.1', require: false
   gem 'rubocop-performance', '~> 1.6', require: false
   gem 'rubocop-rails', '~> 2.5', '>= 2.5.2', require: false
   gem 'rubocop-rspec', '~> 1.41', require: false
@@ -68,7 +68,7 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'shoulda-matchers', '~> 4.3'
-  gem 'simplecov', '~> 0.18.5', require: false
+  gem 'simplecov', '~> 0.19.0', require: false
   gem 'simplecov-lcov', '~> 0.8.0', require: false
   gem 'undercover', '~> 0.3.4', require: false
 end
