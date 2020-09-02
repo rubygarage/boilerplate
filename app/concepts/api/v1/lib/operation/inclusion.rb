@@ -9,7 +9,7 @@ module Api::V1::Lib::Operation
       inject: %i[available_inclusion_options]
     )
     step Contract::Validate(name: :uri_query)
-    step Macro::Assign(to: :inclusion_options, path: %w[contract.uri_query include])
+    step Macro::Assign.new.call(to: :inclusion_options, path: %w[contract.uri_query include])
 
     def inclusion_query_param_passed?(_ctx, params:, **)
       params[:include]

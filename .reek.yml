@@ -23,13 +23,16 @@ detectors:
   TooManyStatements:
     exclude:
       - DefaultEndpoint#default_handler
-      - Macro#self.Decorate
-      - Macro#self.LinksBuilder
       - Macro::Contract::BaseSchemaObject#self.Build
       - Macro::Contract#self.Schema
+      - Macro::ModelDestroy#call
       - Macro#self.Model
-      - Macro#self.Assign
-      - Macro#self.AddContractError
+      - Macro::ModelDelete#call
+      - Macro::LinksBuilder#call
+      - Macro::Assign#call
+      - Macro::AddContractError#call
+      - Macro::Inject#call
+      - Macro::Decorate#call
 
   TooManyConstants:
     exclude:
@@ -37,7 +40,6 @@ detectors:
 
   NilCheck:
     exclude:
-      - Macro#self.Renderer
       - Api::V1::Lib::Operation::Paginate#pagy
 
   UtilityFunction:
@@ -57,13 +59,13 @@ detectors:
       - Macro::Model#self.direction
       - Service::Pagy#call
       - Macro#self.Model
-      - Macro#self.Assign
-      - Macro#self.Decorate
+      - Macro::Decorate#call
+      - Macro::Assign#call
 
   BooleanParameter:
     exclude:
       - Macro#self.Model
-      - Macro#self.Assign
+      - Macro::Assign#call
 
 directories:
   'app/concepts':
@@ -82,6 +84,9 @@ directories:
 
   'lib/macro':
     UncommunicativeMethodName:
+      enabled: false
+
+    FeatureEnvy:
       enabled: false
 
     DuplicateMethodCall:

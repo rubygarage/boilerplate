@@ -1,13 +1,19 @@
 # frozen_string_literal: true
 
 module Macro
-  def self.ModelDestroy(path: [])
-    task = Trailblazer::Activity::TaskBuilder::Binary(
-      ->(ctx, **) {
-        model = ctx[path.shift]
-        path.empty? ? model.destroy : path.push(:destroy).inject(model, :try)
+  class ModelDestroy
+    def call(path: [])
+      task = Trailblazer::Activity::TaskBuilder::Binary(
+        ->(ctx, **) {
+          model = ctx[path.shift]
+          path.empty? ? model.destroy : path.push(:destroy).inject(model, :try)
+        }
+      )
+      current_class = self.class
+      {
+        task: task,
+        id: "#{current_class.module_parent_name}/#{current_class.name.split('::').last}_id_#{task.object_id}".underscore
       }
-    )
-    { task: task, id: "#{name}/#{__method__}_id_#{task.object_id}".underscore }
+    end
   end
 end

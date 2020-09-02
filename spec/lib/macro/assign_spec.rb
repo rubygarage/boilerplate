@@ -2,7 +2,7 @@
 
 RSpec.describe Macro do
   describe '.Assign' do
-    subject(:result) { described_class::Assign(**params)[:task].call(ctx, flow_options) }
+    subject(:result) { described_class::Assign.new.call(**params)[:task].call(ctx, flow_options) }
 
     let(:params) { {} }
 
@@ -45,7 +45,7 @@ RSpec.describe Macro do
 
     it 'has uniqueness id' do
       params = { to: :path }
-      expect(described_class::Assign(params)[:id]).not_to eq(described_class::Assign(params)[:id])
+      expect(described_class::Assign.new.call(params)[:id]).not_to eq(described_class::Assign.new.call(params)[:id])
     end
   end
 end

@@ -2,7 +2,7 @@
 
 RSpec.describe Macro do
   describe '.Inject' do
-    subject(:result) { described_class::Inject(**deps)[:task].call(ctx) }
+    subject(:result) { described_class::Inject.new.call(**deps)[:task].call(ctx) }
 
     let(:ctx) { {} }
     let(:deps) { { service: dependency } }
@@ -33,11 +33,11 @@ RSpec.describe Macro do
 
     describe 'macro id' do
       it 'has formatted id' do
-        expect(described_class::Inject({})[:id]).to macro_id_with('inject')
+        expect(described_class::Inject.new.call({})[:id]).to macro_id_with('inject')
       end
 
       it 'has uniqueness id' do
-        expect(described_class::Inject()[:id]).not_to eq(described_class::Inject()[:id])
+        expect(described_class::Inject.new.call[:id]).not_to eq(described_class::Inject.new.call[:id])
       end
     end
   end

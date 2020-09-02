@@ -7,7 +7,7 @@ RSpec.describe Macro do
     context 'when required JsonapiPaginator args not exist' do
       let(:operation) do
         Class.new(Trailblazer::Operation) do
-          step Macro::LinksBuilder()
+          step Macro::LinksBuilder.new.call
         end
       end
 
@@ -21,7 +21,7 @@ RSpec.describe Macro do
       let(:operation) do
         Class.new(Trailblazer::Operation) do
           step ->(ctx, **) { ctx[:pagy] = :pagy }
-          step Macro::LinksBuilder(resource_path: :some_path)
+          step Macro::LinksBuilder.new.call(resource_path: :some_path)
         end
       end
 
@@ -39,7 +39,7 @@ RSpec.describe Macro do
         Class.new(Trailblazer::Operation) do
           step ->(ctx, **) { ctx[:params] = { resource_id: resource_id } }
           step ->(ctx, **) { ctx[:pagy] = 'pagy' }
-          step Macro::LinksBuilder(
+          step Macro::LinksBuilder.new.call(
             resource_path: :api_v1_resource_another_resources_path,
             ids: %i[resource_id]
           )
@@ -59,11 +59,11 @@ RSpec.describe Macro do
 
     describe 'macro id' do
       it 'has formatted id' do
-        expect(described_class::LinksBuilder({})[:id]).to macro_id_with('links_builder')
+        expect(described_class::LinksBuilder.new.call({})[:id]).to macro_id_with('links_builder')
       end
 
       it 'has uniqueness id' do
-        expect(described_class::LinksBuilder()[:id]).not_to eq(described_class::LinksBuilder()[:id])
+        expect(described_class::LinksBuilder.new.call[:id]).not_to eq(described_class::LinksBuilder.new.call[:id])
       end
     end
   end

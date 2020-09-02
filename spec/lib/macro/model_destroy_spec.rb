@@ -2,7 +2,7 @@
 
 RSpec.describe Macro do
   describe '.ModelDestroy' do
-    subject(:result) { described_class::ModelDestroy(**params)[:task].call(ctx, {}) }
+    subject(:result) { described_class::ModelDestroy.new.call(**params)[:task].call(ctx, {}) }
 
     let(:sub_object) { instance_double('SubObject', destroy: true) }
     let(:object) { instance_double('SomeObject', sub_object: sub_object) }
@@ -36,11 +36,11 @@ RSpec.describe Macro do
 
     describe 'macro id' do
       it 'has formatted id' do
-        expect(described_class::ModelDestroy({})[:id]).to macro_id_with('model_destroy')
+        expect(described_class::ModelDestroy.new.call({})[:id]).to macro_id_with('model_destroy')
       end
 
       it 'has uniqueness id' do
-        expect(described_class::ModelDestroy()[:id]).not_to eq(described_class::ModelDestroy()[:id])
+        expect(described_class::ModelDestroy.new.call[:id]).not_to eq(described_class::ModelDestroy.new.call[:id])
       end
     end
   end

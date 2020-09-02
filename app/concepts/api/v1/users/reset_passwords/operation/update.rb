@@ -2,7 +2,7 @@
 
 module Api::V1::Users::ResetPasswords::Operation
   class Update < ApplicationOperation
-    step Macro::Inject(
+    step Macro::Inject.new.call(
       redis: 'adapters.redis',
       session: 'services.session_token',
       namespace: 'services.token_namespace',

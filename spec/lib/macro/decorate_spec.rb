@@ -2,7 +2,7 @@
 
 RSpec.describe Macro do
   describe '.Decorate' do
-    subject(:result) { described_class::Decorate(**params)[:task].call(ctx) }
+    subject(:result) { described_class::Decorate.new.call(**params)[:task].call(ctx) }
 
     let(:context_target) { :model }
     let(:from) { nil }
@@ -47,11 +47,11 @@ RSpec.describe Macro do
 
     describe 'macro id' do
       it 'has formatted id' do
-        expect(described_class::Decorate({})[:id]).to macro_id_with('decorate')
+        expect(described_class::Decorate.new.call({})[:id]).to macro_id_with('decorate')
       end
 
       it 'has uniqueness id' do
-        expect(described_class::Decorate()[:id]).not_to eq(described_class::Decorate()[:id])
+        expect(described_class::Decorate.new.call[:id]).not_to eq(described_class::Decorate.new.call[:id])
       end
     end
   end

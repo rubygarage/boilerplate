@@ -16,7 +16,7 @@ RSpec.describe Macro do
       let(:operation) do
         Class.new(Trailblazer::Operation) do
           step Trailblazer::Operation::Contract::Build(constant: ApplicationContract)
-          step Macro::AddContractError(error: 'errors.str?')
+          step Macro::AddContractError.new.call(error: 'errors.str?')
         end
       end
 
@@ -29,7 +29,7 @@ RSpec.describe Macro do
       let(:operation) do
         Class.new(Trailblazer::Operation) do
           step Trailblazer::Operation::Contract::Build(constant: ApplicationContract, name: 'some_namespace')
-          step Macro::AddContractError(name: :some_namespace, error: 'errors.str?')
+          step Macro::AddContractError.new.call(name: :some_namespace, error: 'errors.str?')
         end
       end
 
@@ -42,7 +42,7 @@ RSpec.describe Macro do
       let(:operation) do
         Class.new(Trailblazer::Operation) do
           step Trailblazer::Operation::Contract::Build(constant: ApplicationContract)
-          step Macro::AddContractError(error: [:nested_error, [I18n.t('errors.str?')]])
+          step Macro::AddContractError.new.call(error: [:nested_error, [I18n.t('errors.str?')]])
         end
       end
 
@@ -51,11 +51,12 @@ RSpec.describe Macro do
 
     describe 'macro id' do
       it 'has formatted id' do
-        expect(described_class::AddContractError({})[:id]).to macro_id_with('add_contract_error')
+        expect(described_class::AddContractError.new.call({})[:id]).to macro_id_with('add_contract_error')
       end
 
       it 'has uniqueness id' do
-        expect(described_class::AddContractError()[:id]).not_to eq(described_class::AddContractError()[:id])
+        expect(described_class::AddContractError.new.call[:id])
+          .not_to eq(described_class::AddContractError.new.call[:id])
       end
     end
   end

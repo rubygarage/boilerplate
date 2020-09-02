@@ -18,13 +18,13 @@ RSpec.describe Macro do
       step Trailblazer::Operation::Contract::Build(constant: DummyContract)
       step Trailblazer::Operation::Contract::Validate()
       step ->(ctx, **) { ctx[:some_meta] = { token: 'token' } }
-      step Macro::Renderer(serializer: 'SerializerClassName', meta: :some_meta)
+      step Macro::Renderer.new.call(serializer: 'SerializerClassName', meta: :some_meta)
     end
 
     DummyOperationWithEmptyContract = Class.new(Trailblazer::Operation) do
       step Trailblazer::Operation::Contract::Build(constant: Class.new(ApplicationContract))
       step Trailblazer::Operation::Contract::Validate()
-      step Macro::Renderer()
+      step Macro::Renderer.new.call
     end
 
     DummyRendererOperation = Class.new(Trailblazer::Operation) do
@@ -32,7 +32,7 @@ RSpec.describe Macro do
       step Trailblazer::Operation::Contract::Validate()
       step ->(ctx, **) { ctx[:some_meta] = { token: 'token' } }
       step ->(ctx, **) { ctx[:inclusion_options] = %w[str1 str2] }
-      step Macro::Renderer(serializer: 'SerializerClassName', meta: :some_meta)
+      step Macro::Renderer.new.call(serializer: 'SerializerClassName', meta: :some_meta)
     end
     # rubocop:enable RSpec/LeakyConstantDeclaration
 
@@ -95,11 +95,11 @@ RSpec.describe Macro do
 
     describe 'macro id' do
       it 'has formatted id' do
-        expect(described_class::Renderer({})[:id]).to macro_id_with('renderer')
+        expect(described_class::Renderer.new.call({})[:id]).to macro_id_with('renderer')
       end
 
       it 'has uniqueness id' do
-        expect(described_class::Renderer()[:id]).not_to eq(described_class::Renderer()[:id])
+        expect(described_class::Renderer.new.call[:id]).not_to eq(described_class::Renderer.new.call[:id])
       end
     end
   end

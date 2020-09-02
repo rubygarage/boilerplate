@@ -2,15 +2,16 @@
 
 module Api::V1::Users::Registrations::Operation
   class Create < ApplicationOperation
-    step Macro::Inject(jwt: 'services.email_token', worker: Api::V1::Users::Registrations::Worker::EmailConfirmation)
+    step Macro::Inject.new.call(jwt: 'services.email_token',
+                                worker: Api::V1::Users::Registrations::Worker::EmailConfirmation)
     step Model(Account, :new)
     step Contract::Build(constant: Api::V1::Users::Registrations::Contract::Create)
     step Contract::Validate()
     step Contract::Persist()
-    step Macro::Semantic(success: :created)
+    step Macro::Semantic.new.call(success: :created)
     step :set_email_token
     step :send_confirmation_link
-    step Macro::Renderer(serializer: Api::V1::Lib::Serializer::Account)
+    step Macro::Renderer.new.call(serializer: Api::V1::Lib::Serializer::Account)
 
     def set_email_token(ctx, jwt:, model:, **)
       ctx[:email_token] = jwt.create(account_id: model.id)

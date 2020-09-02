@@ -6,7 +6,7 @@ module Macro
       schema_object_class = BaseSchemaObject.Build(schema)
       task = Trailblazer::Activity::TaskBuilder::Binary(
         ->(ctx, **) {
-          dependencies = inject.each_with_object({}) { |option, memo| memo[option] = ctx[option] }
+          dependencies = inject.index_with { |option| ctx[option] }
           ctx["contract.#{name}"] = schema_object_class.new(schema, dependencies)
         }
       )

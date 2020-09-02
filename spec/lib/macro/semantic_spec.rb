@@ -12,7 +12,7 @@ RSpec.describe Macro do
       let(:semantic_marker) { :semantic_success }
       let(:operation) do
         Class.new(Trailblazer::Operation) do
-          step Macro::Semantic(success: :semantic_context)
+          step Macro::Semantic.new.call(success: :semantic_context)
         end
       end
 
@@ -23,7 +23,7 @@ RSpec.describe Macro do
       let(:semantic_marker) { :semantic_failure }
       let(:operation) do
         Class.new(Trailblazer::Operation) do
-          step Macro::Semantic(failure: :semantic_context)
+          step Macro::Semantic.new.call(failure: :semantic_context)
         end
       end
 
@@ -32,11 +32,11 @@ RSpec.describe Macro do
 
     describe 'macro id' do
       it 'has formatted id' do
-        expect(described_class::Semantic({})[:id]).to macro_id_with('semantic')
+        expect(described_class::Semantic.new.call({})[:id]).to macro_id_with('semantic')
       end
 
       it 'has uniqueness id' do
-        expect(described_class::Semantic()[:id]).not_to eq(described_class::Semantic()[:id])
+        expect(described_class::Semantic.new.call[:id]).not_to eq(described_class::Semantic.new.call[:id])
       end
     end
   end

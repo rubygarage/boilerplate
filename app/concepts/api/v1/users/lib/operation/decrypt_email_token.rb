@@ -2,14 +2,14 @@
 
 module Api::V1::Users::Lib::Operation
   class DecryptEmailToken < ApplicationOperation
-    step Macro::Inject(jwt: 'services.email_token')
+    step Macro::Inject.new.call(jwt: 'services.email_token')
     step Macro::Contract::Schema(Api::V1::Users::Lib::Contract::DecryptEmailTokenValidation)
     step Contract::Validate(), fail_fast: true
-    step Macro::Assign(to: :email_token, path: %w[contract.default email_token])
+    step Macro::Assign.new.call(to: :email_token, path: %w[contract.default email_token])
     step :set_payload
-    fail Macro::AddContractError(base: 'errors.verification.invalid_email_token'), fail_fast: true
+    fail Macro::AddContractError.new.call(base: 'errors.verification.invalid_email_token'), fail_fast: true
     step :set_model
-    fail Macro::Semantic(failure: :not_found)
+    fail Macro::Semantic.new.call(failure: :not_found)
 
     def set_payload(ctx, jwt:, email_token:, **)
       ctx[:payload] = jwt.read(email_token)
