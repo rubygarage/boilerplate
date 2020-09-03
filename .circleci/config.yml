@@ -73,10 +73,6 @@ jobs:
       - run: cp config/database.yml.ci config/database.yml
       - run: bundle exec rake db:create db:schema:load --trace
       - run: bundle exec rspec
-      # - run: bundle exec undercover -c origin/develop
-      # - store_artifacts:
-      #     destination: coverage
-      #     path: ~/boilerplate-rails-api/coverage
 
 workflows:
   version: 2
