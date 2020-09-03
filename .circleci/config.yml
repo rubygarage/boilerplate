@@ -31,7 +31,7 @@ jobs:
             - boilerplate-rails-api-{{ checksum "Gemfile.lock" }}
             - boilerplate-rails-api
       - run: gem i bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
-      - run : bundle check || bundle install --frozen && bundle clean
+      - run : bundle check || bundle install --frozen --path vendor/bundle && bundle clean
       - save_cache:
           key: boilerplate-rails-api-{{ checksum "Gemfile.lock" }}
           paths:
