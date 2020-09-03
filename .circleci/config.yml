@@ -1,20 +1,15 @@
 version: 2.1
 
-aliases:
-  working_directory: &working_directory
-    working_directory: ~/boilerplate-rails-api
-
 executors:
   default:
     description: The official CircleCI Ruby Docker image
     docker:
       - image: circleci/ruby:2.6.5-node
     environment:
-      - PGHOST: 127.0.0.1
-      - PGUSER: root
-      - RAILS_ENV: test
+      - BUNDLE_JOBS: 4
+      - BUNDLE_RETRY: 3
       - BUNDLE_PATH: vendor/bundle
-    <<: *working_directory
+    working_directory: ~/boilerplate-rails-api
 
 jobs:
   checkout:
@@ -34,9 +29,9 @@ jobs:
       - restore_cache:
           keys:
             - boilerplate-rails-api-{{ checksum "Gemfile.lock" }}
-            - boilerplate-rails-api
+            - boilerplate-rails-api-
       - run: gem i bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
-      - run : bundle check || bundle install --frozen --path vendor/bundle && bundle clean
+      - run: bundle install --path vendor/bundle
       - save_cache:
           key: boilerplate-rails-api-{{ checksum "Gemfile.lock" }}
           paths:
@@ -51,32 +46,37 @@ jobs:
       - attach_workspace:
           at: ~/boilerplate-rails-api
       - run: sudo apt-get install cmake
-      - run: bundle exec overcommit -s SKIP=AuthorEmail,AuthorName -r
+      - run: |
+          echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+          source $BASH_ENV
+          gem install bundler
+      - run: bundle install
+      - run: bundle exec overcommit --sign
+      - run: |
+          bundle exec overcommit -s
+          SKIP=AuthorEmail,AuthorName bundle exec overcommit -r
   rspec:
     executor: default
-    parallelism: 2
     docker:
-      - image: circleci/ruby:2.6.5-node
-        environment:
-          PGHOST: 127.0.0.1
-          PGUSER: root
-          RAILS_ENV: test
-          CIRCLE_CI: true
+      - image: circleci/ruby:2.6.5-node-browsers
       - image: circleci/postgres:11-alpine
         environment:
-          POSTGRES_USER: root
-          POSTGRES_PASSWORD: ""
-          DB_USERNAME: root
-          DB_PASSWORD: circle_test
+          - POSTGRES_USER: boilerplate
+    parallelism: 2
     steps:
       - attach_workspace:
           at: ~/boilerplate-rails-api
+      - run: |
+          echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+          source $BASH_ENV
+          gem install bundler
+      - run: cp config/database.yml.ci config/database.yml
       - run: bundle exec rake db:create db:schema:load --trace
       - run: bundle exec rspec
-      - run: bundle exec undercover -c origin/develop
-      - store_artifacts:
-          destination: coverage
-          path: ~/boilerplate-rails-api/coverage
+      # - run: bundle exec undercover -c origin/develop
+      # - store_artifacts:
+      #     destination: coverage
+      #     path: ~/boilerplate-rails-api/coverage
 
 workflows:
   version: 2
@@ -86,7 +86,9 @@ workflows:
       - bundle:
           requires:
             - checkout
-      - rspec
+      - rspec:
+          requires:
+            - bundle
       - overcommit:
           requires:
             - bundle
