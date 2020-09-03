@@ -30,6 +30,7 @@ jobs:
           keys:
             - boilerplate-rails-api-{{ checksum "Gemfile.lock" }}
             - boilerplate-rails-api-
+      - run: sudo apt-get install cmake
       - run: |
           gem install bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
       - run: bundle install --path vendor/bundle
@@ -46,9 +47,13 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/boilerplate-rails-api
-      - run: sudo apt-get install cmake
+      - restore_cache:
+          keys:
+            - boilerplate-rails-api-{{ checksum "Gemfile.lock" }}
+            - boilerplate-rails-api-
       - run: |
           gem install bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
+      - run: bundle install
       - run: |
           bundle exec overcommit -s
           SKIP=AuthorEmail,AuthorName bundle exec overcommit -r
@@ -63,8 +68,13 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/boilerplate-rails-api
+      - restore_cache:
+          keys:
+            - boilerplate-rails-api-{{ checksum "Gemfile.lock" }}
+            - boilerplate-rails-api-
       - run: |
           gem install bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
+      - run: bundle install
       - run: cp config/database.yml.ci config/database.yml
       - run: bundle exec rake db:create db:schema:load --trace
       - run: bundle exec rspec
