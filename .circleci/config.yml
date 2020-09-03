@@ -51,7 +51,6 @@ jobs:
           source $BASH_ENV
           gem install bundler
       - run: bundle install
-      - run: bundle exec overcommit --sign
       - run: |
           bundle exec overcommit -s
           SKIP=AuthorEmail,AuthorName bundle exec overcommit -r
