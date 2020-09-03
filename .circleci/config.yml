@@ -16,7 +16,6 @@ jobs:
     executor: default
     steps:
       - checkout
-      - run: cp config/database.yml.ci config/database.yml
       - persist_to_workspace:
           root: ~/boilerplate-rails-api
           paths:
@@ -47,11 +46,6 @@ jobs:
           at: ~/boilerplate-rails-api
       - run: sudo apt-get install cmake
       - run: |
-          echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
-          source $BASH_ENV
-          gem install bundler
-      - run: bundle install
-      - run: |
           bundle exec overcommit -s
           SKIP=AuthorEmail,AuthorName bundle exec overcommit -r
   rspec:
@@ -65,10 +59,6 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/boilerplate-rails-api
-      - run: |
-          echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
-          source $BASH_ENV
-          gem install bundler
       - run: cp config/database.yml.ci config/database.yml
       - run: bundle exec rake db:create db:schema:load --trace
       - run: bundle exec rspec
