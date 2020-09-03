@@ -28,13 +28,13 @@ jobs:
           at: ~/boilerplate-rails-api
       - restore_cache:
           keys:
-            - boilerplate-rails-api--{{ checksum "Gemfile.lock" }}
-            - boilerplate-rails-api--
+            - boilerplate-rails-api-{{ checksum "Gemfile.lock" }}
+            - boilerplate-rails-api-
+      - run: gem i bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
       - run: |
-          gem install bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
-      - run: bundle install --path vendor/bundle
+          bundle check || bundle install --frozen --path vendor/bundle && bundle clean
       - save_cache:
-          key: boilerplate-rails-api--{{ checksum "Gemfile.lock" }}
+          key: boilerplate-rails-api-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - persist_to_workspace:
@@ -48,7 +48,9 @@ jobs:
           at: ~/boilerplate-rails-api
       - run: sudo apt-get install cmake
       - run: |
-          gem install bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
+          echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+          source $BASH_ENV
+          gem install bundler
       - run: bundle install
       - run: |
           bundle exec overcommit -s
@@ -64,10 +66,10 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/boilerplate-rails-api
-      - run: sudo apt-get install cmake
       - run: |
-          gem install bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
-      - run: bundle install
+          echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+          source $BASH_ENV
+          gem install bundler
       - run: bundle exec rake db:create db:schema:load --trace
       - run: bundle exec rspec
 
