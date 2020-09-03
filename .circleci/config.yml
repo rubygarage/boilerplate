@@ -16,6 +16,7 @@ jobs:
     executor: default
     steps:
       - checkout
+      - run: cp config/database.yml.ci config/database.yml
       - persist_to_workspace:
           root: ~/boilerplate-rails-api
           paths:
@@ -29,9 +30,9 @@ jobs:
           keys:
             - boilerplate-rails-api-{{ checksum "Gemfile.lock" }}
             - boilerplate-rails-api-
-      - run: gem i bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
       - run: |
-          bundle check || bundle install --frozen --path vendor/bundle && bundle clean
+          gem install bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
+      - run: bundle install --path vendor/bundle
       - save_cache:
           key: boilerplate-rails-api-{{ checksum "Gemfile.lock" }}
           paths:
@@ -46,8 +47,8 @@ jobs:
       - attach_workspace:
           at: ~/boilerplate-rails-api
       - run: sudo apt-get install cmake
-      - run: gem i bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
-      - run: bundle install
+      - run: |
+          gem install bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
       - run: |
           bundle exec overcommit -s
           SKIP=AuthorEmail,AuthorName bundle exec overcommit -r
@@ -62,9 +63,9 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/boilerplate-rails-api
+      - run: |
+          gem install bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
       - run: cp config/database.yml.ci config/database.yml
-      - run: gem i bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
-      - run: bundle install
       - run: bundle exec rake db:create db:schema:load --trace
       - run: bundle exec rspec
 
