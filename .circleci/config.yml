@@ -1,5 +1,9 @@
 version: 2.1
 
+aliases:
+  working_directory: &working_directory
+    working_directory: ~/boilerplate-rails-api
+
 executors:
   default:
     description: The official CircleCI Ruby Docker image
@@ -10,12 +14,13 @@ executors:
       - PGUSER: root
       - RAILS_ENV: test
       - BUNDLE_PATH: vendor/bundle
-    working_directory: ~/boilerplate-rails-api
+    <<: *working_directory
 
 jobs:
   checkout:
     executor: default
     steps:
+      - checkout
       - run: cp config/database.yml.ci config/database.yml
       - persist_to_workspace:
           root: ~/boilerplate-rails-api
