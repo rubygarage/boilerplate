@@ -14,6 +14,6 @@ SimpleCov.minimum_coverage(100)
 
 if ARGV.grep(/spec.\w+/).empty?
   SimpleCov.start 'rails' do
-    add_filter(%r{^\/spec\/})
+    add_filter(%r{^/spec/})
   end
 end

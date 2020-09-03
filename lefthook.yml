@@ -1,0 +1,27 @@
+pre-commit:
+  parallel: true
+
+  commands:
+    reek:
+      glob: "*.rb"
+      run: |
+        bundle exec reek
+
+    rubocop:
+      glob: "*.rb"
+      run: |
+        bundle exec rubocop --parallel
+
+    brakeman:
+      glob: "*.rb"
+      run: |
+        bundle exec brakeman --quiet \
+                             --ensure-latest \
+                             --no-pager \
+                             --no-summary
+
+    bundle:
+      glob: "{Gemfile,Gemfile.lock}"
+      run: |
+        bundle exec bundle-audit check --update \
+                                       --quiet
