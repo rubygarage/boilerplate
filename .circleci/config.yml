@@ -31,7 +31,6 @@ jobs:
           keys:
             - bundle-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
             - bundle-v1-
-      - run: gem i bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
       - run: |
           bundle check || bundle install --frozen && bundle clean
       - save_cache:
