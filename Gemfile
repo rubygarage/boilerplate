@@ -50,7 +50,7 @@ group :development, :test do
   gem 'reek', '6.0.1', require: false
   gem 'rubocop', '~> 0.90.0', require: false
   gem 'rubocop-performance', '~> 1.6', require: false
-  gem 'rubocop-rails', '~> 2.5', '>= 2.5.2', require: false
+  gem 'rubocop-rails', '~> 2.8', require: false
   gem 'rubocop-rspec', '~> 1.41', require: false
 end
 
