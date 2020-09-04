@@ -8,6 +8,7 @@ executors:
     environment:
       - BUNDLE_JOBS: 4
       - BUNDLE_RETRY: 3
+      - BUNDLER_VERSION: 2.1.4
       - BUNDLE_PATH: vendor/bundle
     working_directory: ~/boilerplate-rails-api
 
