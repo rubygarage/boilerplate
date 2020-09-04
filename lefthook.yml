@@ -63,10 +63,9 @@ all:
         bundle exec rails_best_practices
 
     reek:
-      exclude: bundle/vendor/**/*
-      glob: "*.rb"
+      files: git diff --name-only HEAD master
       run: |
-        bundle exec reek
+        bundle exec reek {files}
 
     rubocop:
       glob: "*.rb"
