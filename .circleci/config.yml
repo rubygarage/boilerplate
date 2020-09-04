@@ -32,7 +32,7 @@ jobs:
             - bundle-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
             - bundle-v1-
       - run: |
-          bundle check || bundle install --frozen && bundle clean
+          bundle install || bundle ckeck --frozen && bundle clean
       - save_cache:
           key: bundle-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
