@@ -55,11 +55,10 @@ jobs:
       - <<: *bundle_install
       - <<: *save_bundle_cache
 
-      - run: gem install lefthook
       - run:
           name: Running lefthook
           command: |
-            bundle exec lefthook install && lefthook run all
+            bundle exec lefthook run all
 
   tests:
     <<: *defaults
