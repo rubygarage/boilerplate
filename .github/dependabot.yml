@@ -7,7 +7,3 @@ updates:
       interval: "daily"
     allow:
       - dependency-type: "all"
-    open-pull-requests-limit: 20
-    target-branch: "develop"
-    labels:
-      - "bundle dependencies"
