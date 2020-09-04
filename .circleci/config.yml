@@ -34,7 +34,7 @@ jobs:
             - bundle-v1-
       - run: sudo apt-get install cmake
       - run: |
-          bundle install || bundle ckeck --frozen && bundle clean
+          bundle install || bundle check --frozen && bundle clean
       - save_cache:
           key: bundle-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
