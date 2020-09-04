@@ -4,7 +4,7 @@ executors:
   default:
     description: The official CircleCI Ruby Docker image
     docker:
-      - image: circleci/ruby:2.6.5-stretch-node-browsers-legacy
+      - image: circleci/ruby:2.6.5-node-browsers
     environment:
       - BUNDLE_JOBS: 4
       - BUNDLE_RETRY: 3
@@ -21,7 +21,6 @@ jobs:
           root: ~/boilerplate-rails-api
           paths:
             - .
-
   bundle:
     executor: default
     steps:
@@ -31,10 +30,7 @@ jobs:
           keys:
             - boilerplate-rails-api-{{ checksum "Gemfile.lock" }}
             - boilerplate-rails-api-
-      - run: |
-          echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
-          source $BASH_ENV
-          gem install bundler
+      - run: gem i bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
       - run: |
           bundle check || bundle install --frozen --path vendor/bundle && bundle clean
       - save_cache:
@@ -45,7 +41,6 @@ jobs:
           root: ~/boilerplate-rails-api
           paths:
             - vendor/bundle
-
   overcommit:
     executor: default
     steps:
@@ -53,20 +48,28 @@ jobs:
           at: ~/boilerplate-rails-api
       - run: sudo apt-get install cmake
       - run: |
+          echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+          source $BASH_ENV
+          gem install bundler
+      - run: bundle install
+      - run: |
           bundle exec overcommit -s
           SKIP=AuthorEmail,AuthorName bundle exec overcommit -r
-
   rspec:
     executor: default
     docker:
-      - image: circleci/ruby:2.6.5-stretch-node-browsers-legacy
-      - image: circleci/postgres:11-alpine-ram
+      - image: circleci/ruby:2.6.5-node-browsers
+      - image: circleci/postgres:11-alpine
         environment:
           - POSTGRES_USER: boilerplate
     parallelism: 2
     steps:
       - attach_workspace:
           at: ~/boilerplate-rails-api
+      - run: |
+          echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+          source $BASH_ENV
+          gem install bundler
       - run: bundle exec rake db:create db:schema:load --trace
       - run: bundle exec rspec
 
