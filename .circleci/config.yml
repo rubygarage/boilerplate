@@ -4,7 +4,7 @@ executors:
   default:
     description: The official CircleCI Ruby Docker image
     docker:
-      - image: circleci/ruby:2.6.5-node
+      - image: circleci/ruby:2.6.5-node-browsers
     environment:
       - BUNDLE_JOBS: 4
       - BUNDLE_RETRY: 3
