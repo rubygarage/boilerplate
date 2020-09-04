@@ -3,7 +3,7 @@
 RSpec.describe Service::JsonApi::ResourceSerializer do
   describe '.call' do
     class TestSerializer # rubocop:disable RSpec/LeakyConstantDeclaration
-      include FastJsonapi::ObjectSerializer
+      include JSONAPI::Serializer
       set_type :test_object
       attributes :test_attribute
     end
