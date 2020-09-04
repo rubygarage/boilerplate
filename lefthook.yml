@@ -3,6 +3,7 @@ pre-commit:
 
   commands:
     reek:
+      exclude: bundle/vendor/**/*
       glob: "*.rb"
       run: |
         bundle exec reek
@@ -19,6 +20,7 @@ pre-commit:
                              --ensure-latest \
                              --no-pager \
                              --no-summary
+
 
     bundle:
       glob: "{Gemfile,Gemfile.lock}"
@@ -47,9 +49,9 @@ all:
 
   commands:
     reek:
-      files: git diff --name-only HEAD master
+      glob: "*.rb"
       run: |
-        bundle exec reek {files}
+        bundle exec reek
 
     rubocop:
       glob: "*.rb"
