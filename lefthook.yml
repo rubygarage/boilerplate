@@ -47,9 +47,9 @@ all:
 
   commands:
     reek:
-      glob: "*.rb"
+      files: git diff --name-only HEAD master
       run: |
-        bundle exec reek
+        bundle exec reek {files}
 
     rubocop:
       glob: "*.rb"

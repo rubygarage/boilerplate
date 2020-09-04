@@ -23,9 +23,6 @@ gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'fast_jsonapi', '~> 1.5'
 gem 'oj', '~> 3.10'
 
-# Code quality
-gem 'lefthook', '~> 0.7.2'
-
 # Pagination
 gem 'pagy', '~> 3.8'
 
@@ -48,7 +45,7 @@ group :development, :test do
   gem 'brakeman', '~> 4.8', require: false
   gem 'bundle-audit', '~> 0.1.0', require: false
   gem 'fasterer', '~> 0.8.3', require: false
-  gem 'overcommit', '~> 0.55.0', require: false
+  gem 'lefthook', '~> 0.7.2', require: false
   gem 'rails_best_practices', '~> 1.20', require: false
   gem 'reek', '6.0.1', require: false
   gem 'rubocop', '~> 0.89.1', require: false
