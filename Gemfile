@@ -20,7 +20,7 @@ gem 'trailblazer-endpoint', github: 'trailblazer/trailblazer-endpoint'
 gem 'draper', '~> 4.0', '>= 4.0.1'
 
 # JSON:API Serializer
-gem 'fast_jsonapi', '~> 1.5'
+gem 'jsonapi-serializer', '~> 2.1'
 gem 'oj', '~> 3.10'
 
 # Pagination

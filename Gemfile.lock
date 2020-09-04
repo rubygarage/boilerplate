@@ -151,8 +151,6 @@ GEM
     factory_bot_rails (6.1.0)
       factory_bot (~> 6.1.0)
       railties (>= 5.0.0)
-    fast_jsonapi (1.5)
-      activesupport (>= 4.2)
     fasterer (0.8.3)
       colorize (~> 0.7)
       ruby_parser (>= 3.14.1)
@@ -171,6 +169,8 @@ GEM
     json_matchers (0.11.1)
       json_schema
     json_schema (0.20.9)
+    jsonapi-serializer (2.1.0)
+      activesupport (>= 4.2)
     jwt (2.2.2)
     jwt_sessions (2.5.2)
       jwt (>= 2.1.1, < 3)
@@ -404,10 +404,10 @@ DEPENDENCIES
   dry-container (~> 0.7.2)
   dry-validation (= 0.11.1)
   factory_bot_rails (~> 6.1)
-  fast_jsonapi (~> 1.5)
   fasterer (~> 0.8.3)
   ffaker (~> 2.17)
   json_matchers (~> 0.11.1)
+  jsonapi-serializer
   jwt_sessions (~> 2.5)
   letter_opener (~> 1.7)
   listen (~> 3.2, >= 3.2.1)
@@ -443,4 +443,4 @@ RUBY VERSION
    ruby 2.6.5p114
 
 BUNDLED WITH
-   2.0.2
+   2.1.4
