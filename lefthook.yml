@@ -3,7 +3,6 @@ pre-commit:
 
   commands:
     reek:
-      exclude: bundle/vendor/**/*
       glob: "*.rb"
       run: |
         bundle exec reek
@@ -21,6 +20,13 @@ pre-commit:
                              --no-pager \
                              --no-summary
 
+    fasterer:
+      run: |
+        bundle exec fasterer
+
+    rails_best_practices:
+      run: |
+        bundle exec rails_best_practices
 
     bundle:
       glob: "{Gemfile,Gemfile.lock}"
@@ -48,7 +54,16 @@ all:
   parallel: true
 
   commands:
+    fasterer:
+      run: |
+        bundle exec fasterer
+
+    rails_best_practices:
+      run: |
+        bundle exec rails_best_practices
+
     reek:
+      exclude: bundle/vendor/**/*
       glob: "*.rb"
       run: |
         bundle exec reek
