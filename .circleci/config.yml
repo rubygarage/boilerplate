@@ -55,11 +55,11 @@ jobs:
       - <<: *bundle_install
       - <<: *save_bundle_cache
 
+      - run: gem install lefthook
       - run:
-          name: Running overcommit
+          name: Running lefthook
           command: |
-            bundle exec overcommit -s
-            SKIP=AuthorEmail,AuthorName bundle exec overcommit -r
+            bundle exec lefthook install && lefthook run all
 
   tests:
     <<: *defaults

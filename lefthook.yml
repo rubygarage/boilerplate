@@ -25,3 +25,45 @@ pre-commit:
       run: |
         bundle exec bundle-audit check --update \
                                        --quiet
+default: &default
+  commands:
+    bundle:
+      files: git diff --name-only HEAD master
+      glob: "{Gemfile,Gemfile.lock}"
+      run: |
+        bundle install
+
+post-checkout:
+  <<: *default
+
+post-merge:
+  <<: *default
+
+post-rewrite:
+  <<: *default
+
+all:
+  parallel: true
+
+  commands:
+    reek:
+      glob: "*.rb"
+      run: |
+        bundle exec reek
+
+    rubocop:
+      glob: "*.rb"
+      run: |
+        bundle exec rubocop --parallel
+
+    brakeman:
+      glob: "*.rb"
+      run: |
+        bundle exec brakeman --quiet \
+        --ensure-latest \
+        --no-pager
+
+    bundle:
+      glob: "{Gemfile,Gemfile.lock}"
+      run: |
+        bundle exec bundle-audit check --update

@@ -23,6 +23,9 @@ gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'fast_jsonapi', '~> 1.5'
 gem 'oj', '~> 3.10'
 
+# Code quality
+gem 'lefthook', '~> 0.7.2'
+
 # Pagination
 gem 'pagy', '~> 3.8'
 
