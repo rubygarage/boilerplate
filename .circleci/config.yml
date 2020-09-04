@@ -30,7 +30,9 @@ jobs:
       - restore_cache:
           keys:
             - bundle-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - bundle-v1-{{ arch }}-{{ .Branch }}-
             - bundle-v1-
+      - run: sudo apt-get install cmake
       - run: |
           bundle install || bundle ckeck --frozen && bundle clean
       - save_cache:
@@ -47,7 +49,6 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/boilerplate-rails-api
-      - run: sudo apt-get install cmake
       - run: |
           bundle exec overcommit -s
           SKIP=AuthorEmail,AuthorName bundle exec overcommit -r
