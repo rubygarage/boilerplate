@@ -63,9 +63,8 @@ all:
         bundle exec rails_best_practices
 
     reek:
-      files: git diff --name-only HEAD master
       run: |
-        bundle exec reek {files}
+        bundle exec reek
 
     rubocop:
       glob: "*.rb"
