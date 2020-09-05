@@ -21,6 +21,7 @@ jobs:
           root: ~/boilerplate-rails-api
           paths:
             - .
+
   bundle:
     executor: default
     steps:
@@ -41,6 +42,7 @@ jobs:
           root: ~/boilerplate-rails-api
           paths:
             - vendor/bundle
+
   overcommit:
     executor: default
     steps:
@@ -55,11 +57,12 @@ jobs:
       - run: |
           bundle exec overcommit -s
           SKIP=AuthorEmail,AuthorName bundle exec overcommit -r
+
   rspec:
     executor: default
     docker:
       - image: circleci/ruby:2.6.5-node-browsers
-      - image: circleci/postgres:11-alpine
+      - image: circleci/postgres:11-alpine-ram
         environment:
           - POSTGRES_USER: boilerplate
     parallelism: 2
