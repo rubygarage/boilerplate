@@ -68,7 +68,8 @@ Metrics/BlockLength:
 Metrics/AbcSize:
   Exclude:
     - app/controllers/concerns/default_endpoint.rb
-    - lib/macro/*.rb
+    - lib/macro/model.rb
+    - lib/macro/links_builder.rb
 
 Metrics/MethodLength:
   Max: 15
