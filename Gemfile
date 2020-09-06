@@ -13,6 +13,8 @@ gem 'sidekiq', '~> 6.1'
 # Admin panel
 gem 'activeadmin', '~> 2.7'
 
+gem 'webpacker', '~> 5.0'
+
 # Admin's authentication
 gem 'devise', '~> 4.7'
 
