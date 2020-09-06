@@ -407,7 +407,7 @@ DEPENDENCIES
   fasterer (~> 0.8.3)
   ffaker (~> 2.17)
   json_matchers (~> 0.11.1)
-  jsonapi-serializer
+  jsonapi-serializer (~> 2.1)
   jwt_sessions (~> 2.5)
   letter_opener (~> 1.7)
   listen (~> 3.2, >= 3.2.1)
