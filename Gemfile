@@ -13,7 +13,7 @@ gem 'sidekiq', '~> 6.1'
 # Admin panel
 gem 'activeadmin', '~> 2.7'
 
-# Admin's authentication/authorization
+# Admin's authentication
 gem 'devise', '~> 4.7'
 
 # Trailblazer bundle
