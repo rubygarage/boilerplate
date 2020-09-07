@@ -88,6 +88,10 @@ jobs:
           command: cp config/database.yml.ci config/database.yml
 
       - run:
+          name: Build assets
+          command: bundle exec rails webpacker:compile
+
+      - run:
           name: Creating database
           command: bundle exec rails db:create
 
