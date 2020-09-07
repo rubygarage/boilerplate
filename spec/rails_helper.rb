@@ -16,10 +16,6 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 
 require 'rspec/rails'
 
-SimpleCov.start do
-  add_filter 'app/uploaders/application_uploader'
-end
-
 begin
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
