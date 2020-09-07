@@ -19,8 +19,5 @@ module BoilerplateRailsApi
     config.api_only = true
     config.active_job.queue_adapter = :sidekiq
     config.test_framework = :rspec
-    Rails.autoloaders.main.ignore(Rails.root.join('app/active_admin'))
-    Rails.autoloaders.main.ignore(Rails.root.join('lib/macro'))
-    Rails.autoloaders.main.ignore(Rails.root.join('app/channels/application_cable'))
   end
 end
