@@ -49,7 +49,7 @@ group :development, :test do
   gem 'brakeman', '~> 4.9', require: false
   gem 'bundle-audit', '~> 0.1.0', require: false
   gem 'fasterer', '~> 0.8.3', require: false
-  gem 'overcommit', '~> 0.55.0', require: false
+  gem 'lefthook', '~> 0.7.2', require: false
   gem 'rails_best_practices', '~> 1.20', require: false
   gem 'reek', '6.0.1', require: false
   gem 'rubocop', '~> 0.90.0', require: false
