@@ -63,6 +63,11 @@ Project wiki: https://github.com/rubygarage/boilerplate/wiki
 | ```ApplicationSerializer``` | Base application serializer class |
 | ```ApplicationWorker``` | Base application worker class |
 
+### Upload files
+
+Boilerplate used `Shrine` for upload files local and to S3.
+Create you own uploader and inherit it from `ApplicationUploader`.
+For more [info](https://shrinerb.com/docs/getting-started)
 
 ## Docker
 
