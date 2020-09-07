@@ -15,6 +15,7 @@ module Macro
 
     class BaseSchemaObject
       attr_reader :schema, :result, :dependencies
+
       delegate :errors, to: :result
 
       def self.Build(schema)
@@ -64,7 +65,7 @@ module Macro
           true
         end
 
-        def method_missing(*) # rubocop:disable Style/MethodMissingSuper
+        def method_missing(*)
           nil
         end
       end
