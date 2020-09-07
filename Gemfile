@@ -28,7 +28,7 @@ gem 'trailblazer-endpoint', github: 'trailblazer/trailblazer-endpoint'
 gem 'draper', '~> 4.0', '>= 4.0.1'
 
 # JSON:API Serializer
-gem 'fast_jsonapi', '~> 1.5'
+gem 'jsonapi-serializer', '~> 2.1'
 gem 'oj', '~> 3.10'
 
 # Pagination
@@ -44,21 +44,21 @@ gem 'jwt_sessions', '~> 2.5'
 group :development, :test do
   gem 'bullet', '~> 6.1'
   gem 'factory_bot_rails', '~> 6.1'
-  gem 'ffaker', '~> 2.16'
+  gem 'ffaker', '~> 2.17'
   gem 'pry-byebug', '~> 3.9'
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec-rails', '~> 4.0'
 
   # Code quality
-  gem 'brakeman', '~> 4.8', require: false
+  gem 'brakeman', '~> 4.9', require: false
   gem 'bundle-audit', '~> 0.1.0', require: false
   gem 'fasterer', '~> 0.8.3', require: false
   gem 'overcommit', '~> 0.55.0', require: false
   gem 'rails_best_practices', '~> 1.20', require: false
   gem 'reek', '6.0.1', require: false
-  gem 'rubocop', '~> 0.78.0', require: false
+  gem 'rubocop', '~> 0.90.0', require: false
   gem 'rubocop-performance', '~> 1.6', require: false
-  gem 'rubocop-rails', '~> 2.5', '>= 2.5.2', require: false
+  gem 'rubocop-rails', '~> 2.8', require: false
   gem 'rubocop-rspec', '~> 1.41', require: false
 end
 
@@ -77,8 +77,8 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'selenium-webdriver', '~> 3.142'
-  gem 'shoulda-matchers', '~> 4.3'
-  gem 'simplecov', '~> 0.18.5', require: false
+  gem 'shoulda-matchers', '~> 4.4'
+  gem 'simplecov', '~> 0.19.0', require: false
   gem 'simplecov-lcov', '~> 0.8.0', require: false
   gem 'undercover', '~> 0.3.4', require: false
 end
