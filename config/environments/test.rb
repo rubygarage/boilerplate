@@ -29,8 +29,6 @@ Rails.application.configure do
     store: Shrine::Storage::Memory.new
   }
 
-  config.use_transactional_fixtures = false
-
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
