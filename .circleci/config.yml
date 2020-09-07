@@ -56,10 +56,9 @@ jobs:
       - <<: *save_bundle_cache
 
       - run:
-          name: Running overcommit
+          name: Running lefthook
           command: |
-            bundle exec overcommit -s
-            SKIP=AuthorEmail,AuthorName bundle exec overcommit -r
+            bundle exec lefthook run all
 
   tests:
     <<: *defaults

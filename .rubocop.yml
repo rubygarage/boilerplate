@@ -4,6 +4,9 @@ require:
   - rubocop-performance
 
 AllCops:
+  TargetRubyVersion: 2.6
+  TargetRailsVersion: 6.0
+  NewCops: enable
   Exclude:
     - bin/**/*
     - db/**/*
@@ -11,10 +14,17 @@ AllCops:
     - spec/fixtures/**/*
     - tmp/**/*
 
+Lint/MissingSuper:
+  Enabled: false
+
 Rails:
   Enabled: true
 
 # Style -----------------------------------------------------------------------
+
+Style/RedundantFetchBlock:
+  Exclude:
+    - config/puma.rb
 
 Style/Documentation:
   Enabled: false
