@@ -43,7 +43,7 @@ jobs:
           paths:
             - vendor/bundle
 
-  overcommit:
+  lefthook:
     executor: default
     steps:
       - attach_workspace:
@@ -55,8 +55,7 @@ jobs:
           gem install bundler
       - run: bundle install
       - run: |
-          bundle exec overcommit -s
-          SKIP=AuthorEmail,AuthorName bundle exec overcommit -r
+          bundle exec lefthook run all
 
   rspec:
     executor: default
@@ -87,6 +86,6 @@ workflows:
       - rspec:
           requires:
             - bundle
-      - overcommit:
+      - lefthook:
           requires:
             - bundle
