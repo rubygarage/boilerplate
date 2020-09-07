@@ -15,6 +15,7 @@ module Macro
 
     class BaseSchemaObject
       attr_reader :schema, :result, :dependencies
+
       delegate :errors, to: :result
 
       def self.Build(schema)
