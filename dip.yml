@@ -22,11 +22,6 @@ interaction:
     service: server_app
     command: bundle
 
-  rake:
-    description: Run Rake commands
-    service: server_app
-    command: bundle exec rake
-
   rspec:
     description: Run Rspec commands
     service: server_app
@@ -56,9 +51,8 @@ interaction:
     description: Run Postgres psql console
     service: server_app
     default_args: boilerplate_rails_api_development
-    command: psql -h localhost -p 5432 -U postgres -W
+    command: psql -h db -p 5432 -U postgres
 
 provision:
   - dip compose down --volumes
-  - dip compose up -d server_app
-  - dip bash -c ./bin/setup
+  - dip compose up
