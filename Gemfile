@@ -37,6 +37,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bcrypt', '~> 3.1'
 gem 'jwt_sessions', '~> 2.5'
 
+# Error tracking
+gem 'sentry-raven', '~> 3.0'
+
 group :development, :test do
   gem 'bullet', '~> 6.1'
   gem 'factory_bot_rails', '~> 6.1'
