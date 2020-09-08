@@ -113,3 +113,18 @@ bin/docker rails c
 ```
 overcommit -r
 ```
+
+### Useing DIP
+
+Use can develop you app with `DIP`([more info](https://github.com/bibendi/dip))
+
+For running services with docker
+
+```
+dip run `the name of service`
+```
+
+For ask List all available run commands.
+```
+dip ls
+```
