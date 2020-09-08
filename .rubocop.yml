@@ -99,6 +99,10 @@ Lint/UnreachableCode:
   Exclude:
     - app/concepts/**/*
 
+Lint/UselessMethodDefinition:
+  Exclude:
+    - app/concepts/api/v1/lib/service/json_api.rb
+
 # Layout ----------------------------------------------------------------------
 
 Layout/MultilineMethodCallIndentation:
