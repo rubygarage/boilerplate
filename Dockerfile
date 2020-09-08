@@ -1,7 +1,8 @@
 FROM ruby:2.6.5-alpine as Builder
 
 RUN apk --no-cache add bash git openssh httpie libxml2-dev libxslt-dev postgresql-dev \
-  tzdata npm nodejs imagemagick make cmake g++ postgresql-client nano
+  tzdata npm nodejs imagemagick make cmake g++ postgresql-client nano && \
+  npm install -g snowboard
 
 ENV APP_USER app
 ENV APP_USER_HOME /home/$APP_USER
