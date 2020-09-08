@@ -106,9 +106,7 @@ RSpec.describe Api::V1::Lib::Operation::Filtering, type: :operation do
     context 'when filter is not a hash' do
       let(:filtering_params) { 'not_a_hash' }
       let(:errors) { { filter: [I18n.t('errors.hash?')] } }
-      let(:error_localizations) { %w[errors.hash?] }
 
-      include_examples 'errors localizations'
       include_examples 'failed operation'
     end
 
@@ -119,18 +117,14 @@ RSpec.describe Api::V1::Lib::Operation::Filtering, type: :operation do
         not_uniq_filtering_params
       end
       let(:errors) { { filter: [I18n.t('errors.filters_uniq?')] } }
-      let(:error_localizations) { %w[errors.filters_uniq?] }
 
-      include_examples 'errors localizations'
       include_examples 'failed operation'
     end
 
     context 'when wrong type of match (filtering operator)' do
       let(:filtering_operator) { 1 }
       let(:errors) { { match: [I18n.t('errors.str?')] } }
-      let(:error_localizations) { %w[errors.str?] }
 
-      include_examples 'errors localizations'
       include_examples 'failed operation'
     end
 
@@ -141,9 +135,7 @@ RSpec.describe Api::V1::Lib::Operation::Filtering, type: :operation do
           "#{JsonApi::Filtering::Operators::MATCH_ALL}, #{JsonApi::Filtering::Operators::MATCH_ANY}"
         { match: [I18n.t('errors.included_in?.arg.default', list: available_operators)] }
       end
-      let(:error_localizations) { %w[errors.included_in?.arg.default] }
 
-      include_examples 'errors localizations'
       include_examples 'failed operation'
     end
 
@@ -151,9 +143,7 @@ RSpec.describe Api::V1::Lib::Operation::Filtering, type: :operation do
       let(:available_columns) { create_available_columns(name: 'attribute_1', filterable: false) }
 
       let(:errors) { { filter: [[0, [I18n.t('errors.filtering_column_valid?')]]] } }
-      let(:error_localizations) { %w[errors.filtering_column_valid?] }
 
-      include_examples 'errors localizations'
       include_examples 'failed operation'
     end
 
@@ -167,9 +157,7 @@ RSpec.describe Api::V1::Lib::Operation::Filtering, type: :operation do
     context 'when filter contains unexpected predicate' do
       let(:predicate) { 'unexpected_predicate' }
       let(:errors) { { filter: [[0, [I18n.t('errors.filtering_predicate_valid?')]]] } }
-      let(:error_localizations) { %w[errors.filtering_predicate_valid?] }
 
-      include_examples 'errors localizations'
       include_examples 'failed operation'
     end
 
@@ -177,9 +165,7 @@ RSpec.describe Api::V1::Lib::Operation::Filtering, type: :operation do
       context 'when column is string' do
         let(:value) { 1 }
         let(:errors) { { filter: [[0, [I18n.t('errors.filtering_value_valid?')]]] } }
-        let(:error_localizations) { %w[errors.filtering_value_valid?] }
 
-        include_examples 'errors localizations'
         include_examples 'failed operation'
       end
 

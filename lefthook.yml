@@ -33,6 +33,12 @@ pre-commit:
       run: |
         bundle exec bundle-audit check --update \
                                        --quiet
+
+    i18n:
+      glob: "*.{rb,yml,html.haml}"
+      run: |
+        bundle exec i18n-tasks health
+
 default: &default
   commands:
     bundle:
@@ -82,3 +88,8 @@ all:
       glob: "{Gemfile,Gemfile.lock}"
       run: |
         bundle exec bundle-audit check --update
+
+    i18n:
+      glob: "*.{rb,yml,html.haml}"
+      run: |
+        bundle exec i18n-tasks health

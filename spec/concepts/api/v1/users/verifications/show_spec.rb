@@ -27,11 +27,9 @@ RSpec.describe Api::V1::Users::Verifications::Operation::Show do
 
     context 'when user account was already verified' do
       let(:errors) { { base: [I18n.t('errors.verification.user_account_already_verified')] } }
-      let(:error_localizations) { %w[errors.verification.user_account_already_verified] }
 
       before { account.toggle!(:verified) } # rubocop:disable Rails/SkipsModelValidations
 
-      include_examples 'errors localizations'
       include_examples 'has validation errors'
     end
   end
