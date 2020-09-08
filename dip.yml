@@ -55,8 +55,8 @@ interaction:
   psql:
     description: Run Postgres psql console
     service: server_app
-    default_args: db_dev
-    command: psql -h pg -U postgres
+    default_args: boilerplate_rails_api_development
+    command: psql -h localhost -p 5432 -U postgres -W
 
 provision:
   - dip compose down --volumes
