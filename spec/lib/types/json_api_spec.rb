@@ -31,6 +31,20 @@ module Types
       end
     end
 
+    context 'when column type equal to boolean true value' do
+      let(:column) { :boolean }
+      let(:value) { true }
+
+      include_examples 'checks value type'
+    end
+
+    context 'when column type equal to boolean false value' do
+      let(:column) { :boolean }
+      let(:value) { false }
+
+      include_examples 'checks value type'
+    end
+
     context 'when column type equal to boolean' do
       let(:column) { :boolean }
       let(:value) { '' }
