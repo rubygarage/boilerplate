@@ -60,7 +60,7 @@ jobs:
   rspec:
     executor: default
     docker:
-      - image: circleci/ruby:2.6.5-node
+      - image: circleci/ruby:2.6.5-node-browsers
       - image: circleci/postgres:11-alpine-ram
         environment:
           - POSTGRES_USER: boilerplate
@@ -72,8 +72,30 @@ jobs:
           echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
           source $BASH_ENV
           gem install bundler
+      - run: yarn
       - run: bundle exec rake db:create db:schema:load --trace
       - run: bundle exec rspec
+
+  yarn:
+    executor: default
+    steps:
+      - attach_workspace:
+          at: ~/boilerplate-rails-api
+      - restore_cache:
+          keys:
+            - yarn-v1-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-v1-{{ arch }}-{{ .Branch }}-
+            - yarn-v1-
+      - run: |
+          yarn install --frozen-lockfile
+      - save_cache:
+          key: yarn-v1-{{ arch }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+      - persist_to_workspace:
+          root: ~/boilerplate-rails-api
+          paths:
+            - node_modules
 
 workflows:
   version: 2
@@ -83,8 +105,12 @@ workflows:
       - bundle:
           requires:
             - checkout
+      - yarn:
+          requires:
+            - checkout
       - rspec:
           requires:
+            - yarn
             - bundle
       - lefthook:
           requires:
