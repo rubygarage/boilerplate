@@ -421,7 +421,7 @@ DEPENDENCIES
   brakeman (~> 4.9)
   bullet (~> 6.1)
   bundle-audit (~> 0.1.0)
-  dip
+  dip (~> 6.1)
   dox (~> 1.2)
   draper (~> 4.0, >= 4.0.1)
   dry-container (~> 0.7.2)
