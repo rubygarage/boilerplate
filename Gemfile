@@ -60,6 +60,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'dip', '~> 6.1'
   gem 'letter_opener', '~> 1.7'
   gem 'listen', '~> 3.2', '>= 3.2.1'
   gem 'spring', '~> 2.1'
