@@ -100,16 +100,6 @@ search:
 ## Consider these keys used:
 ignore_unused:
   - '{errors}.*'
-  # - errors.email_uniq?
-  # - errors.filtering_column_valid?
-  # - errors.filtering_predicate_valid?
-  # - errors.filtering_value_valid?
-  # - errors.filters_uniq?
-  # - errors.inclusion_params_uniq?
-  # - errors.inclusion_params_valid?
-  # - errors.rules.user_password.eql?
-  # - errors.sort_params_uniq?
-  # - errors.sort_params_valid?
 
 # - 'activerecord.attributes.*'
 # - '{devise,kaminari,will_paginate}.*'
