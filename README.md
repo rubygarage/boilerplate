@@ -114,6 +114,25 @@ bin/docker rails c
 overcommit -r
 ```
 
+### Using DIP
+
+You can develop you application with `DIP`([more info](https://github.com/bibendi/dip))
+
+For running services with docker.
+
+```
+dip run `the name of service`
+```
+
+Launch application with all services.
+```
+dip provision
+```
+
+List all available run commands.
+```
+dip ls
+```
 ### Sentry Notifire
 
 To start work with sentry you should add dsn key to credentials under `sentry_dsn` name.
