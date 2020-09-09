@@ -69,8 +69,10 @@ Layout/LineLength:
   Max: 120
 
 Metrics/BlockLength:
+  ExcludedMethods:
+    - register
+
   Exclude:
-    - app/admin/admin_users.rb
     - config/**/*
     - Rakefile
     - lib/tasks/**/*.rake
