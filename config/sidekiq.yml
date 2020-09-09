@@ -2,4 +2,3 @@
   :concurrency: 1
   :queues:
     - default
-    - notifiers
