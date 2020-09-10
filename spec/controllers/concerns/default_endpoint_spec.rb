@@ -19,7 +19,7 @@ RSpec.describe DefaultEndpoint do
     def test_matcher(for_case = {})
       Dry::Matcher.new(
         %i[created destroyed unauthorized not_found forbidden gone accepted invalid bad_request success].index_with do |matcher| # rubocop:disable Layout/LineLength
-          Dry::Matcher::Case.new(match: ->(_) { for_case[matcher] })
+          Dry::Matcher::Case.new(match: ->(_e) { for_case[matcher] })
         end
       )
     end

@@ -27,7 +27,9 @@ module Api::V1::Users::Lib::Service
     end
 
     def push
-      storage.setex(token_name, @token_exp, @token)
+      storage.setex(token_name, @token_exp.to_i, @token)
+    rescue Redis::CommandError => e
+      e.message
     end
 
     def find

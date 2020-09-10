@@ -7,6 +7,10 @@ detectors:
       - BoilerplateRailsApi
       - V1
 
+  UncommunicativeVariableName:
+    accept:
+      - e
+
   NestedIterators:
     max_allowed_nesting: 2
     ignore_iterators:
