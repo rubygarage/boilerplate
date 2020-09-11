@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class BaseWorker
-  include Sidekiq::Worker
-
+class SentryWorker < ApplicationWorker
   def perform(event)
     Raven.send_event(event)
   end

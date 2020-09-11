@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe BaseWorker, type: :worker do
+RSpec.describe SentryWorker, type: :worker do
   subject(:worker) { described_class.new }
 
   let(:event) { 'event' }
