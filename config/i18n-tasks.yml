@@ -93,13 +93,15 @@ search:
 #   deepl_api_key: "48E92789-57A3-466A-9959-1A1A1A1A1A1A"
 
 ## Do not consider these keys missing:
-# ignore_missing:
+ignore_missing:
+  - 'active_admin.dashboard_welcome.{call_to_action,welcome}'
+  - 'active_admin.dashboard'
 # - 'errors.messages.{accepted,blank,invalid,too_short,too_long}'
 # - '{devise,simple_form}.*'
 
 ## Consider these keys used:
 ignore_unused:
-  - '{errors}.*'
+  - '{errors,devise}.*'
 
 # - 'activerecord.attributes.*'
 # - '{devise,kaminari,will_paginate}.*'
