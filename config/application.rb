@@ -19,5 +19,10 @@ module BoilerplateRailsApi
     config.api_only = true
     config.active_job.queue_adapter = :sidekiq
     config.test_framework = :rspec
+
+    config.middleware.use ActionDispatch::Flash
+    config.middleware.use Rack::MethodOverride
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
   end
 end
