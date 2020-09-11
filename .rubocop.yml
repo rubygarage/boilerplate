@@ -13,6 +13,7 @@ AllCops:
     - vendor/**/*
     - spec/fixtures/**/*
     - tmp/**/*
+    - node_modules/**/*
 
 Lint/MissingSuper:
   Enabled: false
@@ -68,6 +69,9 @@ Layout/LineLength:
   Max: 120
 
 Metrics/BlockLength:
+  ExcludedMethods:
+    - register
+
   Exclude:
     - config/**/*
     - Rakefile
