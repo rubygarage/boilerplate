@@ -133,3 +133,15 @@ List all available run commands.
 ```
 dip ls
 ```
+
+### Add Settings
+
+The `Settings` table it's like tamplate with dynamic settings.
+
+Add next a piece before launch Rails.
+
+```
+rake settings:create[key,value]
+```
+| key | value |
+| Is a name of the setting | Is a value of the setting |
