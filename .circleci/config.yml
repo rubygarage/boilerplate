@@ -29,14 +29,13 @@ jobs:
           at: ~/boilerplate-rails-api
       - restore_cache:
           keys:
-            - bundle-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-            - bundle-v1-{{ arch }}-{{ .Branch }}-
-            - bundle-v1-
-      - run: sudo apt-get install cmake
+            - boilerplate-rails-api-{{ checksum "Gemfile.lock" }}
+            - boilerplate-rails-api-
+      - run: gem i bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
       - run: |
-          bundle install || bundle check --frozen && bundle clean
+          bundle check || bundle install --frozen --path vendor/bundle && bundle clean
       - save_cache:
-          key: bundle-v1-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          key: boilerplate-rails-api-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - persist_to_workspace:
@@ -44,14 +43,14 @@ jobs:
           paths:
             - vendor/bundle
 
-  overcommit:
+  lefthook:
     executor: default
     steps:
       - attach_workspace:
           at: ~/boilerplate-rails-api
       - run: |
-          bundle exec overcommit -s
-          SKIP=AuthorEmail,AuthorName bundle exec overcommit -r
+          bundle exec lefthook run all
+
   rspec:
     executor: default
     docker:
@@ -63,6 +62,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/boilerplate-rails-api
+      - run: yarn
       - run: bundle exec rake db:create db:schema:load --trace
       - run: bundle exec rspec
 
@@ -77,6 +77,6 @@ workflows:
       - rspec:
           requires:
             - bundle
-      - overcommit:
+      - lefthook:
           requires:
             - bundle
