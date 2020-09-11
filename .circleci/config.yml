@@ -1,7 +1,7 @@
 defaults: &defaults
   working_directory: ~/boilerplate-rails-api
   docker:
-    - image: circleci/ruby:2.7.1-node-browsers-legacy
+    - image: circleci/ruby:2.7.1-node-browsers
       environment:
         PGHOST: 127.0.0.1
         PGUSER: root
