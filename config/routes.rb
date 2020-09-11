@@ -3,7 +3,11 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  mount Sidekiq::Web => '/sidekiq'
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  authenticate :admin_user do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   namespace :api do
     namespace :v1 do
