@@ -12,7 +12,7 @@ module Types
         {
           string: ::Types::String,
           number: ::Types::Form::Int | ::Types::Form::Decimal,
-          boolean: ::Types::Form::Nil,
+          boolean: ::Types::Form::True | ::Types::Form::False | ::Types::Form::Nil,
           date: ::Types::Form::Date | ::Types::Form::Int
         }[column]
       end

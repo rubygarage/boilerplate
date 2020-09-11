@@ -1,0 +1,58 @@
+# Required minimum dip version
+version: '4.1'
+
+environment:
+  COMPOSE_EXT: development
+
+compose:
+  files:
+    - docker-compose.yml
+  project_name: boilerplate
+
+interaction:
+  bash:
+    description: Open the Bash shell in app's container
+    service: server_app
+    command: bash
+    compose:
+      run_options: [no-deps]
+
+  bundle:
+    description: Run Bundler commands
+    service: server_app
+    command: bundle
+
+  rspec:
+    description: Run Rspec commands
+    service: server_app
+    environment:
+      RAILS_ENV: test
+    command: bundle exec rspec
+
+  rails:
+    description: Run Rails commands
+    service: server_app
+    command: bundle exec rails
+    subcommands:
+      s:
+        description: Run Rails server at http://localhost:3000
+        service: server_app
+        compose:
+          run_options: [service-ports, use-aliases]
+
+  sidekiq:
+    description: Run sidekiq in background
+    service: server_worker_app
+    compose:
+      method: up
+      run_options: [detach]
+
+  psql:
+    description: Run Postgres psql console
+    service: server_app
+    default_args: boilerplate_rails_api_development
+    command: psql -h db -p 5432 -U postgres
+
+provision:
+  - dip compose down --volumes
+  - dip compose up

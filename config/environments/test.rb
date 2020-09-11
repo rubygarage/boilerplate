@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'shrine/storage/memory'
+
 # The test environment is used exclusively to run your application's
 # test suite. You never need to work with it otherwise. Remember that
 # your test database is "scratch space" for the test suite and is wiped
@@ -10,6 +12,9 @@ Rails.application.configure do
 
   config.cache_classes = false
 
+  config.middleware.insert_before Warden::Manager, ActionDispatch::Cookies
+  config.middleware.insert_before Warden::Manager, ActionDispatch::Session::CookieStore
+
   # Do not eager load code on boot. This avoids loading your whole application
   # just for the purpose of running a single test. If you are using a tool that
   # preloads Rails for running tests, you may have to set it to true.
@@ -19,6 +24,12 @@ Rails.application.configure do
   config.public_file_server.enabled = true
   config.public_file_server.headers = {
     'Cache-Control' => "public, max-age=#{1.hour.to_i}"
+  }
+
+  # Files Uploader
+  Shrine.storages = {
+    cache: Shrine::Storage::Memory.new,
+    store: Shrine::Storage::Memory.new
   }
 
   # Show full error reports and disable caching.

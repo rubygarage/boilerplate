@@ -63,6 +63,11 @@ Project wiki: https://github.com/rubygarage/boilerplate/wiki
 | ```ApplicationSerializer``` | Base application serializer class |
 | ```ApplicationWorker``` | Base application worker class |
 
+### Upload files
+
+Boilerplate used `Shrine` for upload files local and to S3.
+Create you own uploader and inherit it from `ApplicationUploader`.
+For more [info](https://shrinerb.com/docs/getting-started)
 
 ## Docker
 
@@ -107,4 +112,24 @@ bin/docker rails c
 
 ```
 overcommit -r
+```
+
+### Using DIP
+
+You can develop you application with `DIP`([more info](https://github.com/bibendi/dip))
+
+For running services with docker.
+
+```
+dip run `the name of service`
+```
+
+Launch application with all services.
+```
+dip provision
+```
+
+List all available run commands.
+```
+dip ls
 ```

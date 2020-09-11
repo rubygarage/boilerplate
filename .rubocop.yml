@@ -4,17 +4,28 @@ require:
   - rubocop-performance
 
 AllCops:
+  TargetRubyVersion: 2.6
+  TargetRailsVersion: 6.0
+  NewCops: enable
   Exclude:
     - bin/**/*
     - db/**/*
     - vendor/**/*
     - spec/fixtures/**/*
     - tmp/**/*
+    - node_modules/**/*
+
+Lint/MissingSuper:
+  Enabled: false
 
 Rails:
   Enabled: true
 
 # Style -----------------------------------------------------------------------
+
+Style/RedundantFetchBlock:
+  Exclude:
+    - config/puma.rb
 
 Style/Documentation:
   Enabled: false
@@ -58,6 +69,9 @@ Layout/LineLength:
   Max: 120
 
 Metrics/BlockLength:
+  ExcludedMethods:
+    - register
+
   Exclude:
     - config/**/*
     - Rakefile
@@ -87,6 +101,10 @@ Naming/MethodName:
 Lint/UnreachableCode:
   Exclude:
     - app/concepts/**/*
+
+Lint/UselessMethodDefinition:
+  Exclude:
+    - app/concepts/api/v1/lib/service/json_api.rb
 
 # Layout ----------------------------------------------------------------------
 

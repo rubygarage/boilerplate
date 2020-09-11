@@ -102,3 +102,4 @@ directories:
 
 exclude_paths:
   - db/
+  - vendor/bundle
