@@ -2,13 +2,13 @@
 
 RSpec.describe Macro do
   describe '.Assign' do
-    subject(:result) { described_class::Assign(**params)[:task].call(ctx, flow_options) }
+    subject(:result) { described_class::Assign(**params)[:task].call(ctx, **flow_options) }
 
     let(:params) { {} }
 
     let(:object) { instance_double('SomeObject', some_method: 'method context') }
     let(:ctx) { { object: object } }
-    let(:flow_options) { {} }
+    let(:flow_options) { { options: [] } }
 
     context 'when path passed' do
       let(:to) { :model }

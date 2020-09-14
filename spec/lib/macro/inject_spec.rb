@@ -2,11 +2,12 @@
 
 RSpec.describe Macro do
   describe '.Inject' do
-    subject(:result) { described_class::Inject(**deps)[:task].call(ctx) }
+    subject(:result) { described_class::Inject(**deps)[:task].call(ctx, **flow_options) }
 
     let(:ctx) { {} }
     let(:deps) { { service: dependency } }
     let(:dependency_class) { 'DependencyClass' }
+    let(:flow_options) { { options: [] } }
 
     context 'when passed string as value' do
       let(:dependency) { 'service.name' }

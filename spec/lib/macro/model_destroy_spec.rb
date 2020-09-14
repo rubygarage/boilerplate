@@ -2,12 +2,13 @@
 
 RSpec.describe Macro do
   describe '.ModelDestroy' do
-    subject(:result) { described_class::ModelDestroy(**params)[:task].call(ctx, {}) }
+    subject(:result) { described_class::ModelDestroy(**params)[:task].call(ctx, **flow_options) }
 
     let(:sub_object) { instance_double('SubObject', destroy: true) }
     let(:object) { instance_double('SomeObject', sub_object: sub_object) }
     let(:params) { { path: %i[object sub_object] } }
     let(:ctx) { { object: object } }
+    let(:flow_options) { { options: [] } }
 
     context 'when model found and destroy complete successfully' do
       it 'calls :destroy on found model' do
@@ -36,7 +37,7 @@ RSpec.describe Macro do
 
     describe 'macro id' do
       it 'has formatted id' do
-        expect(described_class::ModelDestroy({})[:id]).to macro_id_with('model_destroy')
+        expect(described_class::ModelDestroy(**{})[:id]).to macro_id_with('model_destroy')
       end
 
       it 'has uniqueness id' do

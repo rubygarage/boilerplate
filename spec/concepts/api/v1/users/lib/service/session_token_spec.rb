@@ -2,7 +2,7 @@
 
 RSpec.describe Api::V1::Users::Lib::Service::SessionToken do
   describe '.create' do
-    subject(:service) { described_class.create(params) }
+    subject(:service) { described_class.create(**params) }
 
     let(:account_id) { rand(1..10) }
     let(:jwt_session_instance) { instance_double(JWTSessions::Session) }

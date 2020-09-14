@@ -2,8 +2,9 @@
 
 RSpec.describe Macro do
   describe '.ModelDelete' do
-    subject(:result) { described_class::ModelDelete(**params)[:task].call(ctx, {}) }
+    subject(:result) { described_class::ModelDelete(**params)[:task].call(ctx, **flow_options) }
 
+    let(:flow_options) { { options: [] } }
     let(:sub_object) { instance_double('SubObject', delete: true) }
     let(:object) { instance_double('SomeObject', sub_object: sub_object) }
     let(:params) { { path: %i[object sub_object] } }

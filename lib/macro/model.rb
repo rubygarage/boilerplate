@@ -4,7 +4,7 @@ module Macro
   def self.Model(entity:, connections: [], find_by_key: :id, params_key: :id, assign: false)
     task = ->((ctx, flow_options), **) {
       if assign
-        Macro::Assign(to: :model, path: [*entity, *connections], try: true)[:task].call(ctx)
+        Macro::Assign(to: :model, path: [*entity, *connections], try: true)[:task].call(ctx, **{ options: [] })
       else
         ctx[:model] = Model.find_relation(ctx[entity], connections, find_by_key, ctx[:params][params_key])
       end

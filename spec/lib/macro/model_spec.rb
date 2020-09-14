@@ -3,11 +3,11 @@
 RSpec.describe Macro do
   describe '.Model' do
     subject(:result) do
-      described_class::Model(**params)[:task].call(ctx, flow_options)
+      described_class::Model(**params)[:task].call(ctx, **flow_options)
     end
 
     let(:params) {}
-    let(:flow_options) { {} }
+    let(:flow_options) { { options: [] } }
     let(:item_id) { 1 }
     let(:items) { instance_double('Items') }
     let(:sub_object) { instance_double('SubObject', items: items) }
@@ -102,7 +102,7 @@ RSpec.describe Macro do
 
     it 'has uniqueness id' do
       params = { entity: :object }
-      expect(described_class::Model(params)[:id]).not_to eq(described_class::Model(params)[:id])
+      expect(described_class::Model(**params)[:id]).not_to eq(described_class::Model(**params)[:id])
     end
   end
 
