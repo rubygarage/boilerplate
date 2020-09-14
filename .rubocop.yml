@@ -138,6 +138,12 @@ Layout/ClassStructure:
 
 # RSpec -----------------------------------------------------------------------
 
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/MultipleDescribes:
+  Enabled: false
+
 RSpec/MultipleExpectations:
   Enabled: false
 
