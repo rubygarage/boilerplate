@@ -23,27 +23,21 @@ RSpec.describe Api::V1::Users::ResetPasswords::Operation::Create do
   describe 'Failure' do
     context 'without params' do
       let(:errors) { { email: [I18n.t('errors.key?')] } }
-      let(:error_localizations) { %w[errors.key?] }
 
-      include_examples 'errors localizations'
       include_examples 'has validation errors'
     end
 
     context 'with empty params' do
       let(:params) { { email: '' } }
       let(:errors) { { email: [I18n.t('errors.filled?')] } }
-      let(:error_localizations) { %w[errors.filled?] }
 
-      include_examples 'errors localizations'
       include_examples 'has validation errors'
     end
 
     context 'with wrong params type' do
       let(:params) { { email: true } }
       let(:errors) { { email: [I18n.t('errors.str?')] } }
-      let(:error_localizations) { %w[errors.str?] }
 
-      include_examples 'errors localizations'
       include_examples 'has validation errors'
     end
 

@@ -40,36 +40,28 @@ RSpec.describe Api::V1::Lib::Operation::Sorting, type: :operation do
     context 'when sort not a string' do
       let(:params) { { sort: :not_a_string } }
       let(:errors) { { sort: [I18n.t('errors.str?')] } }
-      let(:error_localizations) { %w[errors.str?] }
 
-      include_examples 'errors localizations'
       include_examples 'failed operation'
     end
 
     context 'when sort is an empty string' do
       let(:params) { { sort: '' } }
       let(:errors) { { sort: [I18n.t('errors.filled?')] } }
-      let(:error_localizations) { %w[errors.filled?] }
 
-      include_examples 'errors localizations'
       include_examples 'failed operation'
     end
 
     context 'when sortable columnn not unique' do
       let(:params) { { sort: 'attribute_1,attribute_2,-attribute_1,-attribute_2,attribute_1' } }
       let(:errors) { { sort: [I18n.t('errors.sort_params_uniq?')] } }
-      let(:error_localizations) { %w[errors.sort_params_uniq?] }
 
-      include_examples 'errors localizations'
       include_examples 'failed operation'
     end
 
     context 'when sortable columnn not exists' do
       let(:params) { { sort: 'nonexistent_column' } }
       let(:errors) { { sort: [I18n.t('errors.sort_params_valid?')] } }
-      let(:error_localizations) { %w[errors.sort_params_valid?] }
 
-      include_examples 'errors localizations'
       include_examples 'failed operation'
     end
 
@@ -78,9 +70,7 @@ RSpec.describe Api::V1::Lib::Operation::Sorting, type: :operation do
 
       let(:params) { { sort: 'attribute_2' } }
       let(:errors) { { sort: [I18n.t('errors.sort_params_valid?')] } }
-      let(:error_localizations) { %w[errors.sort_params_valid?] }
 
-      include_examples 'errors localizations'
       include_examples 'failed operation'
     end
   end
