@@ -3,9 +3,7 @@
 RSpec.shared_examples 'has email token equality errors' do
   shared_examples 'email token equality errors' do
     let(:errors) { { base: [I18n.t('errors.email_token.already_used')] } }
-    let(:error_localizations) { %w[errors.email_token.already_used] }
 
-    include_examples 'errors localizations'
     include_examples 'has validation errors'
   end
 
