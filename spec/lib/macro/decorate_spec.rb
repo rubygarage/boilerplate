@@ -2,8 +2,9 @@
 
 RSpec.describe Macro do
   describe '.Decorate' do
-    subject(:result) { described_class::Decorate(**params)[:task].call(ctx) }
+    subject(:result) { described_class::Decorate(**params)[:task].call(ctx, **flow_options) }
 
+    let(:flow_options) { { options: [] } }
     let(:context_target) { :model }
     let(:from) { nil }
     let(:to) { nil }

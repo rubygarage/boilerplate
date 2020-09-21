@@ -45,6 +45,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bcrypt', '~> 3.1'
 gem 'jwt_sessions', '~> 2.5'
 
+# Error tracking
+gem 'sentry-raven', '~> 3.0'
+
 group :development, :test do
   gem 'bullet', '~> 6.1'
   gem 'factory_bot_rails', '~> 6.1'
@@ -64,7 +67,7 @@ group :development, :test do
   gem 'rubocop', '~> 0.90.0', require: false
   gem 'rubocop-performance', '~> 1.8', require: false
   gem 'rubocop-rails', '~> 2.8', require: false
-  gem 'rubocop-rspec', '~> 1.41', require: false
+  gem 'rubocop-rspec', '~> 1.43', require: false
 end
 
 group :development do

@@ -133,3 +133,10 @@ List all available run commands.
 ```
 dip ls
 ```
+### Sentry Notifire
+
+To start work with sentry you should add dsn key to credentials under `sentry_dsn` name.
+
+To get first error with `Sentry` raise `Raven.capture_exception` with exception as an argument.
+
+More information [here](https://docs.sentry.io/platforms/ruby/guides/rails/)
