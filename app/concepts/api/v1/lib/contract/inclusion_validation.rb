@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Api::V1::Lib::Contract
-  class InclusionValidation < ApplicationContract
+  class InclusionValidation < Dry::Validation::Contract
     option :available_inclusion_options
 
     params do
