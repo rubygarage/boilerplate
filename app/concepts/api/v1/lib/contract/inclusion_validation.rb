@@ -1,20 +1,21 @@
 # frozen_string_literal: true
 
 module Api::V1::Lib::Contract
-  InclusionValidation = Dry::Validation.Schema do
-    configure do
-      config.type_specs = true
-      option :available_inclusion_options
+  class InclusionValidation < ApplicationContract
+    option :available_inclusion_options
 
-      def inclusion_params_uniq?(jsonapi_inclusion_params)
-        jsonapi_inclusion_params.eql?(jsonapi_inclusion_params.uniq)
-      end
-
-      def inclusion_params_valid?(jsonapi_inclusion_params)
-        jsonapi_inclusion_params.difference(available_inclusion_options).empty?
-      end
+    params do
+      required(:include).value(Types::JsonApi::Include)
     end
 
-    required(:include, Types::JsonApi::Include).filled(:inclusion_params_uniq?, :inclusion_params_valid?)
+    rule(:include).validate(:invalid_inclusion_params?, :unique_inclusion_params?)
+
+    # rubocop:disable Layout/LineLength
+    # TODO: uncomment lines under if they more readable and clear for understanding
+    # rule(:include) do
+    #   key.failure(I18n.t('dry_validation.errors.invalid_inclusion_params?')) unless value.difference(available_inclusion_options).empty?
+    #   key.failure(I18n.t('dry_validation.errors.unique_inclusion_params?')) unless value.eql?(value.uniq)
+    # end
+    # rubocop:enable Layout/LineLength
   end
 end

@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-Dry::Validation::Schema.configure do |config|
-  config.messages = :i18n
-  config.input_processor = :sanitizer
+Dry::Validation.register_macro(:invalid_inclusion_params?) do
+  key.failure(:invalid_inclusion_params?) unless value.difference(available_inclusion_options).empty?
 end
 
-Dry::Validation::Schema::Form.configure do |config|
-  config.messages = :i18n
+Dry::Validation.register_macro(:unique_inclusion_params?) do
+  key.failure(:unique_inclusion_params?) unless value.eql?(value.uniq)
 end

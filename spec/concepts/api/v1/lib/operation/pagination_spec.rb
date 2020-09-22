@@ -93,7 +93,7 @@ RSpec.describe Api::V1::Lib::Operation::Pagination do
 
     context 'when page overflow' do
       let(:params) { { page: { number: collection.size.next } } }
-      let(:errors) { { page: [[:number, [I18n.t('errors.pagination_overflow')]]] } }
+      let(:errors) { { page: [[:number, [I18n.t('dry_validation.errors.pagination_overflow')]]] } }
 
       it 'sets paginations errors' do
         expect(result['contract.uri_query'].errors.messages).to eq(errors)

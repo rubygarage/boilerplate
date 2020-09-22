@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'reform'
-require 'reform/form/dry'
+# require 'reform/form/dry'
 require 'reform/form/coercion'
 
 module PatchErrorCompiler
@@ -14,4 +14,4 @@ module PatchErrorCompiler
   end
 end
 
-Reform::Form::Dry::Validations::Group.prepend(PatchErrorCompiler)
+# Reform::Form::Dry::Validations::Group.prepend(PatchErrorCompiler)

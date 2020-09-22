@@ -20,7 +20,8 @@ gem 'devise', '~> 4.7'
 
 # Trailblazer bundle
 gem 'dry-container', '~> 0.7.2'
-gem 'dry-validation', '0.11.1'
+gem 'dry-validation', '~>1.5'
+gem 'reform', '~> 2.3'
 gem 'trailblazer', '~> 2.1'
 gem 'trailblazer-endpoint', github: 'trailblazer/trailblazer-endpoint'
 

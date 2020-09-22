@@ -6,6 +6,8 @@ module Macro
       schema_object_class = BaseSchemaObject.Build(schema)
       task = Trailblazer::Activity::TaskBuilder::Binary(
         ->(ctx, **) {
+          return false unless schema < Dry::Validation::Contract
+
           dependencies = inject.each_with_object({}) { |option, memo| memo[option] = ctx[option] }
           ctx["contract.#{name}"] = schema_object_class.new(schema, dependencies)
         }
@@ -20,7 +22,7 @@ module Macro
 
       def self.Build(schema)
         Class.new(self) do
-          schema.rules.each_key do |key|
+          schema.params.rules.each_key do |key|
             attr_reader key
 
             define_method("#{key}=") do |value|
@@ -42,7 +44,7 @@ module Macro
 
       def call(params)
         result = schema.call(params)
-        assign_values(result.output) if result.success?
+        assign_values(result.values.data) if result.success?
         @result = SchemaResult.new(result)
       end
 
@@ -51,11 +53,11 @@ module Macro
       def build_schema(schema, dependencies)
         return schema if dependencies.empty?
 
-        schema.with(dependencies)
+        schema.new(dependencies)
       end
 
       def assign_values(values)
-        schema.rules.each_key do |key|
+        schema.schema.rules.each_key do |key|
           public_send("#{key}=", values[key])
         end
       end
@@ -81,7 +83,7 @@ module Macro
         end
 
         def errors
-          @errors ||= Reform::Contract::Errors.new
+          @errors ||= ::Macro::Contract::Schema::Errors.new
         end
 
         private
@@ -89,8 +91,8 @@ module Macro
         attr_reader :result
 
         def compose_errors
-          result.errors.each do |field, messages|
-            messages.each { |message| errors.add(field, message) }
+          result.errors.messages.each do |field|
+            errors.add(field.path.last, field.text)
           end
         end
       end

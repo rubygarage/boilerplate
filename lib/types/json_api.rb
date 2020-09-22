@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Types
-  include Dry::Types.module
+  include Dry::Types()
 
   FilterObject = Struct.new(:column, :predicate, :value)
   SortObject = Struct.new(:column, :order)
