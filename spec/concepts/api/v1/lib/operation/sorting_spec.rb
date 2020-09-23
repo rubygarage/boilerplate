@@ -39,28 +39,28 @@ RSpec.describe Api::V1::Lib::Operation::Sorting, type: :operation do
 
     context 'when sort not a string' do
       let(:params) { { sort: :not_a_string } }
-      let(:errors) { { sort: [I18n.t('errors.str?')] } }
+      let(:errors) { { sort: [I18n.t('dry_schema.errors.str?')] } }
 
       include_examples 'failed operation'
     end
 
     context 'when sort is an empty string' do
       let(:params) { { sort: '' } }
-      let(:errors) { { sort: [I18n.t('errors.filled?')] } }
+      let(:errors) { { sort: [I18n.t('dry_schema.errors.filled?')] } }
 
       include_examples 'failed operation'
     end
 
     context 'when sortable columnn not unique' do
       let(:params) { { sort: 'attribute_1,attribute_2,-attribute_1,-attribute_2,attribute_1' } }
-      let(:errors) { { sort: [I18n.t('errors.sort_params_uniq?')] } }
+      let(:errors) { { sort: [I18n.t('dry_validation.errors.sort_params_uniq?')] } }
 
       include_examples 'failed operation'
     end
 
     context 'when sortable columnn not exists' do
       let(:params) { { sort: 'nonexistent_column' } }
-      let(:errors) { { sort: [I18n.t('errors.sort_params_valid?')] } }
+      let(:errors) { { sort: [I18n.t('dry_validation.errors.sort_params_valid?')] } }
 
       include_examples 'failed operation'
     end
@@ -69,7 +69,7 @@ RSpec.describe Api::V1::Lib::Operation::Sorting, type: :operation do
       let(:available_columns) { create_available_columns(name: 'attribute_2', sortable: false) }
 
       let(:params) { { sort: 'attribute_2' } }
-      let(:errors) { { sort: [I18n.t('errors.sort_params_valid?')] } }
+      let(:errors) { { sort: [I18n.t('dry_validation.errors.sort_params_valid?')] } }
 
       include_examples 'failed operation'
     end
