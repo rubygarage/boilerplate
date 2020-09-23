@@ -101,7 +101,7 @@ ignore_missing:
 
 ## Consider these keys used:
 ignore_unused:
-  - '{dry_validation,errors,devise}.*'
+  - '{dry_validation,dry_schema,errors,devise}.*'
 
 # - 'activerecord.attributes.*'
 # - '{devise,kaminari,will_paginate}.*'

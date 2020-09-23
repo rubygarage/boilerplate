@@ -4,13 +4,16 @@ RSpec.describe Macro do
   describe '.Schema' do
     subject(:result) { operation.call(params: params, dependency: dependency) }
 
-    # rubocop:disable RSpec/LeakyConstantDeclaration
-    SchemaContract = Dry::Validation.Form do
-      required(:attribute).filled(:int?, gteq?: 1)
+    class SchemaContract < Dry::Validation::Contract
+      params do
+        required(:attribute).filled(:int?, gteq?: 1)
+      end
     end
 
-    SchemaContractHash = Dry::Validation.Form do
-      required(:attribute).filled(:hash?)
+    class SchemaContractHash < Dry::Validation::Contract
+      params do
+        required(:attribute).filled(:hash?)
+      end
     end
 
     OperationWithSchemaContract = Class.new(Trailblazer::Operation) do
@@ -27,7 +30,6 @@ RSpec.describe Macro do
       step Macro::Contract::Schema(SchemaContract, inject: %i[dependency])
       step Trailblazer::Operation::Contract::Validate()
     end
-    # rubocop:enable RSpec/LeakyConstantDeclaration
 
     let(:dependency) { nil }
     let(:params) { { attribute: 1 } }
@@ -38,7 +40,7 @@ RSpec.describe Macro do
         let(:operation) { OperationWithSchemaContract }
 
         it 'sets SchemaObject to contract default, operation successful' do
-          expect(result['contract.default'].errors).to be_empty
+          expect(result['contract.default'].errors.messages).to be_empty
           expect(result).to be_success
         end
       end
@@ -48,7 +50,7 @@ RSpec.describe Macro do
         let(:operation) { OperationWithSchemaContractHash }
 
         it 'sets SchemaObject to contract default, operation successful' do
-          expect(result['contract.default'].errors).to be_empty
+          expect(result['contract.default'].errors.messages).to be_empty
           expect(result).to be_success
         end
       end

@@ -1,34 +1,29 @@
 # frozen_string_literal: true
 
 module Api::V1::Lib::Contract
-  FilteringValidation = Dry::Validation.Schema do
-    configure do
-      config.type_specs = true
-      option :available_filtering_columns
-      option :column_type_dict
+  class FilteringValidation < Dry::Validation::Contract
+    option :available_filtering_columns
+    option :column_type_dict
 
-      def filtering_column_valid?(filter)
-        available_filtering_columns.include?(filter.column)
+    params do
+      required(:filter).filled(Types::JsonApi::Filter)
+    end
+
+    rule(:filter).validate(:filters_uniq?)
+
+    rule(:filter).each do
+      key.failure(:filtering_column_valid?) unless available_filtering_columns.include?(value.column)
+      unless JsonApi::Filtering::PREDICATES[column_type_dict[value.column]].include?(value.predicate)
+        key.failure(:filtering_predicate_valid?)
       end
-
-      def filtering_predicate_valid?(filter)
-        column = column_type_dict[filter.column]
-        JsonApi::Filtering::PREDICATES[column].include?(filter.predicate)
-      end
-
-      def filtering_value_valid?(filter)
-        column = column_type_dict[filter.column]
-        Types::JsonApi::TypeByColumn.call(column).try(filter.value).success?
-      end
-
-      def filters_uniq?(filters)
-        filters = filters.map(&:column)
-        filters.eql?(filters.uniq)
+      unless Types::JsonApi::TypeByColumn.call(column_type_dict[value.column]).try(value.value).success?
+        key.failure(:filtering_value_valid?)
       end
     end
 
-    required(:filter, Types::JsonApi::Filter).filled(:array?, :filters_uniq?) do
-      each(:filtering_column_valid?, :filtering_predicate_valid?, :filtering_value_valid?)
+    Dry::Validation.register_macro(:filters_uniq?) do
+      filters = value.map(&:column)
+      filters.eql?(filters.uniq)
     end
   end
 end

@@ -51,7 +51,7 @@ module Macro
       private
 
       def build_schema(schema, dependencies)
-        return schema if dependencies.empty?
+        return schema.new if dependencies.empty?
 
         schema.new(dependencies)
       end

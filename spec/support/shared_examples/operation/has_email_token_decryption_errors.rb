@@ -3,21 +3,21 @@
 RSpec.shared_examples 'has email token decryption errors' do
   context 'without params' do
     let(:params) { {} }
-    let(:errors) { { email_token: [I18n.t('errors.key?')] } }
+    let(:errors) { { email_token: [I18n.t('dry_schema.errors.key?')] } }
 
     include_examples 'has validation errors'
   end
 
   context 'with empty params' do
     let(:params) { { email_token: '' } }
-    let(:errors) { { email_token: [I18n.t('errors.filled?')] } }
+    let(:errors) { { email_token: [I18n.t('dry_schema.errors.filled?')] } }
 
     include_examples 'has validation errors'
   end
 
   context 'with wrong params type' do
     let(:params) { { email_token: true } }
-    let(:errors) { { email_token: [I18n.t('errors.str?')] } }
+    let(:errors) { { email_token: [I18n.t('dry_schema.errors.str?')] } }
 
     include_examples 'has validation errors'
   end
