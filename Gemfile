@@ -46,7 +46,7 @@ gem 'bcrypt', '~> 3.1'
 gem 'jwt_sessions', '~> 2.5'
 
 # Error tracking
-gem 'sentry-raven', '~> 3.0'
+gem 'sentry-raven', '~> 3.1'
 
 group :development, :test do
   gem 'bullet', '~> 6.1'
