@@ -3,7 +3,12 @@ version: 2
 updates:
   - package-ecosystem: "bundler"
     directory: "/"
+    # Check for new versions every Sunday (or every month)
     schedule:
-      interval: "daily"
-    allow:
-      - dependency-type: "all"
+      interval: "weekly" # `interval: "monthly"`
+      day: "sunday"
+    labels:
+      - "dependency"
+      - "need review"
+    # Disable automatic rebasing
+    rebase-strategy: "disabled"
