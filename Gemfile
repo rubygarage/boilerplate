@@ -11,7 +11,7 @@ gem 'rails', '~> 6.0'
 gem 'sidekiq', '~> 6.1'
 
 # Admin panel
-gem 'activeadmin', '~> 2.7'
+gem 'activeadmin', '~> 2.8'
 
 gem 'webpacker', '~> 5.0'
 
