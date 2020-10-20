@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/trailblazer/trailblazer-endpoint.git
-  revision: 0c80379a4ae977aa427092aade2aa07882f9381d
+  revision: 435681cdee4e623de8569442f0149bb0f6bd09b3
   specs:
-    trailblazer-endpoint (0.0.1)
-      dry-matcher
+    trailblazer-endpoint (0.0.5)
+      trailblazer-activity-dsl-linear (>= 0.3.0, < 0.4.0)
 
 GEM
   remote: https://rubygems.org/
@@ -176,8 +176,6 @@ GEM
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.2)
       dry-equalizer (~> 0.2)
-    dry-matcher (0.8.3)
-      dry-core (>= 0.4.8)
     dry-types (0.12.3)
       concurrent-ruby (~> 1.0)
       dry-configurable (~> 0.1)
