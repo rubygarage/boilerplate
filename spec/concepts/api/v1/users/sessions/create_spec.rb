@@ -22,21 +22,21 @@ RSpec.describe Api::V1::Users::Sessions::Operation::Create do
 
   describe 'Failure' do
     context 'without params' do
-      let(:errors) { { email: [I18n.t('errors.key?')], password: [I18n.t('errors.key?')] } }
+      let(:errors) { { email: [I18n.t('dry_schema.errors.key?')], password: [I18n.t('dry_schema.errors.key?')] } }
 
       include_examples 'has validation errors'
     end
 
     context 'with empty params' do
       let(:params) { { email: '', password: '' } }
-      let(:errors) { { email: [I18n.t('errors.filled?')], password: [I18n.t('errors.filled?')] } }
+      let(:errors) { { email: [I18n.t('dry_schema.errors.filled?')], password: [I18n.t('dry_schema.errors.filled?')] } }
 
       include_examples 'has validation errors'
     end
 
     context 'with wrong params type' do
       let(:params) { { email: true, password: [1] } }
-      let(:errors) { { email: [I18n.t('errors.str?')], password: [I18n.t('errors.str?')] } }
+      let(:errors) { { email: [I18n.t('dry_schema.errors.str?')], password: [I18n.t('dry_schema.errors.str?')] } }
 
       include_examples 'has validation errors'
     end

@@ -11,9 +11,9 @@ module Types
       def self.call(column)
         {
           string: ::Types::String,
-          number: ::Types::Form::Int | ::Types::Form::Decimal,
-          boolean: ::Types::Form::True | ::Types::Form::False | ::Types::Form::Nil,
-          date: ::Types::Form::Date | ::Types::Form::Int
+          number: ::Types::Params::Integer | ::Types::Params::Decimal,
+          boolean: ::Types::Params::True | ::Types::Params::False | ::Types::Params::Nil,
+          date: ::Types::Params::Date | ::Types::Params::Integer
         }[column]
       end
     end
