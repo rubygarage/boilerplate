@@ -5,6 +5,8 @@ RSpec.describe Macro do
     subject(:result) { operation.call(params: params, dependency: dependency) }
 
     class SchemaContract < Dry::Validation::Contract
+      option :dependency
+
       params do
         required(:attribute).filled(:int?, gteq?: 1)
       end
@@ -70,7 +72,7 @@ RSpec.describe Macro do
       let(:operation) { OperationWithSchemaContractInject }
 
       it 'injection exists in contract' do
-        expect(result['contract.default'].schema.options).to include(dependency: dependency)
+        expect(result['contract.default'].schema.methods).to include(:dependency)
       end
     end
 
