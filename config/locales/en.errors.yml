@@ -66,7 +66,6 @@ en:
     or: or
   dry_validation:
     errors:
-      email_uniq?: email not unique
       filtering_column_valid?: invalid filtering column
       filtering_predicate_valid?: invalid filtering predicate
       filtering_value_valid?: invalid filtering value
@@ -74,8 +73,10 @@ en:
       invalid_inclusion_params?: can't include such association
       pagination_overflow: is out of limits
       rules:
-        user_password:
-          eql?: should match to password
+        email:
+          email_uniq?: email not unique
+        password_confirmation:
+          match_passwords?: should match to password
       session:
         invalid_token: invalid_token
       sort_params_uniq?: sort params not unique

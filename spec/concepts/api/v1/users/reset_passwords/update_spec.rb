@@ -61,7 +61,7 @@ RSpec.describe Api::V1::Users::ResetPasswords::Operation::Update do
 
       context 'without password_confirmation' do
         let(:params) { { email_token: email_token, password: password } }
-        let(:errors) { { password_confirmation: [I18n.t('errors.rules.user_password.eql?')] } }
+        let(:errors) { { password_confirmation: [I18n.t('dry_validation.errors.match_passwords?')] } }
 
         include_examples 'has validation errors'
       end
@@ -89,7 +89,7 @@ RSpec.describe Api::V1::Users::ResetPasswords::Operation::Update do
 
       context 'when different passwords' do
         let(:password_confirmation) { "#{password}_" }
-        let(:errors) { { password_confirmation: [I18n.t('errors.rules.user_password.eql?')] } }
+        let(:errors) { { password_confirmation: [I18n.t('dry_validation.errors.match_passwords?')] } }
 
         include_examples 'has validation errors'
       end
