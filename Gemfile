@@ -6,12 +6,12 @@ ruby(File.read(File.join(File.dirname(__FILE__), '.ruby-version')).strip)
 
 # System
 gem 'pg', '~> 1.2', '>= 1.2.3'
-gem 'puma', '~> 4.3'
+gem 'puma', '~> 5.0'
 gem 'rails', '~> 6.0'
 gem 'sidekiq', '~> 6.1'
 
 # Admin panel
-gem 'activeadmin', '~> 2.7'
+gem 'activeadmin', '~> 2.8'
 
 gem 'webpacker', '~> 5.0'
 
@@ -36,8 +36,8 @@ gem 'oj', '~> 3.10'
 gem 'pagy', '~> 3.8'
 
 # Uploading
-gem 'aws-sdk-s3', '~> 1.81'
-gem 'shrine', '~> 3.0'
+gem 'aws-sdk-s3', '~> 1.83'
+gem 'shrine', '~> 3.3'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -47,7 +47,7 @@ gem 'bcrypt', '~> 3.1'
 gem 'jwt_sessions', '~> 2.5'
 
 # Error tracking
-gem 'sentry-raven', '~> 3.0'
+gem 'sentry-raven', '~> 3.1'
 
 group :development, :test do
   gem 'bullet', '~> 6.1'
@@ -58,13 +58,13 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0'
 
   # Code quality
-  gem 'brakeman', '~> 4.9', require: false
+  gem 'brakeman', '~> 4.10', require: false
   gem 'bundle-audit', '~> 0.1.0', require: false
   gem 'fasterer', '~> 0.8.3', require: false
   gem 'i18n-tasks', '~> 0.9.31', require: false
   gem 'lefthook', '~> 0.7.2', require: false
   gem 'rails_best_practices', '~> 1.20', require: false
-  gem 'reek', '6.0.1', require: false
+  gem 'reek', '6.0.2', require: false
   gem 'rubocop', '~> 0.90.0', require: false
   gem 'rubocop-performance', '~> 1.8', require: false
   gem 'rubocop-rails', '~> 2.8', require: false
