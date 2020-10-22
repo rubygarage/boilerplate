@@ -68,7 +68,7 @@ RSpec.describe Api::V1::Users::ResetPasswords::Operation::Update do
 
       context 'with wrong params type' do
         let(:password) { [1] }
-        let(:errors) { { password: [I18n.t('errors.str?')] } }
+        let(:errors) { { password: [I18n.t('dry_schema.errors.str?')] } }
 
         include_examples 'has validation errors'
       end
