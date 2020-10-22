@@ -40,7 +40,10 @@ RSpec.describe Api::V1::Users::ResetPasswords::Operation::Update do
 
     context 'when password errors' do
       shared_examples 'empty params' do
-        let(:errors) { { password: [I18n.t('errors.filled?')] } }
+        let(:errors) do
+          { password: [I18n.t('dry_schema.errors.filled?'),
+                       I18n.t('dry_schema.errors.min_size?', num: Constants::Shared::PASSWORD_MIN_SIZE)] }
+        end
 
         include_examples 'has validation errors'
       end
@@ -61,35 +64,48 @@ RSpec.describe Api::V1::Users::ResetPasswords::Operation::Update do
 
       context 'without password_confirmation' do
         let(:params) { { email_token: email_token, password: password } }
-        let(:errors) { { password_confirmation: [I18n.t('dry_validation.errors.match_passwords?')] } }
+        let(:errors) do
+          { password_confirmation:
+                           [I18n.t('dry_validation.errors.rules.password_confirmation.match_passwords?')] }
+        end
 
         include_examples 'has validation errors'
       end
 
       context 'with wrong params type' do
         let(:password) { [1] }
-        let(:errors) { { password: [I18n.t('dry_schema.errors.str?')] } }
+        let(:errors) do
+          { password: [I18n.t('dry_schema.errors.str?'),
+                       I18n.t('dry_schema.errors.min_size?', num: Constants::Shared::PASSWORD_MIN_SIZE)],
+            password_confirmation: [I18n.t('dry_schema.errors.str?')] }
+        end
 
         include_examples 'has validation errors'
       end
 
       context 'when password is too short' do
         let(:password) { FFaker::Internet.password[0..6] }
-        let(:errors) { { password: [I18n.t('errors.min_size?', num: Constants::Shared::PASSWORD_MIN_SIZE)] } }
+        let(:errors) do
+          { password:
+                           [I18n.t('dry_schema.errors.min_size?', num: Constants::Shared::PASSWORD_MIN_SIZE)] }
+        end
 
         include_examples 'has validation errors'
       end
 
       context 'when password does not match password pattern' do
         let(:password) { 'password' }
-        let(:errors) { { password: [I18n.t('errors.format?')] } }
+        let(:errors) { { password: [I18n.t('dry_schema.errors.format?')] } }
 
         include_examples 'has validation errors'
       end
 
       context 'when different passwords' do
         let(:password_confirmation) { "#{password}_" }
-        let(:errors) { { password_confirmation: [I18n.t('dry_validation.errors.match_passwords?')] } }
+        let(:errors) do
+          { password_confirmation:
+                          [I18n.t('dry_validation.errors.rules.password_confirmation.match_passwords?')] }
+        end
 
         include_examples 'has validation errors'
       end

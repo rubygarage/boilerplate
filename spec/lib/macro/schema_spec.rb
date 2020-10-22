@@ -5,6 +5,12 @@ RSpec.describe Macro do
     subject(:result) { operation.call(params: params, dependency: dependency) }
 
     class SchemaContract < Dry::Validation::Contract
+      params do
+        required(:attribute).filled(:int?, gteq?: 1)
+      end
+    end
+
+    class SchemaWithOptionContract < Dry::Validation::Contract
       option :dependency
 
       params do
@@ -29,11 +35,11 @@ RSpec.describe Macro do
     end
 
     OperationWithSchemaContractInject = Class.new(Trailblazer::Operation) do
-      step Macro::Contract::Schema(SchemaContract, inject: %i[dependency])
+      step Macro::Contract::Schema(SchemaWithOptionContract, inject: %i[dependency])
       step Trailblazer::Operation::Contract::Validate()
     end
 
-    let(:dependency) { nil }
+    let(:dependency) { {} }
     let(:params) { { attribute: 1 } }
     let(:operation) { OperationWithSchemaContract }
 
