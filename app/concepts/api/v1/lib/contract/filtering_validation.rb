@@ -11,19 +11,28 @@ module Api::V1::Lib::Contract
 
     rule(:filter).validate(:filters_uniq?)
 
-    rule(:filter).each do
-      key.failure(:filtering_column_valid?) unless available_filtering_columns.include?(value.column)
-      unless JsonApi::Filtering::PREDICATES[column_type_dict[value.column]].include?(value.predicate)
-        key.failure(:filtering_predicate_valid?)
-      end
-      unless Types::JsonApi::TypeByColumn.call(column_type_dict[value.column]).try(value.value).success?
-        key.failure(:filtering_value_valid?)
-      end
+    rule(:filter).each do |index:|
+      key([:filter, index]).failure(:filtering_column_valid?) and next unless valid_column?(value)
+      key([:filter, index]).failure(:filtering_predicate_valid?) and next unless predicate_column?(value)
+
+      key([:filter, index]).failure(:filtering_value_valid?) unless valid_value?(value)
+    end
+
+    def valid_value?(value)
+      Types::JsonApi::TypeByColumn.call(column_type_dict[value.column]).try(value.value)&.success?
+    end
+
+    def predicate_column?(value)
+      JsonApi::Filtering::PREDICATES[column_type_dict[value.column]]&.include?(value.predicate)
+    end
+
+    def valid_column?(value)
+      available_filtering_columns.include?(value.column)
     end
 
     Dry::Validation.register_macro(:filters_uniq?) do
       filters = value.map(&:column)
-      filters.eql?(filters.uniq)
+      key.failure(:filters_uniq?) unless filters.eql?(filters.uniq)
     end
   end
 end
