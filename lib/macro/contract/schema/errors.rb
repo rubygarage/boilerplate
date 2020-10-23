@@ -5,8 +5,6 @@ module Macro
     module Schema
       # :reek:DuplicateMethodCall
       class Errors
-        include Macro::Contract::Schema::Merge
-
         def initialize(*)
           @errors = {}
         end
