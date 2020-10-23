@@ -10,6 +10,8 @@ module JsonApi
     OPERATORS = [Operators::MATCH_ALL, Operators::MATCH_ANY].freeze
 
     module Predicates
+      IN = 'in'
+      NOT_IN = 'not_in'
       EQUAL = 'eq'
       EQUAL_RELATIVE = 'eq_rel'
       NOT_EQUAL = 'not_eq'
@@ -29,12 +31,16 @@ module JsonApi
 
     PREDICATES = {
       string: [
+        Predicates::IN,
+        Predicates::NOT_IN,
         Predicates::EQUAL,
         Predicates::NOT_EQUAL,
         Predicates::CONTAINS,
         Predicates::NOT_CONTAINS
       ].to_set,
       number: [
+        Predicates::IN,
+        Predicates::NOT_IN,
         Predicates::EQUAL,
         Predicates::NOT_EQUAL,
         Predicates::GREATER_THAN,

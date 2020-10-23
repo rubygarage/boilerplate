@@ -8,8 +8,10 @@ Project wiki: https://github.com/rubygarage/boilerplate/wiki
 
 | Operation | Description | HTTP request example |
 | --- | --- | --- |
-| ```Api::V1::Lib::Operation::Filtering``` | Provides JSON API filtering with ```all_filters``` as default matcher | ```GET /users?filter[email-eq]=user@email.com&filter[name-cont]=son&match=any_filters``` |
-| ```Api::V1::Lib::Operation::Sorting``` | Provides JSON API sorting | ```GET /users?sort=name,-age``` |
+| ```Api::V1::Lib::Operation::Filtering``` | Sets JSON API filtering with ```all_filters``` as default matcher | ```GET /users?filter[email-eq]=user@email.com&filter[name-cont]=son&match=any_filters``` |
+| ```Api::V1::Lib::Operation::PerformFiltering``` | Provides JSON API filtering with ```ctx[:filter_options]``` options | ```GET /users?filter[email-eq]=user@email.com&filter[name-cont]=son&match=any_filters``` |
+| ```Api::V1::Lib::Operation::Sorting``` | Sets JSON API sorting | ```GET /users?sort=name,-age``` |
+| ```Api::V1::Lib::Operation::PerformOrdering``` | Provides JSON API sorting | ```GET /users?sort=name,-age``` |
 | ```Api::V1::Lib::Operation::Inclusion``` | Provides JSON API inclusion of related resources. Dot-separated relationship path supporting not implemented at this time | ```GET /users?include=team,organization``` |
 | ```Api::V1::Lib::Operation::Pagination``` | Provides JSON API pagination with offset strategy. Accepts ```AciveRelation``` or ```Array``` as collection. By default returns 25 items per page | ```GET /users?page[number]=1&page[size]=1``` |
 
