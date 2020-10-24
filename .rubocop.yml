@@ -97,6 +97,9 @@ Naming/MethodName:
     - lib/macro/**/*
 
 # Lint ------------------------------------------------------------------------
+Lint/ConstantDefinitionInBlock:
+  Exclude:
+    - spec/lib/**/*
 
 Lint/UnreachableCode:
   Exclude:
