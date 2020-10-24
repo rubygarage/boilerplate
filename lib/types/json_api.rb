@@ -10,8 +10,11 @@ module Types
     module TypeByColumn
       def self.call(column)
         {
-          string: ::Types::String,
-          number: ::Types::Form::Int | ::Types::Form::Decimal,
+          string: ::Types::String | ::Types::Array.of(::Types::String),
+          number: ::Types::Form::Int |
+            ::Types::Form::Decimal |
+            ::Types::Array.of(::Types::Int) |
+            ::Types::Array.of(::Types::Decimal),
           boolean: ::Types::Form::True | ::Types::Form::False | ::Types::Form::Nil,
           date: ::Types::Form::Date | ::Types::Form::Int
         }[column]
