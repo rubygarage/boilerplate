@@ -19,6 +19,8 @@ Rails.application.configure do
     store: Shrine::Storage::S3.new(prefix: 'store', **Rails.application.credentials.aws)
   }
 
+  config.token_store = [:redis, { redis_url: Rails.application.credentials.redis[:db] }]
+
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local = false
 
