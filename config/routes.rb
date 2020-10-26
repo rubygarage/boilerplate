@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
+  get 'health', to: proc { [200, {}, ['success']] }
+
   namespace :api do
     namespace :v1 do
       namespace :users do
