@@ -9,7 +9,6 @@
 
 # Ignore secrets
 /config/application.yml
-/config/database.yml
 /config/cable.yml
 /config/master.key
 
@@ -41,3 +40,8 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+/config/credentials/development.key
+/config/credentials/test.key
+/config/credentials/staging.key
+/config/credentials/production.key
