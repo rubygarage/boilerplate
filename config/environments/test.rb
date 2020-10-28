@@ -10,6 +10,8 @@ require 'shrine/storage/memory'
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.token_store = :memory
+
   config.cache_classes = false
 
   config.middleware.insert_before Warden::Manager, ActionDispatch::Cookies
