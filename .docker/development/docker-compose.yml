@@ -33,7 +33,7 @@ services:
     command: bundle exec rails server -b 0.0.0.0
     entrypoint: .docker/development/entrypoint.sh
     volumes:
-      - ../..:/home/www/boilerplate_rails_api
+      - ../..:/home/www/boilerplate-api
     tty: true
     stdin_open: true
     environment: &server_app_env

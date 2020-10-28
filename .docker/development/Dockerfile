@@ -1,12 +1,12 @@
 FROM ruby:2.7.1-alpine3.11 as Builder
 
 RUN apk add --update --no-cache \
-  bash httpie libxml2-dev libxslt-dev git postgresql-dev \
+  bash libxml2-dev libxslt-dev git postgresql-dev \
   tzdata nodejs imagemagick yarn make cmake g++ postgresql-client nano
 
 ENV APP_USER app
 ENV APP_USER_HOME /home/$APP_USER
-ENV APP_HOME /home/www/boilerplate_rails_api
+ENV APP_HOME /home/www/boilerplate-api
 
 RUN adduser -D -h $APP_USER_HOME $APP_USER
 
@@ -35,7 +35,7 @@ RUN apk --no-cache add bash openssh httpie libxml2-dev libxslt-dev postgresql-de
   tzdata nodejs imagemagick postgresql-client nano
 
 ENV APP_USER app
-ENV APP_HOME /home/www/boilerplate_rails_api
+ENV APP_HOME /home/www/boilerplate-api
 
 RUN addgroup -g 1000 -S $APP_USER && adduser -u 1000 -S $APP_USER -G $APP_USER
 

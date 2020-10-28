@@ -1,40 +1,49 @@
 FROM ruby:2.7.1-alpine3.11 as Builder
 
-ARG BUNDLE_WITHOUT
-ARG RAILS_ENV
-
 RUN apk add --update --no-cache \
-    vim \
-    build-base \
-    libxml2-dev \
-    libxslt-dev \
-    postgresql-dev \
-    tzdata \
-    bash \
-    curl \
-    git \
-    nodejs \
-    imagemagick
+  bash httpie libxml2-dev libxslt-dev git postgresql-dev \
+  tzdata nodejs imagemagick yarn make cmake g++ postgresql-client nano
 
-ENV APP_USER boilerplate
+ENV APP_USER app
+ENV APP_USER_HOME /home/$APP_USER
 ENV APP_HOME /home/www/boilerplate_rails_api
 
-RUN addgroup -g 1000 -S $APP_USER  && adduser -u 1000 -S $APP_USER -G $APP_USER
+RUN adduser -D -h $APP_USER_HOME $APP_USER
 
 WORKDIR $APP_HOME
 
 USER $APP_USER
 
-RUN gem install bundler -v 2.1.4
+COPY Gemfile* package.json yarn.lock .ruby-version ./
 
-COPY .ruby-version $APP_HOME/
-COPY Gemfile* $APP_HOME/
-RUN bundle config set without 'development test'
-RUN bundle install --jobs $(nproc) --retry 5 \
-    && rm -rf /usr/local/bundle/cache/*.gem \
-    && find /usr/local/bundle/gems/ -name "*.c" -delete \
-    && find /usr/local/bundle/gems/ -name "*.o" -delete
+RUN gem install bundler -v 2.1.4 && \
+  bundle install || bundle check
 
-COPY --chown=boilerplate:boilerplate . $APP_HOME
-RUN chmod -R 777 $APP_HOME/.docker/production/entrypoint.sh
-RUN chmod +x $APP_HOME/.docker/production/entrypoint.sh
+USER root
+
+RUN yarn install
+
+RUN RAILS_ENV=development rails assets:precompile
+
+COPY . .
+
+RUN rm -rf node_modules spec tmp/cache
+
+FROM ruby:2.7.1-alpine3.11
+
+RUN apk --no-cache add bash openssh httpie libxml2-dev libxslt-dev postgresql-dev \
+  tzdata nodejs imagemagick postgresql-client nano
+
+ENV APP_USER app
+ENV APP_HOME /home/www/boilerplate_rails_api
+
+RUN addgroup -g 1000 -S $APP_USER && adduser -u 1000 -S $APP_USER -G $APP_USER
+
+USER $APP_USER
+
+COPY --from=Builder /usr/local/bundle/ /usr/local/bundle/
+COPY --from=Builder --chown=1000:1000 $APP_HOME $APP_HOME
+
+WORKDIR $APP_HOME
+
+USER $APP_USER
