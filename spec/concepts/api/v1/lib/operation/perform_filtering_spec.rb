@@ -17,7 +17,8 @@ RSpec.describe Api::V1::Lib::Operation::PerformFiltering do
     end
 
     context 'when filter options is passed' do
-      let(:filter_options) { [{ column: 'name', predicate: predicate, value: search_value }] }
+      let(:filter_options) { [{ column: filter_column, predicate: predicate, value: search_value }] }
+      let(:filter_column) { 'name' }
       let(:search_value) { search_name }
       let(:search_name) { 'Uniqueness_name' }
       let!(:user) { create(:user, name: search_name) }
@@ -41,6 +42,25 @@ RSpec.describe Api::V1::Lib::Operation::PerformFiltering do
 
         it 'returns users that contains search value' do
           expect(operation[:relation]).to eq([user])
+          expect(operation).to be_success
+        end
+      end
+
+      context 'with contain predicate ' do
+        User.class_eval do
+          ransacker :created_at, type: :date do
+            Arel.sql("date(created_at at time zone 'UTC' at time zone '#{Time.zone.name}')")
+          end
+        end
+
+        let(:search_value) { (Date.current - 1.day).as_json }
+        let(:filter_column) { 'created_at' }
+        let(:predicate) { 'date_equals' }
+        let!(:searchable_user) { create(:user, created_at: search_value) }
+
+        it 'returns users that contains search value' do
+          expect(operation[:relation]).to include(searchable_user)
+          expect(operation[:relation].count).to eq(1)
           expect(operation).to be_success
         end
       end
