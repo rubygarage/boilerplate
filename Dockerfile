@@ -1,8 +1,7 @@
-FROM ruby:2.6.5-alpine as Builder
+FROM ruby:2.7.1-alpine3.11 as Builder
 
 RUN apk --no-cache add bash git openssh httpie libxml2-dev libxslt-dev postgresql-dev \
-  tzdata npm nodejs imagemagick make cmake g++ postgresql-client nano && \
-  npm install -g snowboard
+  tzdata npm nodejs imagemagick yarn make cmake g++ postgresql-client nano
 
 ENV APP_USER app
 ENV APP_USER_HOME /home/$APP_USER
@@ -18,14 +17,25 @@ WORKDIR $APP_HOME
 
 USER $APP_USER
 
-COPY Gemfile* .ruby-version ./
+COPY Gemfile* package.json yarn.lock .ruby-version ./
 
 RUN gem i bundler -v $(tail -1 Gemfile.lock | tr -d ' ') && \
-  bundle install || bundle check
+  bundle install || bundle check \
+  && rm -rf /usr/local/bundle/cache/*.gem \
+  && find /usr/local/bundle/gems/ -name "*.c" -delete \
+  && find /usr/local/bundle/gems/ -name "*.o" -delete
+
+USER root
+
+RUN yarn install
+
+RUN RAILS_ENV=development rails assets:precompile
+
+RUN rm -rf node_modules spec
 
 COPY . .
 
-FROM ruby:2.6.5-alpine
+FROM ruby:2.7.1-alpine3.11
 
 RUN apk --no-cache add bash openssh httpie libxml2-dev libxslt-dev postgresql-dev \
   tzdata nodejs imagemagick postgresql-client nano
@@ -43,5 +53,3 @@ COPY --from=Builder --chown=1000:1000 $APP_HOME $APP_HOME
 WORKDIR $APP_HOME
 
 USER $APP_USER
-
-CMD bundle exec puma -C config/puma.rb
