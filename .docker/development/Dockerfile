@@ -23,7 +23,11 @@ USER root
 
 RUN yarn install
 
+RUN RAILS_ENV=development rails assets:precompile
+
 COPY . .
+
+RUN rm -rf node_modules spec tmp/cache
 
 FROM ruby:2.7.1-alpine3.11
 
