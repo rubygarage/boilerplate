@@ -41,6 +41,8 @@
 yarn-debug.log*
 .yarn-integrity
 
+.history
+
 /config/credentials/development.key
 /config/credentials/test.key
 /config/credentials/staging.key
