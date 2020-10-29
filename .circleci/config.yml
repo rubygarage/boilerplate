@@ -16,7 +16,6 @@ jobs:
     executor: default
     steps:
       - checkout
-      - run: cp config/database.yml.ci config/database.yml
       - persist_to_workspace:
           root: ~/boilerplate-rails-api
           paths:

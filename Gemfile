@@ -17,6 +17,7 @@ gem 'webpacker', '~> 5.0'
 
 # Admin's authentication
 gem 'devise', '~> 4.7'
+gem 'rack-cors', '~> 1.1'
 
 # Trailblazer bundle
 gem 'dry-container', '~> 0.7.2'
