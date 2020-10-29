@@ -9,7 +9,26 @@ executors:
       - BUNDLE_JOBS: 4
       - BUNDLE_RETRY: 3
       - BUNDLE_PATH: vendor/bundle
-    working_directory: ~/boilerplate-rails-api
+    working_directory: ~/boilerplate-api
+  deploy_image:
+    working_directory: ~/boilerplate-api
+    docker:
+      - image: circleci/ruby:2.7.1
+
+commands:
+  deploy:
+    steps:
+      - checkout
+      - run:
+          name: Create Master Key
+          command: echo $MASTER_KEY > config/credentials/${RAILS_ENV}.key
+      - setup_remote_docker
+      - run:
+          name: Install AWS CLI
+          command: sudo apt-get -y -qq install awscli
+      - run:
+          name: Deploy
+          command: .deploy/bin/deploy/${RAILS_ENV}.sh --running-tag ${RAILS_ENV}
 
 jobs:
   checkout:
@@ -17,7 +36,7 @@ jobs:
     steps:
       - checkout
       - persist_to_workspace:
-          root: ~/boilerplate-rails-api
+          root: ~/boilerplate-api
           paths:
             - .
 
@@ -25,21 +44,21 @@ jobs:
     executor: default
     steps:
       - attach_workspace:
-          at: ~/boilerplate-rails-api
+          at: ~/boilerplate-api
       - restore_cache:
           keys:
-            - boilerplate-rails-api-{{ checksum "Gemfile.lock" }}
-            - boilerplate-rails-api-
+            - boilerplate-api-{{ checksum "Gemfile.lock" }}
+            - boilerplate-api-
       - run: gem i bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
       - run: sudo apt-get install cmake
       - run: |
           bundle check || bundle install --frozen --path vendor/bundle && bundle clean
       - save_cache:
-          key: boilerplate-rails-api-{{ checksum "Gemfile.lock" }}
+          key: boilerplate-api-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - persist_to_workspace:
-          root: ~/boilerplate-rails-api
+          root: ~/boilerplate-api
           paths:
             - vendor/bundle
 
@@ -47,7 +66,7 @@ jobs:
     executor: default
     steps:
       - attach_workspace:
-          at: ~/boilerplate-rails-api
+          at: ~/boilerplate-api
       - run: |
           bundle exec lefthook run all
 
@@ -61,10 +80,28 @@ jobs:
     parallelism: 2
     steps:
       - attach_workspace:
-          at: ~/boilerplate-rails-api
+          at: ~/boilerplate-api
       - run: yarn
       - run: bundle exec rake db:create db:schema:load --trace
       - run: bundle exec rspec
+
+  deploy_staging:
+    executor: deploy_image
+    environment:
+      MASTER_KEY: $RAILS_STAGING_KEY
+      REGION: us-east-1
+      RAILS_ENV: staging
+    steps:
+      - deploy
+
+  deploy_production:
+    executor: deploy_image
+    environment:
+      MASTER_KEY: $RAILS_PRODUCTION_KEY
+      REGION: us-east-1
+      RAILS_ENV: production
+    steps:
+      - deploy
 
 workflows:
   version: 2
@@ -80,3 +117,17 @@ workflows:
       - lefthook:
           requires:
             - bundle
+      - deploy_staging:
+          requires:
+            - rspec
+            - lefthook
+          filters:
+            branches:
+              only: develop
+      - deploy_production:
+          requires:
+            - rspec
+            - lefthook
+          filters:
+            branches:
+              only: master
