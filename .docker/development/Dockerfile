@@ -23,13 +23,13 @@ RUN gem i bundler -v $(tail -1 Gemfile.lock | tr -d ' ') && \
 
 USER root
 
-RUN yarn install
-
-RUN RAILS_ENV=development rails assets:precompile
-
-RUN rm -rf node_modules spec
+RUN yarn install --check-files
 
 COPY . .
+
+RUN RAILS_ENV=development rake assets:precompile
+
+RUN rm -rf node_modules spec tmp/cache
 
 FROM ruby:2.7.1-alpine3.11
 

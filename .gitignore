@@ -9,9 +9,7 @@
 
 # Ignore secrets
 /config/application.yml
-/config/database.yml
 /config/cable.yml
-/config/master.key
 
 # Ignore all logfiles and tempfiles.
 /log/*
