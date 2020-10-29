@@ -1,4 +1,4 @@
-FROM ruby:2.7.1-alpine3.11 as Builder
+FROM ruby:2.7.2-alpine3.12 as Builder
 
 RUN apk --no-cache add bash git openssh httpie libxml2-dev libxslt-dev postgresql-dev \
   tzdata npm nodejs imagemagick yarn make cmake g++ postgresql-client nano
@@ -31,7 +31,7 @@ RUN RAILS_ENV=development rake assets:precompile
 
 RUN rm -rf node_modules spec tmp/cache
 
-FROM ruby:2.7.1-alpine3.11
+FROM ruby:2.7.2-alpine3.12
 
 RUN apk --no-cache add bash openssh httpie libxml2-dev libxslt-dev postgresql-dev \
   tzdata nodejs imagemagick postgresql-client nano
