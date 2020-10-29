@@ -86,9 +86,9 @@ group :test do
   gem 'mock_redis', '~> 0.22.0'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
-  gem 'selenium-webdriver', '~> 3.142'
   gem 'shoulda-matchers', '~> 4.4'
   gem 'simplecov', '~> 0.19.0', require: false
   gem 'simplecov-lcov', '~> 0.8.0', require: false
   gem 'undercover', '~> 0.3.4', require: false
+  gem 'webdrivers', '~> 4.0', require: false
 end
