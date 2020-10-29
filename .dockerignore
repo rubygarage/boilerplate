@@ -11,3 +11,8 @@
 /deploy/configs
 /.bundle
 /venv
+/node_modules
+/.terraform
+/coverage
+/.circleci
+/.github
