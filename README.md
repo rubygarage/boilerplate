@@ -26,8 +26,7 @@ Project wiki: https://github.com/rubygarage/boilerplate/wiki
 | ```Macro::Inject``` | Provides to set dependency injection in operations |
 | ```Macro::LinksBuilder``` | Provides to proxy resource path to ```Service::JsonApi::Paginator``` and sets composed links into context |
 | ```Macro::Model``` | Provides to assign model into context. Supports assign by relation chain, relation find_by |
-| ```Macro::ModelDelete``` | Provides to delete model |
-| ```Macro::ModelDestroy``` | Provides to destroy model |
+| ```Macro::ModelRemove``` | Provides to destroy and delete model. |
 | ```Macro::Renderer``` | Provides to render operation result with specified serializer with strict following Jsonapi specification |
 | ```Macro::Semantic``` | Provides to set value of semantic marker (```semantic_success``` or ```semantic_failure```) into context |
 
