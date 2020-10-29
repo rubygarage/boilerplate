@@ -8,12 +8,9 @@ RUN apk add --update --no-cache \
   postgresql-dev \
   tzdata \
   nodejs \
-  imagemagick \
   yarn \
-  make \
   cmake \
-  g++ \
-  postgresql-client \
+  build-base \
   nano
 
 ENV APP_USER app
@@ -29,25 +26,35 @@ USER $APP_USER
 COPY Gemfile* package.json yarn.lock .ruby-version ./
 
 RUN gem i bundler -v $(tail -1 Gemfile.lock | tr -d ' ') && \
-  bundle install || bundle check \
-  && rm -rf /usr/local/bundle/cache/*.gem \
-  && find /usr/local/bundle/gems/ -name "*.c" -delete \
-  && find /usr/local/bundle/gems/ -name "*.o" -delete
+    bundle install --without development test -j $(nproc) --retry 5 || bundle check \
+    && rm -rf /usr/local/bundle/cache/*.gem \
+    && find /usr/local/bundle/gems/ -name "*.c" -delete \
+    && find /usr/local/bundle/gems/ -name "*.o" -delete
 
 USER root
 
-RUN yarn install
-
-RUN RAILS_ENV=development rails assets:precompile
-
-RUN rm -rf node_modules spec
+RUN yarn install --check-files
 
 COPY . .
 
+RUN RAILS_ENV=development rails assets:precompile
+
+RUN rm -rf node_modules spec tmp/cache
+
 FROM ruby:2.7.1-alpine3.11
 
-RUN apk --no-cache add bash openssh httpie libxml2-dev libxslt-dev postgresql-dev \
-  tzdata nodejs imagemagick postgresql-client nano
+RUN apk add --update --no-cache \
+    bash \
+    build-base \
+    libxml2-dev \
+    libxslt-dev \
+    tzdata \
+    curl \
+    git \
+    nodejs \
+    imagemagick \
+    postgresql-client \
+    nano
 
 ENV APP_USER app
 ENV APP_HOME /home/www/boilerplate-api
