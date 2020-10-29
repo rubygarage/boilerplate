@@ -1,4 +1,4 @@
-FROM ruby:2.7.1-alpine3.11 as Builder
+FROM ruby:2.7.2-alpine3.12 as Builder
 
 RUN apk add --update --no-cache \
   bash \
@@ -41,7 +41,7 @@ RUN RAILS_ENV=development rails assets:precompile
 
 RUN rm -rf node_modules spec tmp/cache
 
-FROM ruby:2.7.1-alpine3.11
+FROM ruby:2.7.2-alpine3.12
 
 RUN apk add --update --no-cache \
     bash \
