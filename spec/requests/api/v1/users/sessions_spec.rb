@@ -34,7 +34,7 @@ RSpec.describe 'Api::V1::Users::Sessions', :dox, type: :request do
           let(:params) { { email: "_#{account.email}", password: password } }
 
           it 'returns not found status' do
-            expect(response).to be_not_found
+            expect(response).to be_unauthorized
           end
         end
       end

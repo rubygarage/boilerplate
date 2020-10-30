@@ -13,6 +13,8 @@ en:
       user_password:
         eql?: should match to password
     session:
+      email_not_found: Email not found
       invalid_token: invalid_token
+      wrong_credentials: Invalid email or password
     sort_params_uniq?: sort params not unique
     sort_params_valid?: invalid sort params

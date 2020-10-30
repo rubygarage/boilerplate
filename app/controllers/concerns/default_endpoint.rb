@@ -6,7 +6,7 @@ module DefaultEndpoint
       match.created      { |result| render_head_or_response(result, :created) }
       match.destroyed    { head(:no_content) }
       match.unauthorized { |result| render_head_or_errors(result, :unauthorized) }
-      match.not_found    { head(:not_found) }
+      match.not_found    { |result| render_head_or_errors(result, :not_found) }
       match.forbidden    { head(:forbidden) }
       match.gone         { head(:gone) }
       match.accepted     { head(:accepted) }

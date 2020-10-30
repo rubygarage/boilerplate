@@ -42,11 +42,13 @@ RSpec.describe Api::V1::Users::ResetPasswords::Operation::Create do
     end
 
     context 'when account not found' do
+      let(:errors) { { email: [I18n.t('errors.session.email_not_found')] } }
       let(:params) { { email: "_#{email}" } }
+
+      include_examples 'has validation errors'
 
       it 'sets semantic failure not_found' do
         expect(result[:semantic_failure]).to eq(:not_found)
-        expect(result).to be_failure
       end
     end
   end
