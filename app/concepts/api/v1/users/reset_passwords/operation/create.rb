@@ -11,7 +11,7 @@ module Api::V1::Users::ResetPasswords::Operation
     step Contract::Validate(), fail_fast: true
     step Model(Account, :find_by_email, :email)
     fail Macro::Semantic(failure: :not_found)
-    fail Macro::AddContractError(email: 'errors.session.email_not_found'), fail_fast: true
+    fail Macro::AddContractError(email: 'errors.reset_password.email_not_found'), fail_fast: true
     step :set_email_token
     step :push_email_token_to_redis
     step :send_reset_password_url

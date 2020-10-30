@@ -9,11 +9,12 @@ en:
     inclusion_params_uniq?: inclusion params not unique
     inclusion_params_valid?: can't include such association
     pagination_overflow: is out of limits
+    reset_password:
+      email_not_found: Email not found
     rules:
       user_password:
         eql?: should match to password
     session:
-      email_not_found: Email not found
       invalid_token: invalid_token
       wrong_credentials: Invalid email or password
     sort_params_uniq?: sort params not unique

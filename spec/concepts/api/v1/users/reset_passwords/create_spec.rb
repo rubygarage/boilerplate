@@ -42,7 +42,7 @@ RSpec.describe Api::V1::Users::ResetPasswords::Operation::Create do
     end
 
     context 'when account not found' do
-      let(:errors) { { email: [I18n.t('errors.session.email_not_found')] } }
+      let(:errors) { { email: [I18n.t('errors.reset_password.email_not_found')] } }
       let(:params) { { email: "_#{email}" } }
 
       include_examples 'has validation errors'
