@@ -44,12 +44,12 @@ RSpec.describe Api::V1::Users::Sessions::Operation::Create do
     describe 'authentication errors' do
       context 'when user does not exists' do
         let(:params) { { email: "_#{account.email}", password: password } }
-        let(:errors) { { base: [I18n.t('errors.session.not_found')] } }
+        let(:errors) { { base: [I18n.t('errors.session.wrong_credentials')] } }
 
         include_examples 'has validation errors'
 
         it 'sets unauthorized semantic_failure marker' do
-          expect(result[:semantic_failure]).to eq(:not_found)
+          expect(result[:semantic_failure]).to eq(:unauthorized)
         end
       end
 

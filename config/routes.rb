@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
+  root to: 'admin/dashboard#index'
+
   namespace :api do
     namespace :v1 do
       namespace :users do
