@@ -112,7 +112,7 @@ bin/docker rails c
 ### Running linters
 
 ```
-overcommit -r
+lefthook run all
 ```
 
 ### Using DIP
