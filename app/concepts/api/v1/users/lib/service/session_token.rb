@@ -17,11 +17,9 @@ module Api::V1::Users::Lib::Service::SessionToken
     end
 
     def refresh(payload:, refresh_token:)
-      session = JWTSessions::Session.new(payload: payload)
-      session.refresh(refresh_token) do
-        session.flush_by_token(refresh_token)
-        return false
-      end
+      session = JWTSessions::Session.new(payload: payload).refresh(refresh_token)
+      destroy(refresh_token: refresh_token)
+      session
     end
   end
 end
