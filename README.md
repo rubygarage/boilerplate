@@ -141,3 +141,11 @@ To start work with sentry you should add dsn key to credentials under `sentry_ds
 To get first error with `Sentry` raise `Raven.capture_exception` with exception as an argument.
 
 More information [here](https://docs.sentry.io/platforms/ruby/guides/rails/)
+
+### Password complexity for User
+
+Must contain at least 8 characters, of which: At list one upper case, at list one lowe case,
+
+at list one number, at list one special symbols from the list: `-_!@#$%^&*`.
+
+For example: `qwertY1@`
