@@ -6,9 +6,10 @@ RSpec.describe 'Api::V1::Users::Account::Profiles', :dox, type: :request do
   let!(:account) { create(:account, :with_user) }
   let(:headers) { { Authorization: auth_header(account) } }
   let(:params) { {} }
+  let(:profile_url) { '/api/v1/users/account/profile' }
 
   before do
-    get '/api/v1/users/account/profile', headers: headers, params: params
+    get profile_url, headers: headers, params: params
   end
 
   describe 'GET #show' do
@@ -33,6 +34,15 @@ RSpec.describe 'Api::V1::Users::Account::Profiles', :dox, type: :request do
         let(:params) { { include: 'not_valid_include' } }
 
         include_examples 'renders uri query errors'
+      end
+    end
+
+    describe 'N+1', :n_plus_one do
+      populate { |n| create_list(:account, n, :with_user) }
+
+      specify do
+        expect { get profile_url, headers: headers, params: params }
+          .to perform_constant_number_of_queries
       end
     end
   end

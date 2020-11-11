@@ -77,6 +77,14 @@ RSpec.describe 'Api::V1::Users::ResetPasswords', :dox, type: :request do
         end
       end
     end
+
+    describe 'N+1', :n_plus_one do
+      populate { |n| create_list(:account, n) }
+
+      specify do
+        expect { get reset_password_url }.to perform_constant_number_of_queries
+      end
+    end
   end
 
   describe 'PUT #update' do
