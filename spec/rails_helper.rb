@@ -15,7 +15,6 @@ end
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 
 require 'rspec/rails'
-require 'n_plus_one_control/rspec'
 
 begin
   ActiveRecord::Migration.maintain_test_schema!

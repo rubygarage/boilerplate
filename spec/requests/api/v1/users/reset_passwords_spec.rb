@@ -5,11 +5,12 @@ RSpec.describe 'Api::V1::Users::ResetPasswords', :dox, type: :request do
 
   let(:email) { FFaker::Internet.email }
   let!(:account) { create(:account, email: email) }
+  let(:reset_password_url) { '/api/v1/users/reset_password' }
 
   describe 'POST #create' do
     include ApiDoc::V1::Users::ResetPassword::Create
 
-    before { post '/api/v1/users/reset_password', params: params, as: :json }
+    before { post reset_password_url, params: params, as: :json }
 
     describe 'Success' do
       let(:params) { { email: email } }
@@ -17,6 +18,17 @@ RSpec.describe 'Api::V1::Users::ResetPasswords', :dox, type: :request do
       it 'returns accepted status' do
         expect(response).to be_accepted
         expect(response.body).to be_empty
+      end
+    end
+
+    describe 'N+1', :n_plus_one do
+      let(:params) { { email: email } }
+
+      populate { |n| create_list(:account, n) }
+
+      specify do
+        expect { post reset_password_url, params: params, as: :json }
+          .to perform_constant_number_of_queries
       end
     end
 

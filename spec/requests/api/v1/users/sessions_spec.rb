@@ -5,11 +5,12 @@ RSpec.describe 'Api::V1::Users::Sessions', :dox, type: :request do
 
   let(:password) { FFaker::Internet.password }
   let(:account) { create(:account, password: password) }
+  let(:user_session_url) { '/api/v1/users/session' }
 
   describe 'POST #create' do
     include ApiDoc::V1::Users::Session::Create
 
-    before { post '/api/v1/users/session', params: params, as: :json }
+    before { post user_session_url, params: params, as: :json }
 
     describe 'Success' do
       let(:params) { { email: account.email, password: password } }
@@ -17,6 +18,17 @@ RSpec.describe 'Api::V1::Users::Sessions', :dox, type: :request do
       it 'renders user whose session was created' do
         expect(response).to be_created
         expect(response).to match_json_schema('v1/users/session/create')
+      end
+    end
+
+    describe 'N+1', :n_plus_one do
+      let(:params) { { email: account.email, password: password } }
+
+      populate { |n| create_list(:account, n) }
+
+      specify do
+        expect { post user_session_url, params: params, as: :json }
+          .to perform_constant_number_of_queries
       end
     end
 

@@ -8,8 +8,9 @@ RSpec.describe 'Api::V1::Users::Sessions::Refreshes', :dox, type: :request do
 
     let(:account) { create(:account) }
     let(:headers) { { 'X-Refresh-Token': refresh_token } }
+    let(:refresh_url) { '/api/v1/users/session/refresh' }
 
-    before { post '/api/v1/users/session/refresh', headers: headers, as: :json }
+    before { post refresh_url, headers: headers, as: :json }
 
     describe 'Success' do
       let(:refresh_token) { create_token(:refresh, :expired, account: account) }
@@ -17,6 +18,17 @@ RSpec.describe 'Api::V1::Users::Sessions::Refreshes', :dox, type: :request do
       it 'renders refreshed tokens bundle in meta' do
         expect(response).to be_created
         expect(response).to match_json_schema('v1/users/session/refresh/create')
+      end
+    end
+
+    describe 'N+1', :n_plus_one do
+      let(:refresh_token) { create_token(:refresh, :expired, account: account) }
+
+      populate { |n| create_list(:account, n) }
+
+      specify do
+        expect { post refresh_url, headers: headers, as: :json }
+          .to perform_constant_number_of_queries
       end
     end
 
