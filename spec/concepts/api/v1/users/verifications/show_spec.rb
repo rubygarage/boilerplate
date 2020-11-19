@@ -10,7 +10,7 @@ RSpec.describe Api::V1::Users::Verifications::Operation::Show do
   describe 'Success' do
     it 'verifies user account' do
       expect(Api::V1::Users::Lib::Operation::DecryptEmailToken).to receive(:call).and_call_original
-      expect(Api::V1::Users::Lib::Worker::EmailNotification).to receive(:perform_async).and_call_original
+      expect(UserMailer).to receive(:verification_successful).with(email: account.email).and_call_original
       expect { result }
         .to change { account.reload.verified }.from(false).to(true)
         .and change { User.exists?(account_id: account.id) }.from(false).to(true)

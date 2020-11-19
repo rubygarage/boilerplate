@@ -21,7 +21,7 @@ RSpec.describe Api::V1::Users::Lib::Service::SessionToken do
         expect(Api::V1::Users::Lib::Service::TokenNamespace).not_to receive(:call)
         expect(JWTSessions::Session)
           .to receive(:new)
-          .with(payload: { account_id: account_id })
+          .with(payload: { account_id: account_id }, refresh_payload: { account_id: account_id })
           .and_return(jwt_session_instance)
         expect(jwt_session_instance).to receive(:login).with(no_args)
         service
@@ -41,7 +41,10 @@ RSpec.describe Api::V1::Users::Lib::Service::SessionToken do
           .and_call_original
         expect(JWTSessions::Session)
           .to receive(:new)
-          .with(payload: { account_id: account_id, namespace: "#{namespace}-#{account_id}" })
+          .with(
+            payload: { account_id: account_id, namespace: "#{namespace}-#{account_id}" },
+            refresh_payload: { account_id: account_id, namespace: "#{namespace}-#{account_id}" }
+          )
           .and_return(jwt_session_instance)
         expect(jwt_session_instance).to receive(:login).with(no_args)
         service

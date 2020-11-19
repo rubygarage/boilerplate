@@ -5,8 +5,7 @@ module Api::V1::Users::ResetPasswords::Operation
     step Macro::Inject(
       redis: 'adapters.redis',
       session: 'services.session_token',
-      namespace: 'services.token_namespace',
-      worker: Api::V1::Users::Lib::Worker::EmailNotification
+      namespace: 'services.token_namespace'
     )
     step Subprocess(Api::V1::Users::Lib::Operation::DecryptEmailToken), fast_track: true
     step Subprocess(Api::V1::Users::Lib::Operation::CheckEmailTokenRedisEquality)
@@ -17,8 +16,8 @@ module Api::V1::Users::ResetPasswords::Operation
     step :destroy_redis_email_token
     step :destroy_all_user_sessions
 
-    def send_notification(_ctx, worker:, model:, **)
-      worker.perform_async(email: model.email, user_mailer: :reset_password_successful)
+    def send_notification(_ctx, model:, **)
+      UserMailer.reset_password_successful(email: model.email).deliver_later
     end
 
     def destroy_redis_email_token(_ctx, redis:, email_token:, **)
