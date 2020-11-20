@@ -48,6 +48,7 @@ detectors:
       - Service::JsonApi::ErrorDataStructureParser#plain_errors?
       - Service::JsonApi::UriQueryErrorSerializer#compose_nested_errors
       - Macro::Contract::BaseSchemaObject#build_schema
+      - Macro::Policy::Pundit::Condition#result!
 
   LongParameterList:
     max_params: 6

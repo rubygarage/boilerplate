@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-module Macro
+module Macro # :reek:MissingSafeMethod { exclude: [ result! ] }
   module Policy
     def self.Pundit(policy_class, action, user: nil, model: nil, name: :default)
-      Policy.step(Pundit.build(policy_class, action, user: user, model: model), name: name)
+      Trailblazer::Macro::Policy.step(Pundit.build(policy_class, action, user: user, model: model), name: name)
     end
 
     module Pundit
@@ -12,7 +12,7 @@ module Macro
       end
 
       class Condition
-        def initialize(policy_class, action, user, model)
+        def initialize(policy_class, action, user: nil, model: nil)
           @policy_class, @user, @model, @action = policy_class, user, model, action
         end
 
