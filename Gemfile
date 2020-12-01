@@ -79,7 +79,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '~> 3.33'
+  gem 'capybara', '~> 3.34'
   gem 'dox', '~> 1.2'
   gem 'json_matchers', '~> 0.10.0', require: 'json_matchers/rspec'
   gem 'mock_redis', '~> 0.22.0'
