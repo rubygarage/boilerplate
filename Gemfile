@@ -83,7 +83,7 @@ group :test do
   gem 'dox', '~> 1.2'
   gem 'json_matchers', '~> 0.10.0', require: 'json_matchers/rspec'
   gem 'mock_redis', '~> 0.22.0'
-  gem 'n_plus_one_control', '~> 0.5.0'
+  gem 'n_plus_one_control', '~> 0.6.0'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'shoulda-matchers', '~> 4.4'
