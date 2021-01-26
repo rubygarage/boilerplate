@@ -25,6 +25,30 @@ RSpec.describe Api::V1::Lib::Operation::PerformFiltering do
 
       before { create_list(:user, 2) }
 
+      context 'when pass integer as value' do
+        let(:search_value) { user.id }
+        let(:filter_column) { 'id' }
+        let(:predicate) { 'eq' }
+
+        it 'returns users that contains search value' do
+          expect(operation[:relation]).to include(user)
+          expect(operation[:relation].count).to eq(1)
+          expect(operation).to be_success
+        end
+      end
+
+      context 'when pass array as value' do
+        let(:search_value) { [user.id] }
+        let(:filter_column) { 'id' }
+        let(:predicate) { 'eq' }
+
+        it 'returns users that contains search value' do
+          expect(operation[:relation]).to include(user)
+          expect(operation[:relation].count).to eq(1)
+          expect(operation).to be_success
+        end
+      end
+
       context 'when pass several filter values' do
         let(:search_value) { [search_name, search_name_2].join(',') }
         let(:search_name_2) { 'user2' }
