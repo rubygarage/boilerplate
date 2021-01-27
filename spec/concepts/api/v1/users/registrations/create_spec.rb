@@ -25,7 +25,7 @@ RSpec.describe Api::V1::Users::Registrations::Operation::Create do
     shared_examples 'empty params' do
       let(:errors) { { email: [I18n.t('errors.filled?')], password: [I18n.t('errors.filled?')] } }
 
-      include_examples 'has validation errors'
+      include_examples 'has validation errors', namespace: 'registration'
     end
 
     context 'without params' do
@@ -44,7 +44,7 @@ RSpec.describe Api::V1::Users::Registrations::Operation::Create do
       let(:params) { { email: true, password: [1] } }
       let(:errors) { { email: [I18n.t('errors.str?')], password: [I18n.t('errors.str?')] } }
 
-      include_examples 'has validation errors'
+      include_examples 'has validation errors', namespace: 'registration'
     end
 
     describe 'invalid params' do
@@ -52,35 +52,35 @@ RSpec.describe Api::V1::Users::Registrations::Operation::Create do
         let(:email) { "#{FFaker::Internet.email}1" }
         let(:errors) { { email: [I18n.t('errors.format?')] } }
 
-        include_examples 'has validation errors'
+        include_examples 'has validation errors', namespace: 'registration'
       end
 
       context 'when email is too big' do
         let(:email) { "#{FFaker::Internet.email}#{'a' * 255}" }
         let(:errors) { { email: [I18n.t('errors.max_size?', num: Constants::Shared::EMAIL_MAX_LENGTH)] } }
 
-        include_examples 'has validation errors'
+        include_examples 'has validation errors', namespace: 'registration'
       end
 
       context 'when password is too short' do
         let(:password) { FFaker::Internet.password[0..6] }
         let(:errors) { { password: [I18n.t('errors.min_size?', num: Constants::Shared::PASSWORD_MIN_SIZE)] } }
 
-        include_examples 'has validation errors'
+        include_examples 'has validation errors', namespace: 'registration'
       end
 
       context 'when password does not match password pattern' do
         let(:password) { 'password' }
         let(:errors) { { password: [I18n.t('errors.format?')] } }
 
-        include_examples 'has validation errors'
+        include_examples 'has validation errors', namespace: 'registration'
       end
 
       context 'when different passwords' do
         let(:password_confirmation) { "#{password}_" }
         let(:errors) { { password_confirmation: [I18n.t('errors.rules.user_password.eql?')] } }
 
-        include_examples 'has validation errors'
+        include_examples 'has validation errors', namespace: 'registration'
       end
 
       context 'when email not unique' do
@@ -88,7 +88,7 @@ RSpec.describe Api::V1::Users::Registrations::Operation::Create do
 
         before { create(:account, email: email) }
 
-        include_examples 'has validation errors'
+        include_examples 'has validation errors', namespace: 'registration'
       end
     end
   end
