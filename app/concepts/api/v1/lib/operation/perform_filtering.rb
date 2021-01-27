@@ -13,7 +13,8 @@ module Api::V1::Lib::Operation
     def build_filter_query(ctx, filter_options:, **)
       ctx[:filter_query] = filter_options.map do |option|
         value = option[:value]
-        value = value.include?(',') ? value.split(',') : value
+        value = value.split(',') if value.is_a?(String)
+        value = value.first if value.is_a?(Array) && value.one?
 
         {
           "#{option[:column]}_#{option[:predicate]}": value
