@@ -33,7 +33,7 @@ gem 'jsonapi-serializer', '~> 2.1'
 gem 'oj', '~> 3.10'
 
 # Pagination
-gem 'pagy', '~> 3.9'
+gem 'pagy', '~> 3.10'
 
 # Uploading
 gem 'aws-sdk-s3', '~> 1.87'
