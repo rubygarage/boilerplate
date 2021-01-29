@@ -9,6 +9,27 @@ RSpec.describe Macro do
     let(:params) { { path: %i[object sub_object] } }
     let(:ctx) { { object: object } }
     let(:flow_options) { { options: [] } }
+    let(:dummy_destroy) { DummyDestroy.call(params: operation_params) }
+
+    # rubocop:disable RSpec/LeakyConstantDeclaration
+    DummyDestroy = Class.new(Trailblazer::Operation) do
+      step Model(Account, :find_by), fail_fast: true
+      step Macro::ModelRemove(path: [:model])
+    end
+    # rubocop:enable RSpec/LeakyConstantDeclaration
+
+    context 'when call destroy several times' do
+      let(:account) { create(:account) }
+      let(:operation_params) { { id: account.id } }
+
+      it 'access to destroy' do
+        expect(dummy_destroy).to be_success
+      end
+
+      it 'has not raise error' do
+        expect { dummy_destroy }.not_to raise_error
+      end
+    end
 
     context 'when model found and destroy complete successfully' do
       it 'calls :destroy on found model' do
