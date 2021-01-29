@@ -37,8 +37,18 @@ RSpec.describe 'Api::V1::Users::Registrations', :dox, type: :request do
       describe 'Unprocessable Entity' do
         context 'when wrong params' do
           let(:params) { {} }
+          let(:bad_request_error) do
+            {
+              'errors' => [
+                { 'detail' => I18n.t('errors.filled?'),
+                  'source' => { 'pointer' => 'email' } },
+                { 'detail' => I18n.t('errors.filled?'),
+                  'source' => { 'pointer' => 'password' } }
+              ]
+            }
+          end
 
-          include_examples 'renders unprocessable entity errors'
+          include_examples 'renders bad_request errors'
         end
       end
     end
