@@ -60,7 +60,7 @@ group :development, :test do
   gem 'brakeman', '~> 5.0', require: false
   gem 'bundle-audit', '~> 0.1.0', require: false
   gem 'fasterer', '~> 0.8.3', require: false
-  gem 'i18n-tasks', '~> 0.9.31', require: false
+  gem 'i18n-tasks', '~> 0.9.33', require: false
   gem 'lefthook', '~> 0.7.2', require: false
   gem 'rails_best_practices', '~> 1.20', require: false
   gem 'reek', '6.0.3', require: false
