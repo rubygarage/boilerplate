@@ -11,7 +11,7 @@ gem 'rails', '~> 6.0'
 gem 'sidekiq', '~> 6.1'
 
 # Admin panel
-gem 'activeadmin', '~> 2.8'
+gem 'activeadmin', '~> 2.9'
 
 gem 'webpacker', '~> 5.0'
 
@@ -87,7 +87,7 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'shoulda-matchers', '~> 4.5'
-  gem 'simplecov', '~> 0.19.1', require: false
+  gem 'simplecov', '~> 0.21.2', require: false
   gem 'simplecov-lcov', '~> 0.8.0', require: false
   gem 'undercover', '~> 0.3.4', require: false
   gem 'webdrivers', '~> 4.0', require: false
