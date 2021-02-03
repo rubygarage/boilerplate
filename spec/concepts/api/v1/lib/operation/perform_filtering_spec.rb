@@ -37,6 +37,17 @@ RSpec.describe Api::V1::Lib::Operation::PerformFiltering do
         end
       end
 
+      context 'when pass datetime as value' do
+        let(:search_value) { user.created_at.to_json }
+        let(:filter_column) { 'created_at' }
+        let(:predicate) { 'eq' }
+
+        it 'returns users that contains search value' do
+          expect(operation[:relation]).to include(user)
+          expect(operation).to be_success
+        end
+      end
+
       context 'when pass array as value' do
         let(:search_value) { [user.id] }
         let(:filter_column) { 'id' }
