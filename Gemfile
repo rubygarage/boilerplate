@@ -7,7 +7,7 @@ ruby(File.read(File.join(File.dirname(__FILE__), '.ruby-version')).strip)
 # System
 gem 'pg', '~> 1.2', '>= 1.2.3'
 gem 'puma', '~> 5.0'
-gem 'rails', '~> 6.0'
+gem 'rails', '~> 6.1'
 gem 'sidekiq', '~> 6.1'
 
 # Admin panel
@@ -30,7 +30,7 @@ gem 'draper', '~> 4.0', '>= 4.0.1'
 
 # JSON:API Serializer
 gem 'jsonapi-serializer', '~> 2.1'
-gem 'oj', '~> 3.10'
+gem 'oj', '~> 3.11'
 
 # Pagination
 gem 'pagy', '~> 3.10'
