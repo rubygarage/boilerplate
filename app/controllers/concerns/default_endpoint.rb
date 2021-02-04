@@ -7,8 +7,8 @@ module DefaultEndpoint
       match.destroyed    { head(:no_content) }
       match.unauthorized { |result| render_head_or_errors(result, :unauthorized) }
       match.not_found    { |result| render_head_or_errors(result, :not_found) }
-      match.forbidden    { head(:forbidden) }
-      match.gone         { head(:gone) }
+      match.forbidden    { |result| render_head_or_errors(result, :forbidden) }
+      match.gone         { |result| render_head_or_errors(result, :gone) }
       match.accepted     { head(:accepted) }
       match.invalid      { |result| render_errors(result, :unprocessable_entity) }
       match.success      { |result| success_response(result) }

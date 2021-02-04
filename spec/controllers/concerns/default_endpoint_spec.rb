@@ -89,16 +89,16 @@ RSpec.describe DefaultEndpoint do
 
     context 'when forbidden matcher' do
       let(:matcher_case) { { forbidden: true } }
-      let(:expected_method) { :head }
-      let(:args) { [:forbidden] }
+      let(:expected_method) { :render_head_or_errors }
+      let(:args) { [result, :forbidden] }
 
       it_behaves_like('calls specific method')
     end
 
     context 'when gone matcher' do
       let(:matcher_case) { { gone: true } }
-      let(:expected_method) { :head }
-      let(:args) { [:gone] }
+      let(:expected_method) { :render_head_or_errors }
+      let(:args) { [result, :gone] }
 
       it_behaves_like('calls specific method')
     end
