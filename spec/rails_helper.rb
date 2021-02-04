@@ -44,3 +44,5 @@ RSpec.configure do |config|
   config.include Helpers::OperationHelpers, type: :operation
   config.include Helpers::RequestHelpers, type: :request
 end
+
+require 'swagger_helper'

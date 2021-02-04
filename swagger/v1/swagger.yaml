@@ -1,0 +1,222 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/users/account/profile/":
+    get:
+      summary: show profile
+      tags:
+      - Users
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '401':
+          description: when successful renders user profile
+  "/api/v1/users/account/profile/?include=not_valid_include":
+    get:
+      summary: show profile
+      tags:
+      - Users
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '400':
+          description: when not found user profile
+  "/api/v1/users/account/profile/?include=account":
+    get:
+      summary: show profile
+      tags:
+      - Users
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: when successful renders user profile
+  "/api/v1/users/registration":
+    post:
+      summary: Creates a user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: user created
+        '400':
+          description: unprocessable entity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                password_confirmation:
+                  type: string
+              required:
+              - email
+              - password
+              - password_confirmation
+  "/api/v1/users/reset_password/?email_token={email_token}":
+    get:
+      summary: show reset_password
+      tags:
+      - Users
+      parameters:
+      - name: email_token
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successful
+        '422':
+          description: Unprocessable Entity
+        '404':
+          description: Unprocessable Entity
+  "/api/v1/users/reset_password/":
+    post:
+      summary: create reset_password
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '202':
+          description: successful
+        '422':
+          description: when wrong params
+        '404':
+          description: user account not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+              required:
+              - email
+    put:
+      summary: update reset_password
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '204':
+          description: successful updates user account password
+        '422':
+          description: successful updates user account password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email_token:
+                  type: string
+                password:
+                  type: string
+                password_confirmation:
+                  type: string
+              required:
+              - email_token
+              - password
+              - password_confirmation
+  "/api/v1/users/session/refresh":
+    post:
+      summary: create refresh
+      tags:
+      - Users
+      parameters:
+      - name: X-Refresh-Token
+        in: header
+        schema:
+          type: string
+      responses:
+        '403':
+          description: when unexpired access token
+        '401':
+          description: when user unauthenticated
+        '201':
+          description: successful renders refreshed tokens bundle in meta
+  "/api/v1/users/session":
+    post:
+      summary: create session
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: successfu renders user whose session was createdl
+        '422':
+          description: when wrong params
+        '401':
+          description: when user account not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                password_confirmation:
+                  type: string
+              required:
+              - email
+              - password
+              - password_confirmation
+    delete:
+      summary: delete session
+      tags:
+      - Users
+      parameters:
+      - name: X-Refresh-Token
+        in: header
+        schema:
+          type: string
+      responses:
+        '401':
+          description: successful clears user session
+        '204':
+          description: successful clears user session
+  "/api/v1/users/verification?email_token={email_token}":
+    get:
+      summary: show verification
+      tags:
+      - Users
+      parameters:
+      - name: email_token
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '404':
+          description: when user account not found
+        '422':
+          description: when wrong email token
+        '204':
+          description: successful verifies user account
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
