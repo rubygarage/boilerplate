@@ -36,7 +36,7 @@ gem 'oj', '~> 3.10'
 gem 'pagy', '~> 3.10'
 
 # Uploading
-gem 'aws-sdk-s3', '~> 1.87'
+gem 'aws-sdk-s3', '~> 1.88'
 gem 'shrine', '~> 3.3'
 
 # Reduces boot times through caching; required in config/boot.rb
@@ -90,5 +90,5 @@ group :test do
   gem 'simplecov', '~> 0.21.2', require: false
   gem 'simplecov-lcov', '~> 0.8.0', require: false
   gem 'undercover', '~> 0.3.4', require: false
-  gem 'webdrivers', '~> 4.0', require: false
+  gem 'webdrivers', '~> 4.5', require: false
 end
