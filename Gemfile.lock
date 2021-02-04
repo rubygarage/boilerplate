@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/trailblazer/trailblazer-endpoint.git
-  revision: 0c80379a4ae977aa427092aade2aa07882f9381d
+  revision: c0d06980174b7a1dead9e4968a8aae1d7e88f0d9
   specs:
-    trailblazer-endpoint (0.0.1)
-      dry-matcher
+    trailblazer-endpoint (0.0.8)
+      trailblazer-activity-dsl-linear (>= 0.3.4, < 0.4.0)
 
 GEM
   remote: https://rubygems.org/
@@ -165,15 +165,13 @@ GEM
     dry-container (0.7.2)
       concurrent-ruby (~> 1.0)
       dry-configurable (~> 0.1, >= 0.1.3)
-    dry-core (0.4.9)
+    dry-core (0.5.0)
       concurrent-ruby (~> 1.0)
     dry-equalizer (0.3.0)
     dry-logic (0.6.1)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.2)
       dry-equalizer (~> 0.2)
-    dry-matcher (0.8.3)
-      dry-core (>= 0.4.8)
     dry-types (0.12.3)
       concurrent-ruby (~> 1.0)
       dry-configurable (~> 0.1)
@@ -489,24 +487,24 @@ GEM
       trailblazer-macro (>= 2.1.0, < 2.2.0)
       trailblazer-macro-contract (>= 2.1.0, < 2.2.0)
       trailblazer-operation
-    trailblazer-activity (0.11.3)
+    trailblazer-activity (0.11.5)
       trailblazer-context (>= 0.3.1, < 0.4.0)
-    trailblazer-activity-dsl-linear (0.3.2)
-      trailblazer-activity (>= 0.11.2, < 1.0.0)
+    trailblazer-activity-dsl-linear (0.3.4)
+      trailblazer-activity (>= 0.11.3, < 1.0.0)
     trailblazer-context (0.3.1)
       hashie (~> 4.1)
-    trailblazer-developer (0.0.16)
+    trailblazer-developer (0.0.20)
       hirb
       representable
       trailblazer-activity (>= 0.11.0, < 1.0.0)
       trailblazer-activity-dsl-linear
-    trailblazer-macro (2.1.3)
-      trailblazer-activity (>= 0.10.0, < 1.0.0)
-      trailblazer-activity-dsl-linear (>= 0.2.7, < 1.0.0)
-      trailblazer-operation (>= 0.6.2)
+    trailblazer-macro (2.1.4)
+      trailblazer-activity (>= 0.11.2, < 1.0.0)
+      trailblazer-activity-dsl-linear (>= 0.3.3, < 1.0.0)
+      trailblazer-operation (>= 0.6.5)
     trailblazer-macro-contract (2.1.0)
       reform (>= 2.2.0, < 3.0.0)
-    trailblazer-operation (0.6.5)
+    trailblazer-operation (0.6.6)
       trailblazer-activity (>= 0.11.2, < 1.0.0)
       trailblazer-activity-dsl-linear (>= 0.3.2, < 1.0.0)
       trailblazer-developer (>= 0.0.8)
