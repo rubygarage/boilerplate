@@ -1,23 +1,51 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Api::V1::Users::Sessions', :dox, type: :request do
-  include ApiDoc::V1::Users::Session::Api
-
+RSpec.describe 'Api::V1::Users::Sessions', type: :request do
   let(:password) { FFaker::Internet.password }
   let(:account) { create(:account, password: password) }
-  let(:user_session_url) { '/api/v1/users/session' }
 
   describe 'POST #create' do
-    include ApiDoc::V1::Users::Session::Create
+    path '/api/v1/users/session' do
+      post('create session') do
+        tags 'Users'
+        consumes 'application/json'
+        parameter name: :params, in: :body, schema: {
+          type: :object,
+          properties: {
+            email: { type: :string },
+            password: { type: :string },
+            password_confirmation: { type: :string }
+          },
+          required: %w[email password password_confirmation]
+        }
 
-    before { post user_session_url, params: params, as: :json }
+        response(201, 'successfu renders user whose session was createdl') do
+          let(:params) { { email: account.email, password: password } }
 
-    describe 'Success' do
-      let(:params) { { email: account.email, password: password } }
+          run_test! do
+            expect(response).to be_created
+            expect(response).to match_json_schema('v1/users/session/create')
+          end
+        end
 
-      it 'renders user whose session was created' do
-        expect(response).to be_created
-        expect(response).to match_json_schema('v1/users/session/create')
+        response(422, 'when wrong params') do
+          let(:params) { {} }
+
+          include_examples 'renders unprocessable entity errors'
+        end
+
+        response(401, 'when user unauthenticated') do
+          let(:params) { { email: account.email, password: "_#{password}" } }
+          let(:'X-Refresh-Token') { nil }
+
+          include_examples 'renders unauthenticated errors'
+        end
+
+        response(401, 'when user account not found') do
+          let(:params) { { email: "_#{account.email}", password: password } }
+
+          run_test!
+        end
       end
     end
 
@@ -27,58 +55,32 @@ RSpec.describe 'Api::V1::Users::Sessions', :dox, type: :request do
       populate { |n| create_list(:account, n) }
 
       specify do
-        expect { post user_session_url, params: params, as: :json }
+        expect { post '/api/v1/users/session', params: params, as: :json }
           .to perform_constant_number_of_queries
-      end
-    end
-
-    describe 'Failure' do
-      describe 'Unprocessable Entity' do
-        context 'when wrong params' do
-          let(:params) { {} }
-
-          include_examples 'renders unprocessable entity errors'
-        end
-      end
-
-      describe 'Not Found' do
-        context 'when user account not found' do
-          let(:params) { { email: "_#{account.email}", password: password } }
-
-          it 'returns not found status' do
-            expect(response).to be_unauthorized
-          end
-        end
-      end
-
-      describe 'Unauthorized' do
-        context 'when user unauthenticated' do
-          let(:params) { { email: account.email, password: "_#{password}" } }
-
-          include_examples 'renders unauthenticated errors'
-        end
       end
     end
   end
 
   describe 'DELETE #destroy' do
-    include ApiDoc::V1::Users::Session::Destroy
+    let(:'X-Refresh-Token') { create_token(:refresh, account: account) }
 
-    let(:headers) { { 'X-Refresh-Token': create_token(:refresh, account: account) } }
+    path '/api/v1/users/session' do
+      delete('delete session') do
+        tags 'Users'
+        consumes 'application/json'
+        parameter name: :'X-Refresh-Token', in: :header, type: :string
 
-    before { delete '/api/v1/users/session', headers: headers, as: :json }
+        response(401, 'successful clears user session') do
+          let(:'X-Refresh-Token') { nil }
 
-    describe 'Success' do
-      it 'clears user session' do
-        expect(response).to be_no_content
-        expect(response.body).to be_empty
-      end
-    end
-
-    describe 'Failure' do
-      describe 'Unauthorized' do
-        context 'when user unauthenticated' do
           include_examples 'renders unauthenticated errors'
+        end
+
+        response(204, 'successful clears user session') do
+          run_test! do
+            expect(response).to be_no_content
+            expect(response.body).to be_empty
+          end
         end
       end
     end

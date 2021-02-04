@@ -64,6 +64,7 @@ group :development, :test do
   gem 'lefthook', '~> 0.7.2', require: false
   gem 'rails_best_practices', '~> 1.20', require: false
   gem 'reek', '6.0.3', require: false
+  gem 'rswag', '~> 2.3.2'
   gem 'rubocop', '~> 0.93.1', require: false
   gem 'rubocop-performance', '~> 1.8', require: false
   gem 'rubocop-rails', '~> 2.8', require: false
@@ -80,7 +81,6 @@ end
 
 group :test do
   gem 'capybara', '~> 3.34'
-  gem 'dox', '~> 1.2'
   gem 'json_matchers', '~> 0.11.1', require: 'json_matchers/rspec'
   gem 'mock_redis', '~> 0.22.0'
   gem 'n_plus_one_control', '~> 0.6.0'

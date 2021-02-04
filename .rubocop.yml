@@ -141,6 +141,11 @@ Layout/ClassStructure:
 
 # RSpec -----------------------------------------------------------------------
 
+RSpec/VariableName:
+  Exclude:
+    - spec/requests/**/*
+    - spec/support/shared_examples/request/*
+
 RSpec/MultipleMemoizedHelpers:
   Enabled: false
 
