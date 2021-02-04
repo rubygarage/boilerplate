@@ -92,12 +92,12 @@ bin/docker rspec
 ### Building API documentation
 Generate a request spec file:
 ```
-RAILS_ENV=test rails generate rspec:swagger API::MyController
+rails generate rspec:swagger API::MyController
 ```
 Building api documentation is pretty easy, just run:
 
 ```
-RAILS_ENV=test rake rswag
+rake rswag
 ```
 
 and find it into:
