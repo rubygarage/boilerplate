@@ -30,7 +30,7 @@ gem 'draper', '~> 4.0', '>= 4.0.1'
 
 # JSON:API Serializer
 gem 'jsonapi-serializer', '~> 2.1'
-gem 'oj', '~> 3.10'
+gem 'oj', '~> 3.11'
 
 # Pagination
 gem 'pagy', '~> 3.10'
