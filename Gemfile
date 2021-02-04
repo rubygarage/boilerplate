@@ -11,7 +11,7 @@ gem 'rails', '~> 6.0'
 gem 'sidekiq', '~> 6.1'
 
 # Admin panel
-gem 'activeadmin', '~> 2.8'
+gem 'activeadmin', '~> 2.9'
 
 gem 'webpacker', '~> 5.0'
 
@@ -36,7 +36,7 @@ gem 'oj', '~> 3.11'
 gem 'pagy', '~> 3.10'
 
 # Uploading
-gem 'aws-sdk-s3', '~> 1.87'
+gem 'aws-sdk-s3', '~> 1.88'
 gem 'shrine', '~> 3.3'
 
 # Reduces boot times through caching; required in config/boot.rb
@@ -60,7 +60,7 @@ group :development, :test do
   gem 'brakeman', '~> 5.0', require: false
   gem 'bundle-audit', '~> 0.1.0', require: false
   gem 'fasterer', '~> 0.8.3', require: false
-  gem 'i18n-tasks', '~> 0.9.31', require: false
+  gem 'i18n-tasks', '~> 0.9.33', require: false
   gem 'lefthook', '~> 0.7.2', require: false
   gem 'rails_best_practices', '~> 1.20', require: false
   gem 'reek', '6.0.3', require: false
@@ -87,7 +87,7 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'shoulda-matchers', '~> 4.5'
-  gem 'simplecov', '~> 0.19.1', require: false
+  gem 'simplecov', '~> 0.21.2', require: false
   gem 'simplecov-lcov', '~> 0.8.0', require: false
   gem 'undercover', '~> 0.3.4', require: false
   gem 'webdrivers', '~> 4.0', require: false
