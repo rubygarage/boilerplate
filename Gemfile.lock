@@ -520,7 +520,7 @@ GEM
     unicode-display_width (1.7.0)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webdrivers (4.4.1)
+    webdrivers (4.5.0)
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
       selenium-webdriver (>= 3.0, < 4.0)
@@ -593,7 +593,7 @@ DEPENDENCIES
   trailblazer (~> 2.1)
   trailblazer-endpoint!
   undercover (~> 0.3.4)
-  webdrivers (~> 4.0)
+  webdrivers (~> 4.5)
   webpacker (~> 5.0)
 
 RUBY VERSION
