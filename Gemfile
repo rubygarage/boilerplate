@@ -21,7 +21,7 @@ gem 'rack-cors', '~> 1.1'
 
 # Trailblazer bundle
 gem 'dry-container', '~> 0.7.2'
-gem 'dry-validation', '0.11.1'
+gem 'dry-validation', '1.6.0'
 gem 'trailblazer', '~> 2.1'
 gem 'trailblazer-endpoint', github: 'trailblazer/trailblazer-endpoint'
 
@@ -80,7 +80,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '~> 3.34'
+  gem 'capybara', '~> 3.35'
   gem 'json_matchers', '~> 0.11.1', require: 'json_matchers/rspec'
   gem 'mock_redis', '~> 0.22.0'
   gem 'n_plus_one_control', '~> 0.6.0'
