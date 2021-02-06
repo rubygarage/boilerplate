@@ -6,7 +6,7 @@ ruby(File.read(File.join(File.dirname(__FILE__), '.ruby-version')).strip)
 
 # System
 gem 'pg', '~> 1.2', '>= 1.2.3'
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 5.2'
 gem 'rails', '~> 6.1'
 gem 'sidekiq', '~> 6.1'
 
@@ -66,7 +66,7 @@ group :development, :test do
   gem 'reek', '6.0.3', require: false
   gem 'rswag', '~> 2.3.2'
   gem 'rubocop', '~> 0.93.1', require: false
-  gem 'rubocop-performance', '~> 1.8', require: false
+  gem 'rubocop-performance', '~> 1.9', require: false
   gem 'rubocop-rails', '~> 2.9', require: false
   gem 'rubocop-rspec', '~> 1.43', require: false
 end
@@ -74,7 +74,7 @@ end
 group :development do
   gem 'dip', '~> 6.1'
   gem 'letter_opener', '~> 1.7'
-  gem 'listen', '~> 3.2', '>= 3.2.1'
+  gem 'listen', '~> 3.4'
   gem 'spring', '~> 2.1'
   gem 'spring-watcher-listen', '~> 2.0', '>= 2.0.1'
 end
@@ -89,6 +89,6 @@ group :test do
   gem 'shoulda-matchers', '~> 4.5'
   gem 'simplecov', '~> 0.21.2', require: false
   gem 'simplecov-lcov', '~> 0.8.0', require: false
-  gem 'undercover', '~> 0.3.4', require: false
+  gem 'undercover', '~> 0.4.0', require: false
   gem 'webdrivers', '~> 4.5', require: false
 end
