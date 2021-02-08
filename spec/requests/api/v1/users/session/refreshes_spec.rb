@@ -2,7 +2,6 @@
 
 RSpec.describe 'Api::V1::Users::Session::Refreshes', type: :request do
   let(:account) { create(:account) }
-  let(:headers) { { 'X-Refresh-Token': refresh_token } }
 
   describe 'POST #create' do
     path '/api/v1/users/session/refresh' do
@@ -38,6 +37,7 @@ RSpec.describe 'Api::V1::Users::Session::Refreshes', type: :request do
     end
 
     describe 'N+1', :n_plus_one do
+      let(:headers) { { 'X-Refresh-Token': refresh_token } }
       let(:refresh_token) { create_token(:refresh, :expired, account: account) }
 
       populate { |n| create_list(:account, n) }
