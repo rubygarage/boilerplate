@@ -3,7 +3,7 @@
 module Api::V1::Users
   class VerificationsController < ApiController
     def show
-      endpoint Api::V1::Users::Verifications::Operation::Show
+      endpoint operation: Api::V1::Users::Verifications::Operation::Show
     end
   end
 end

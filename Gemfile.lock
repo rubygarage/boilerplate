@@ -1,10 +1,3 @@
-GIT
-  remote: https://github.com/trailblazer/trailblazer-endpoint.git
-  revision: 0c80379a4ae977aa427092aade2aa07882f9381d
-  specs:
-    trailblazer-endpoint (0.0.1)
-      dry-matcher
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -172,8 +165,6 @@ GEM
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.2)
       dry-equalizer (~> 0.2)
-    dry-matcher (0.8.3)
-      dry-core (>= 0.4.8)
     dry-types (0.12.3)
       concurrent-ruby (~> 1.0)
       dry-configurable (~> 0.1)
@@ -464,6 +455,7 @@ GEM
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
+    simple_endpoint (1.0.0)
     simplecov (0.21.2)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -586,12 +578,12 @@ DEPENDENCIES
   shoulda-matchers (~> 4.5)
   shrine (~> 3.3)
   sidekiq (~> 6.1)
+  simple_endpoint (~> 1.0.0)
   simplecov (~> 0.21.2)
   simplecov-lcov (~> 0.8.0)
   spring (~> 2.1)
   spring-watcher-listen (~> 2.0, >= 2.0.1)
   trailblazer (~> 2.1)
-  trailblazer-endpoint!
   undercover (~> 0.4.0)
   webdrivers (~> 4.5)
   webpacker (~> 5.0)
