@@ -82,7 +82,7 @@ end
 group :test do
   gem 'capybara', '~> 3.35'
   gem 'json_matchers', '~> 0.11.1', require: 'json_matchers/rspec'
-  gem 'mock_redis', '~> 0.22.0'
+  gem 'mock_redis', '~> 0.27.3'
   gem 'n_plus_one_control', '~> 0.6.0'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
