@@ -22,6 +22,7 @@ detectors:
 
   TooManyStatements:
     exclude:
+      - DefaultEndpoint#default_cases
       - DefaultEndpoint#default_handler
       - Macro#self.Decorate
       - Macro#self.LinksBuilder
@@ -42,6 +43,7 @@ detectors:
 
   UtilityFunction:
     exclude:
+      - DefaultEndpoint#default_cases
       - test_matcher
       - DefaultEndpoint#error_serializer_by_status
       - Service::JsonApi::ErrorDataStructureParser#compose_errors
@@ -66,6 +68,11 @@ detectors:
       - Macro#self.Assign
 
 directories:
+  'app/controllers/concerns':
+    DuplicateMethodCall:
+      allow_calls:
+        - 'result'
+
   'app/concepts':
     UtilityFunction:
       enabled: false

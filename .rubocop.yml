@@ -65,9 +65,6 @@ Rails/IndexWith:
 
 # Metrics ---------------------------------------------------------------------
 
-Layout/LineLength:
-  Max: 120
-
 Metrics/BlockLength:
   ExcludedMethods:
     - register
@@ -110,6 +107,15 @@ Lint/UselessMethodDefinition:
     - app/concepts/api/v1/lib/service/json_api.rb
 
 # Layout ----------------------------------------------------------------------
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - app/controllers/concerns/default_endpoint.rb
+
+Layout/HashAlignment:
+  Exclude:
+    - app/controllers/concerns/default_endpoint.rb
 
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented

@@ -5,7 +5,7 @@ module Api::V1::Users::Session
     def create
       authorize_refresh_request!
       endpoint operation: Api::V1::Users::Sessions::Refreshes::Operation::Create,
-                            options: { found_token: found_token, payload: payload }
+               options: { found_token: found_token, payload: payload }
     end
   end
 end
