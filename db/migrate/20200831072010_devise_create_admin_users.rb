@@ -2,7 +2,7 @@
 
 class DeviseCreateAdminUsers < ActiveRecord::Migration[6.0]
   def change
-    create_table :admin_users do |t|
+    create_table :admin_users, id: :uuid do |t|
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
       t.string   :reset_password_token
