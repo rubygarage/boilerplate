@@ -27,7 +27,7 @@ module Api::V1::Users::Lib::Service
     end
 
     def push
-      storage.setex(token_name, @token_exp, @token)
+      storage.setex(token_name, @token_exp, @token) if @token_exp
     end
 
     def find

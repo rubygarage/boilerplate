@@ -3,7 +3,7 @@
 module Api::V1::Users
   class RegistrationsController < ApiController
     def create
-      endpoint Api::V1::Users::Registrations::Operation::Create
+      endpoint operation: Api::V1::Users::Registrations::Operation::Create
     end
   end
 end

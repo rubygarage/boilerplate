@@ -26,8 +26,7 @@ Project wiki: https://github.com/rubygarage/boilerplate/wiki
 | ```Macro::Inject``` | Provides to set dependency injection in operations |
 | ```Macro::LinksBuilder``` | Provides to proxy resource path to ```Service::JsonApi::Paginator``` and sets composed links into context |
 | ```Macro::Model``` | Provides to assign model into context. Supports assign by relation chain, relation find_by |
-| ```Macro::ModelDelete``` | Provides to delete model |
-| ```Macro::ModelDestroy``` | Provides to destroy model |
+| ```Macro::ModelRemove``` | Provides to destroy and delete model. |
 | ```Macro::Renderer``` | Provides to render operation result with specified serializer with strict following Jsonapi specification |
 | ```Macro::Semantic``` | Provides to set value of semantic marker (```semantic_success``` or ```semantic_failure```) into context |
 
@@ -91,17 +90,20 @@ bin/docker rspec
 ```
 
 ### Building API documentation
-
+Generate a request spec file:
+```
+rails generate rspec:swagger API::MyController
+```
 Building api documentation is pretty easy, just run:
 
 ```
-bin/docker rails api:doc:v1
+rake rswag
 ```
 
 and find it into:
 
 ```
-./public/api/docs/v1/index.html
+./api-docs/index.html
 ```
 
 ### Running Rails console
@@ -113,7 +115,7 @@ bin/docker rails c
 ### Running linters
 
 ```
-overcommit -r
+lefthook run all
 ```
 
 ### Using DIP
@@ -142,3 +144,11 @@ To start work with sentry you should add dsn key to credentials under `sentry_ds
 To get first error with `Sentry` raise `Raven.capture_exception` with exception as an argument.
 
 More information [here](https://docs.sentry.io/platforms/ruby/guides/rails/)
+
+### Password complexity for User
+
+Must contain at least 8 characters, of which: At list one upper case, at list one lowe case,
+
+at list one number, at list one special symbols from the list: `-_!@#$%^&*`.
+
+For example: `qwertY1@`

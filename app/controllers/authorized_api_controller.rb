@@ -5,7 +5,7 @@ class AuthorizedApiController < ApiController
 
   private
 
-  def operation_options(options)
-    { current_account: current_account, **options }
+  def endpoint_options
+    { current_account: current_account, params: params }
   end
 end

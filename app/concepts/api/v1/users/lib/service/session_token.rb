@@ -5,7 +5,10 @@ module Api::V1::Users::Lib::Service::SessionToken
     def create(account_id:, namespace: nil)
       options =
         namespace ? { namespace: Api::V1::Users::Lib::Service::TokenNamespace.call(namespace, account_id) } : {}
-      JWTSessions::Session.new(payload: { account_id: account_id, **options }).login
+      JWTSessions::Session.new(
+        payload: { account_id: account_id, **options },
+        refresh_payload: { account_id: account_id, **options }
+      ).login
     end
 
     def destroy(refresh_token:)

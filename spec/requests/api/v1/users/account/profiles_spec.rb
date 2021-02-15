@@ -1,38 +1,59 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Api::V1::Users::Account::Profiles', :dox, type: :request do
-  include ApiDoc::V1::Users::Account::Profile::Api
-
+RSpec.describe 'Api::V1::Users::Account::Profiles', type: :request do
   let!(:account) { create(:account, :with_user) }
-  let(:headers) { { Authorization: auth_header(account) } }
+  let(:authorization) { auth_header(account) }
   let(:params) { {} }
 
-  before do
-    get '/api/v1/users/account/profile', headers: headers, params: params
-  end
-
   describe 'GET #show' do
-    include ApiDoc::V1::Users::Account::Profile::Show
+    path '/api/v1/users/account/profile/' do
+      get('show profile') do
+        tags 'Users'
+        produces 'application/json'
+        parameter name: :authorization, in: :header, type: :string
 
-    describe 'Success' do
-      let(:params) { { include: 'account' } }
+        response(401, 'when successful renders user profile') do
+          let(:authorization) { nil }
 
-      it 'renders user profile' do
-        expect(resource_type(response)).to eq('user-profile')
-        expect(response).to match_json_schema('v1/users/account/profile/show')
-        expect(response).to be_ok
+          include_examples 'renders unauthenticated errors'
+        end
       end
     end
 
-    describe 'Failure' do
-      describe 'Unauthorized' do
-        include_examples 'renders unauthenticated errors'
+    path '/api/v1/users/account/profile/?include=not_valid_include' do
+      get('show profile') do
+        tags 'Users'
+        produces 'application/json'
+        parameter name: :authorization, in: :header, type: :string
+
+        response(400, 'when not found user profile') do
+          include_examples 'renders uri query errors'
+        end
       end
+    end
 
-      describe 'Bad Request' do
-        let(:params) { { include: 'not_valid_include' } }
+    path '/api/v1/users/account/profile/?include=account' do
+      get('show profile') do
+        tags 'Users'
+        produces 'application/json'
+        parameter name: :authorization, in: :header, type: :string
 
-        include_examples 'renders uri query errors'
+        response(200, 'when successful renders user profile') do
+          run_test! do
+            expect(resource_type(response)).to eq('user-profile')
+            expect(response).to match_json_schema('v1/users/account/profile/show')
+            expect(response).to be_ok
+          end
+        end
+      end
+    end
+
+    describe 'N+1', :n_plus_one do
+      populate { |n| create_list(:account, n, :with_user) }
+
+      specify do
+        expect { get '/api/v1/users/account/profile', headers: headers, params: params }
+          .to perform_constant_number_of_queries
       end
     end
   end
