@@ -3,7 +3,7 @@
 module Api::V1::Users::Account
   class ProfilesController < AuthorizedApiController
     def show
-      endpoint Api::V1::Users::Account::Profiles::Operation::Show
+      endpoint operation: Api::V1::Users::Account::Profiles::Operation::Show
     end
   end
 end

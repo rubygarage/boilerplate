@@ -22,8 +22,8 @@ gem 'rack-cors', '~> 1.1'
 # Trailblazer bundle
 gem 'dry-container', '~> 0.7.2'
 gem 'dry-validation', '0.11.1'
+gem 'simple_endpoint', '~> 1.0.0'
 gem 'trailblazer', '~> 2.1'
-gem 'trailblazer-endpoint', github: 'trailblazer/trailblazer-endpoint'
 
 # Decorator
 gem 'draper', '~> 4.0', '>= 4.0.1'

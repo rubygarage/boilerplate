@@ -1,35 +1,35 @@
 # frozen_string_literal: true
 
 module DefaultEndpoint
-  def default_handler
-    lambda do |match|
-      match.created      { |result| render_head_or_response(result, :created) }
-      match.destroyed    { head(:no_content) }
-      match.unauthorized { |result| render_head_or_errors(result, :unauthorized) }
-      match.not_found    { |result| render_head_or_errors(result, :not_found) }
-      match.forbidden    { |result| render_head_or_errors(result, :forbidden) }
-      match.gone         { |result| render_head_or_errors(result, :gone) }
-      match.accepted     { head(:accepted) }
-      match.invalid      { |result| render_errors(result, :unprocessable_entity) }
-      match.success      { |result| success_response(result) }
-      match.bad_request  { |result| render_errors(result, :bad_request) }
-    end
+  def default_cases # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
+    {
+      created:      ->(result) { result.success? && result[:semantic_success] == :created },
+      destroyed:    ->(result) { result.success? && (result[:model].try(:destroyed?) || result[:semantic_success] == :destroyed) },
+      unauthorized: ->(result) { result.failure? && result[:semantic_failure] == :unauthorized },
+      not_found:    ->(result) { result.failure? && (result['result.model']&.failure? || result[:semantic_failure] == :not_found) },
+      forbidden:    ->(result) { result.failure? && (result['result.policy.default']&.failure? || result[:semantic_failure] == :forbidden) },
+      accepted:     ->(result) { result.success? && result[:semantic_success] == :accepted },
+      invalid:      ->(result) { result.failure? && result['contract.default']&.errors.present? },
+      success:      ->(result) { result.success? },
+      bad_request:  ->(result) { result.failure? && (result[:semantic_failure] == :bad_request || result['contract.uri_query']&.errors.present?) }
+    }
   end
 
-  def endpoint(operation, options: {}, &block)
-    ApplicationEndpoint.call(
-      operation,
-      default_handler,
-      { params: params.to_unsafe_hash, **operation_options(options) },
-      &block
-    )
+  def default_handler
+    {
+      created:      ->(result) { render_head_or_response(result, :created) },
+      destroyed:    ->(_result) { head(:no_content) },
+      unauthorized: ->(result) { render_head_or_errors(result, :unauthorized) },
+      not_found:    ->(result) { render_head_or_errors(result, :not_found) },
+      forbidden:    ->(result) { render_head_or_errors(result, :forbidden) },
+      accepted:     ->(_result) { head(:accepted) },
+      invalid:      ->(result) { render_errors(result, :unprocessable_entity) },
+      success:      ->(result) { success_response(result) },
+      bad_request:  ->(result) { render_errors(result, :bad_request) }
+    }
   end
 
   private
-
-  def operation_options(options)
-    options
-  end
 
   def render_response(result, status)
     render(jsonapi: Service::JsonApi::ResourceSerializer.call(result), status: status)
