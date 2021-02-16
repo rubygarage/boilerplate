@@ -1,0 +1,45 @@
+[
+  {
+    "name": "worker",
+    "image": "${app_ecr_repo}:${environment}",
+    "command": ["bundle", "exec", "sidekiq", "-C", "config/sidekiq.yml"],
+    "environment": [
+      {
+        "name": "RAILS_ENV",
+        "value": "${environment}"
+      },
+      {
+        "name": "RACK_ENV",
+        "value": "${environment}"
+      },
+      {
+        "name": "RAILS_LOG_TO_STDOUT",
+        "value": "true"
+      }
+    ],
+    "mountPoints": [
+      {
+        "containerPath": "/home/www/${project_name}/public",
+        "sourceVolume": "public"
+      }
+    ],
+    "portMappings": [],
+    "healthCheck": {
+      "command": [
+        "CMD-SHELL",
+        "ps ax | grep -v grep | grep sidekiq || exit 1"
+      ],
+      "interval": 30,
+      "retries": 3,
+      "timeout": 5
+    },
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${log_group}",
+        "awslogs-region": "${log_region}",
+        "awslogs-stream-prefix": "${environment}"
+      }
+    }
+  }
+]

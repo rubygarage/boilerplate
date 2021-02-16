@@ -10,7 +10,6 @@
 # Ignore secrets
 /config/application.yml
 /config/cable.yml
-/config/master.key
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -36,6 +35,7 @@
 
 /public/packs
 /public/packs-test
+/public/assets
 /node_modules
 /yarn-error.log
 yarn-debug.log*
