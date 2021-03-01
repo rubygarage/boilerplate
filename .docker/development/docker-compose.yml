@@ -27,11 +27,13 @@ services:
       test: ["CMD", "redis-cli", "-h", "localhost", "ping"]
 
   server_app: &server_app
-    build: .
+    build:
+      context: ../../
+      dockerfile: ".docker/development/Dockerfile"
     command: bundle exec rails server -b 0.0.0.0
-    entrypoint: ./docker-entrypoint.sh
+    entrypoint: .docker/development/entrypoint.sh
     volumes:
-      - .:/home/www/boilerplate_rails_api
+      - ../..:/home/www/boilerplate-api
     tty: true
     stdin_open: true
     environment: &server_app_env
