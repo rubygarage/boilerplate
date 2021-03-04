@@ -6,6 +6,6 @@ class AuthorizedApiController < ApiController
   private
 
   def endpoint_options
-    { current_account: current_account, params: params }
+    super.merge(current_account: current_account)
   end
 end

@@ -29,13 +29,27 @@ RSpec.describe 'Api::V1::Users::Registrations', type: :request do
 
       response '400', 'unprocessable entity' do
         let(:params) { {} }
+        let(:email_errors) do
+          [
+            I18n.t('dry_schema.errors.filled?'),
+            I18n.t('dry_schema.errors.max_size?', num: Constants::Shared::EMAIL_MAX_LENGTH)
+          ].join(', ')
+        end
+        let(:password_errors) do
+          [
+            I18n.t('dry_schema.errors.filled?'),
+            I18n.t('dry_schema.errors.min_size?', num: Constants::Shared::PASSWORD_MIN_SIZE)
+          ].join(', ')
+        end
         let(:bad_request_error) do
           {
             'errors' => [
-              { 'detail' => I18n.t('errors.filled?'),
+              { 'detail' => email_errors,
                 'source' => { 'pointer' => 'email' } },
-              { 'detail' => I18n.t('errors.filled?'),
-                'source' => { 'pointer' => 'password' } }
+              { 'detail' => password_errors,
+                'source' => { 'pointer' => 'password' } },
+              { 'detail' => I18n.t('dry_schema.errors.filled?'),
+                'source' => { 'pointer' => 'password_confirmation' } }
             ]
           }
         end

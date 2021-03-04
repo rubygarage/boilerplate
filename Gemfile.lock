@@ -1,3 +1,15 @@
+GIT
+  remote: git@github.com:dry-rb/dry-validation.git
+  revision: 158f40a4b84fd386c2e166c2884161676ce0d329
+  branch: master
+  specs:
+    dry-validation (1.6.0)
+      concurrent-ruby (~> 1.0)
+      dry-container (~> 0.7, >= 0.7.1)
+      dry-core (~> 0.5, >= 0.5)
+      dry-initializer (~> 3.0)
+      dry-schema (~> 1.5, >= 1.5.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -158,19 +170,16 @@ GEM
     dry-container (0.7.2)
       concurrent-ruby (~> 1.0)
       dry-configurable (~> 0.1, >= 0.1.3)
-    dry-core (0.4.9)
+    dry-core (0.5.0)
       concurrent-ruby (~> 1.0)
     dry-equalizer (0.3.0)
     dry-inflector (0.2.0)
     dry-initializer (3.0.3)
     dry-logic (1.0.7)
       concurrent-ruby (~> 1.0)
-      dry-core (~> 0.2)
       dry-equalizer (~> 0.2)
     dry-schema (1.5.4)
       concurrent-ruby (~> 1.0)
-      dry-configurable (~> 0.8, >= 0.8.3)
-      dry-core (~> 0.4)
       dry-equalizer (~> 0.2)
       dry-initializer (~> 3.0)
       dry-logic (~> 1.0)
@@ -182,13 +191,6 @@ GEM
       dry-equalizer (~> 0.3)
       dry-inflector (~> 0.1, >= 0.1.2)
       dry-logic (~> 1.0, >= 1.0.2)
-    dry-validation (1.5.6)
-      concurrent-ruby (~> 1.0)
-      dry-container (~> 0.7, >= 0.7.1)
-      dry-core (~> 0.4)
-      dry-equalizer (~> 0.2)
-      dry-logic (~> 0.4, >= 0.4.0)
-      dry-types (~> 0.12.0)
     erubi (1.10.0)
       dry-initializer (~> 3.0)
       dry-schema (~> 1.5, >= 1.5.2)
@@ -376,9 +378,10 @@ GEM
       parser (~> 3.0.0)
       psych (~> 3.1)
       rainbow (>= 2.0, < 4.0)
-    reform (2.3.3)
+    reform (2.5.0)
       disposable (>= 0.4.2, < 0.5.0)
       representable (>= 2.4.0, < 3.1.0)
+      uber (< 0.2.0)
     regexp_parser (2.0.3)
     representable (3.0.4)
       declarative (< 0.1.0)
@@ -554,7 +557,7 @@ DEPENDENCIES
   dip (~> 6.1)
   draper (~> 4.0, >= 4.0.1)
   dry-container (~> 0.7.2)
-  dry-validation (~> 1.5)
+  dry-validation!
   factory_bot_rails (~> 6.1)
   fasterer (~> 0.8.3)
   ffaker (~> 2.17)
