@@ -6,11 +6,10 @@ RSpec.describe Macro do
 
     # rubocop:disable RSpec/LeakyConstantDeclaration
     DummyContract = Class.new(ApplicationContract) do
-      property :include, virtual: true
-      validation { optional(:include).maybe(:str?) }
-
-      def include
-        super.split(',').map(&:to_sym) if super # rubocop:disable Style/SafeNavigation
+      validation do
+        params do
+          optional(:include).value(:string)
+        end
       end
     end
 

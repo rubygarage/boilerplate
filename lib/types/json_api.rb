@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Types
-  include Dry::Types.module
+  include Dry::Types()
 
   FilterObject = Struct.new(:column, :predicate, :value)
   SortObject = Struct.new(:column, :order)
@@ -11,12 +11,12 @@ module Types
       def self.call(column)
         {
           string: ::Types::String | ::Types::Array.of(::Types::String),
-          number: ::Types::Form::Int |
-            ::Types::Form::Decimal |
-            ::Types::Array.of(::Types::Int) |
+          number: ::Types::Params::Integer |
+            ::Types::Decimal |
+            ::Types::Array.of(::Types::Integer) |
             ::Types::Array.of(::Types::Decimal),
-          boolean: ::Types::Form::True | ::Types::Form::False | ::Types::Form::Nil,
-          date: ::Types::Form::Date | ::Types::Form::Int
+          boolean: ::Types::Params::True | ::Types::Params::False | ::Types::Params::Nil,
+          date: ::Types::Params::Date | ::Types::Params::Integer
         }[column]
       end
     end

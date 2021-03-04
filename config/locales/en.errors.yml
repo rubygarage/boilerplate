@@ -1,25 +1,84 @@
 ---
 en:
-  errors:
-    email_token:
-      already_used: email token is already used
-    email_uniq?: email not unique
-    filtering_column_valid?: invalid filtering column
-    filtering_predicate_valid?: invalid filtering predicate
-    filtering_value_valid?: invalid filtering value
-    filters_uniq?: filters not unique
-    inclusion_params_uniq?: inclusion params not unique
-    inclusion_params_valid?: can't include such association
-    pagination_overflow: is out of limits
-    reset_password:
-      email_not_found: Email not found
-    rules:
-      user_password:
-        eql?: should match to password
-    session:
-      invalid_token: invalid_token
-      wrong_credentials: Invalid email or password
-    sort_params_uniq?: sort params not unique
-    sort_params_valid?: invalid sort params
-    verification:
-      invalid_email_token: invalid email token
+  dry_schema:
+    errors:
+      array?: must be an array
+      attr?: is missing
+      bool?: must be boolean
+      bytesize?:
+        arg:
+          default: must be %{size} bytes long
+          range: must be within %{size_left} - %{size_right} bytes long
+      date?: must be a date
+      date_time?: must be a date time
+      decimal?: must be a decimal
+      empty?: must be empty
+      eql?: must be equal to %{left}
+      even?: must be even
+      excluded_from?:
+        arg:
+          default: 'must not be one of: %{list}'
+          range: 'must not be one of: %{list_left} - %{list_right}'
+      excludes?: must not include %{value}
+      exclusion?: 'must not be one of: %{list}'
+      false?: must be false
+      filled?: must be filled
+      float?: must be a float
+      format?: is in invalid format
+      gt?: must be greater than %{num}
+      gteq?: must be greater than or equal to %{num}
+      hash?: must be a hash
+      included_in?:
+        arg:
+          default: 'must be one of: %{list}'
+          range: 'must be one of: %{list_left} - %{list_right}'
+      includes?: must include %{value}
+      inclusion?: 'must be one of: %{list}'
+      int?: must be an integer
+      key?: is missing
+      lt?: must be less than %{num}
+      lteq?: must be less than or equal to %{num}
+      max_bytesize?: bytesize cannot be greater than %{num}
+      max_size?: size cannot be greater than %{num}
+      min_bytesize?: bytesize cannot be less than %{num}
+      min_size?: size cannot be less than %{num}
+      nil?: cannot be defined
+      not:
+        empty?: cannot be empty
+      not_eql?: must not be equal to %{left}
+      number?: must be a number
+      odd?: must be odd
+      size?:
+        arg:
+          default: size must be %{size}
+          range: size must be within %{size_left} - %{size_right}
+        value:
+          string:
+            arg:
+              default: length must be %{size}
+              range: length must be within %{size_left} - %{size_right}
+      str?: must be a string
+      time?: must be a time
+      true?: must be true
+      type?: must be %{type}
+      unexpected_key: is not allowed
+      uuid_v4?: is not a valid UUID
+    or: or
+  dry_validation:
+    errors:
+      filtering_column_valid?: invalid filtering column
+      filtering_predicate_valid?: invalid filtering predicate
+      filtering_value_valid?: invalid filtering value
+      filters_uniq?: filters not unique
+      invalid_inclusion_params?: can't include such association
+      pagination_overflow: is out of limits
+      rules:
+        email:
+          email_uniq?: email not unique
+        password_confirmation:
+          match_passwords?: should match to password
+      session:
+        invalid_token: invalid_token
+      sort_params_uniq?: sort params not unique
+      sort_params_valid?: invalid sort params
+      unique_inclusion_params?: inclusion params not unique
