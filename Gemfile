@@ -66,7 +66,7 @@ group :development, :test do
   gem 'reek', '6.0.3', require: false
   gem 'rswag', '~> 2.4.0'
   gem 'rubocop', '~> 0.93.1', require: false
-  gem 'rubocop-performance', '~> 1.9', require: false
+  gem 'rubocop-performance', '~> 1.10', require: false
   gem 'rubocop-rails', '~> 2.9', require: false
   gem 'rubocop-rspec', '~> 1.43', require: false
 end
