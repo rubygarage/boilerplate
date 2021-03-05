@@ -6,7 +6,7 @@ module Service
       private
 
       def plain_errors?(errors)
-        errors.all? { |error| error.is_a?(String) }
+        errors.all?(String)
       end
 
       def compose_errors(field, messages)
