@@ -64,6 +64,9 @@ Rails/IndexWith:
     - lib/macro/schema.rb
 
 # Metrics ---------------------------------------------------------------------
+Metrics/ParameterLists:
+  Exclude:
+    - lib/macro/policy.rb
 
 Metrics/BlockLength:
   ExcludedMethods:
@@ -79,8 +82,7 @@ Metrics/BlockLength:
 Metrics/AbcSize:
   Exclude:
     - app/controllers/concerns/default_endpoint.rb
-    - lib/macro/model.rb
-    - lib/macro/links_builder.rb
+    - lib/macro/*.rb
 
 Metrics/MethodLength:
   Max: 15
