@@ -36,7 +36,7 @@ gem 'oj', '~> 3.11'
 gem 'pagy', '~> 3.10'
 
 # Uploading
-gem 'aws-sdk-s3', '~> 1.88'
+gem 'aws-sdk-s3', '~> 1.89'
 gem 'shrine', '~> 3.3'
 
 # Reduces boot times through caching; required in config/boot.rb
@@ -64,9 +64,9 @@ group :development, :test do
   gem 'lefthook', '~> 0.7.2', require: false
   gem 'rails_best_practices', '~> 1.20', require: false
   gem 'reek', '6.0.3', require: false
-  gem 'rswag', '~> 2.3.2'
+  gem 'rswag', '~> 2.4.0'
   gem 'rubocop', '~> 0.93.1', require: false
-  gem 'rubocop-performance', '~> 1.9', require: false
+  gem 'rubocop-performance', '~> 1.10', require: false
   gem 'rubocop-rails', '~> 2.9', require: false
   gem 'rubocop-rspec', '~> 1.43', require: false
 end
