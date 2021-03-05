@@ -207,7 +207,7 @@ GEM
     hirb (0.7.3)
     i18n (1.8.9)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (0.9.33)
+    i18n-tasks (0.9.34)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
@@ -548,7 +548,7 @@ DEPENDENCIES
   factory_bot_rails (~> 6.1)
   fasterer (~> 0.8.3)
   ffaker (~> 2.17)
-  i18n-tasks (~> 0.9.33)
+  i18n-tasks (~> 0.9.34)
   json_matchers (~> 0.11.1)
   jsonapi-serializer (~> 2.1)
   jwt_sessions (~> 2.5)
