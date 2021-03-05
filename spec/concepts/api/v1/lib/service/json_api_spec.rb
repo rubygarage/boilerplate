@@ -46,7 +46,7 @@ module Api::V1::Lib::Service::JsonApi # rubocop:disable Style/ClassAndModuleChil
 
     it 'returns collection of columns' do
       expect(columns_builder.size).to eq(params.size)
-      expect(columns_builder.all? { |item| item.is_a?(Api::V1::Lib::Service::JsonApi::Column) }).to be(true)
+      expect(columns_builder.all?(Api::V1::Lib::Service::JsonApi::Column)).to be(true)
       expect(columns_builder.map(&:to_h).first.slice(:name)).to eq(params.first)
     end
   end
