@@ -29,6 +29,7 @@ Project wiki: https://github.com/rubygarage/boilerplate/wiki
 | ```Macro::ModelRemove``` | Provides to destroy and delete model. |
 | ```Macro::Renderer``` | Provides to render operation result with specified serializer with strict following Jsonapi specification |
 | ```Macro::Semantic``` | Provides to set value of semantic marker (```semantic_success``` or ```semantic_failure```) into context |
+| ```Macro::Policy``` | Set semantic marker ```semantic_failure``` to equel ```:forbidden``` and add errors if no policy|
 
 ### Services
 
