@@ -33,7 +33,9 @@ jobs:
       - run: gem i bundler -v $(tail -1 Gemfile.lock | tr -d ' ')
       - run: sudo apt-get install cmake
       - run: |
-          bundle check || bundle install --frozen --path vendor/bundle && bundle clean
+          bundle config set frozen 'true'
+          bundle config set path 'vendor/bundle'
+          bundle install && bundle clean
       - save_cache:
           key: boilerplate-rails-api-{{ checksum "Gemfile.lock" }}
           paths:
