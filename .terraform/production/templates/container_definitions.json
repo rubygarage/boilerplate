@@ -1,0 +1,110 @@
+[
+  {
+    "name": "web-server",
+    "image": "${web_server_ecr_repo}:${environment}",
+    "environment": [
+      {
+        "name": "APP_PORT",
+        "value": "${app_port}"
+      },
+      {
+        "name": "ROOT_PATH",
+        "value": "/home/www/${project_name}/public"
+      },
+      {
+        "name": "SERVER_NAME",
+        "value": "${server_name}"
+      }
+    ],
+    "mountPoints": [
+      {
+        "containerPath": "/home/www/${project_name}/public",
+        "sourceVolume": "public"
+      }
+    ],
+    "portMappings": [
+      {
+        "hostPort": 80,
+        "containerPort": 8080,
+        "protocol": "tcp"
+      },
+      {
+        "hostPort": 443,
+        "containerPort": 8443,
+        "protocol": "tcp"
+      }
+    ],
+    "links": [
+      "app"
+    ],
+    "healthCheck": {
+      "command": [
+        "CMD-SHELL",
+        "ps ax | grep nginx | grep -v grep || exit 1"
+      ],
+      "interval": 30,
+      "retries": 3,
+      "timeout": 5
+    },
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${log_group}",
+        "awslogs-region": "${log_region}",
+        "awslogs-stream-prefix": "${environment}"
+      }
+    }
+  },
+
+  {
+    "name": "app",
+    "image": "${app_ecr_repo}:${environment}",
+    "entryPoint": [
+      ".docker/production/entrypoint.sh"
+    ],
+    "command": ["bundle", "exec", "puma", "-C", "config/puma.rb"],
+    "environment": [
+      {
+        "name": "RAILS_ENV",
+        "value": "${environment}"
+      },
+      {
+        "name": "RACK_ENV",
+        "value": "${environment}"
+      },
+      {
+        "name": "RAILS_LOG_TO_STDOUT",
+        "value": "true"
+      }
+    ],
+    "mountPoints": [
+      {
+        "containerPath": "/home/www/${project_name}/public",
+        "sourceVolume": "public"
+      }
+    ],
+    "portMappings": [
+      {
+        "containerPort": ${app_port},
+        "protocol": "tcp"
+      }
+    ],
+    "healthCheck": {
+      "command": [
+        "CMD-SHELL",
+        "curl -f http://localhost:${app_port}/health_check || exit 1"
+      ],
+      "interval": 30,
+      "retries": 3,
+      "timeout": 5
+    },
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${log_group}",
+        "awslogs-region": "${log_region}",
+        "awslogs-stream-prefix": "${environment}"
+      }
+    }
+  }
+]
