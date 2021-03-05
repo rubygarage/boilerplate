@@ -5,7 +5,8 @@ default: &default
   timeout: 5000
   host: <%= ENV['DB_HOST'] || Rails.application.credentials.dig(:db, :host) %>
   username: <%= ENV['DB_USERNAME'] || Rails.application.credentials.dig(:db, :user) %>
-  password: <%= ENV['DB_PASSWORD'] || Rails.application.credentials.dig(:db, :password) %>
+  # password: <%= ENV['DB_PASSWORD'] || Rails.application.credentials.dig(:db, :password) %>
+  password: password
   database: <%= Rails.application.credentials.dig(:db, :database) %>
 
 development:

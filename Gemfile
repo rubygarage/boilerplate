@@ -21,7 +21,7 @@ gem 'rack-cors', '~> 1.1'
 
 # Trailblazer bundle
 gem 'dry-container', '~> 0.7.2'
-gem 'dry-validation', git: 'git@github.com:dry-rb/dry-validation.git', branch: 'master'
+gem 'dry-validation', '~> 1.6'
 gem 'reform', '~> 2.3'
 gem 'simple_endpoint', '~> 1.0.0'
 gem 'trailblazer', '~> 2.1'
