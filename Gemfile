@@ -36,7 +36,7 @@ gem 'oj', '~> 3.11'
 gem 'pagy', '~> 3.11'
 
 # Uploading
-gem 'aws-sdk-s3', '~> 1.88'
+gem 'aws-sdk-s3', '~> 1.89'
 gem 'shrine', '~> 3.3'
 
 # Reduces boot times through caching; required in config/boot.rb
