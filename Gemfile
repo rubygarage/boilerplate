@@ -64,7 +64,7 @@ group :development, :test do
   gem 'lefthook', '~> 0.7.2', require: false
   gem 'rails_best_practices', '~> 1.20', require: false
   gem 'reek', '6.0.3', require: false
-  gem 'rswag', '~> 2.3.2'
+  gem 'rswag', '~> 2.4.0'
   gem 'rubocop', '~> 0.93.1', require: false
   gem 'rubocop-performance', '~> 1.9', require: false
   gem 'rubocop-rails', '~> 2.9', require: false
