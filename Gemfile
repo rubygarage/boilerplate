@@ -51,7 +51,7 @@ gem 'sentry-raven', '~> 3.1'
 
 group :development, :test do
   gem 'factory_bot_rails', '~> 6.1'
-  gem 'ffaker', '~> 2.17'
+  gem 'ffaker', '~> 2.18'
   gem 'pry-byebug', '~> 3.9'
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec-rails', '~> 4.0'
