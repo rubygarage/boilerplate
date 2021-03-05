@@ -90,5 +90,5 @@ group :test do
   gem 'simplecov', '~> 0.21.2', require: false
   gem 'simplecov-lcov', '~> 0.8.0', require: false
   gem 'undercover', '~> 0.4.0', require: false
-  gem 'webdrivers', '~> 4.5', require: false
+  gem 'webdrivers', '~> 4.6', require: false
 end
