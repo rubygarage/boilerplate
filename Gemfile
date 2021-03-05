@@ -33,7 +33,7 @@ gem 'jsonapi-serializer', '~> 2.1'
 gem 'oj', '~> 3.11'
 
 # Pagination
-gem 'pagy', '~> 3.10'
+gem 'pagy', '~> 3.11'
 
 # Uploading
 gem 'aws-sdk-s3', '~> 1.88'
@@ -60,7 +60,7 @@ group :development, :test do
   gem 'brakeman', '~> 5.0', require: false
   gem 'bundle-audit', '~> 0.1.0', require: false
   gem 'fasterer', '~> 0.9.0', require: false
-  gem 'i18n-tasks', '~> 0.9.33', require: false
+  gem 'i18n-tasks', '~> 0.9.34', require: false
   gem 'lefthook', '~> 0.7.2', require: false
   gem 'rails_best_practices', '~> 1.20', require: false
   gem 'reek', '6.0.3', require: false
@@ -90,5 +90,5 @@ group :test do
   gem 'simplecov', '~> 0.21.2', require: false
   gem 'simplecov-lcov', '~> 0.8.0', require: false
   gem 'undercover', '~> 0.4.0', require: false
-  gem 'webdrivers', '~> 4.5', require: false
+  gem 'webdrivers', '~> 4.6', require: false
 end
