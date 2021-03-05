@@ -105,7 +105,7 @@ RSpec.describe Api::V1::Lib::Operation::Filtering, type: :operation do
 
     context 'when filter is not a hash' do
       let(:filtering_params) { 'not_a_hash' }
-      let(:errors) { { filter: [I18n.t('errors.hash?')] } }
+      let(:errors) { { filter: [I18n.t('dry_schema.errors.hash?')] } }
 
       include_examples 'failed operation'
     end
@@ -116,14 +116,14 @@ RSpec.describe Api::V1::Lib::Operation::Filtering, type: :operation do
         2.times { not_uniq_filtering_params["#{column}-#{predicate}"] = value }
         not_uniq_filtering_params
       end
-      let(:errors) { { filter: [I18n.t('errors.filters_uniq?')] } }
+      let(:errors) { { filter: [I18n.t('dry_validation.errors.filters_uniq?')] } }
 
       include_examples 'failed operation'
     end
 
     context 'when wrong type of match (filtering operator)' do
       let(:filtering_operator) { 1 }
-      let(:errors) { { match: [I18n.t('errors.str?')] } }
+      let(:errors) { { match: [I18n.t('dry_schema.errors.str?')] } }
 
       include_examples 'failed operation'
     end
@@ -133,7 +133,7 @@ RSpec.describe Api::V1::Lib::Operation::Filtering, type: :operation do
       let(:errors) do
         available_operators =
           "#{JsonApi::Filtering::Operators::MATCH_ALL}, #{JsonApi::Filtering::Operators::MATCH_ANY}"
-        { match: [I18n.t('errors.included_in?.arg.default', list: available_operators)] }
+        { match: [I18n.t('dry_schema.errors.included_in?.arg.default', list: available_operators)] }
       end
 
       include_examples 'failed operation'
@@ -142,21 +142,21 @@ RSpec.describe Api::V1::Lib::Operation::Filtering, type: :operation do
     context 'when invalid filterable column' do
       let(:available_columns) { create_available_columns(name: 'attribute_1', filterable: false) }
 
-      let(:errors) { { filter: [[0, [I18n.t('errors.filtering_column_valid?')]]] } }
+      let(:errors) { { 0 => [I18n.t('dry_validation.errors.filtering_column_valid?')] } }
 
       include_examples 'failed operation'
     end
 
     context 'when filter contains unexpected column' do
       let(:column) { 'unexpected_column' }
-      let(:errors) { { filter: [[0, [I18n.t('errors.filtering_column_valid?')]]] } }
+      let(:errors) { { 0 => [I18n.t('dry_validation.errors.filtering_column_valid?')] } }
 
       include_examples 'failed operation'
     end
 
     context 'when filter contains unexpected predicate' do
       let(:predicate) { 'unexpected_predicate' }
-      let(:errors) { { filter: [[0, [I18n.t('errors.filtering_predicate_valid?')]]] } }
+      let(:errors) { { 0 => [I18n.t('dry_validation.errors.filtering_predicate_valid?')] } }
 
       include_examples 'failed operation'
     end
@@ -164,7 +164,7 @@ RSpec.describe Api::V1::Lib::Operation::Filtering, type: :operation do
     context 'when filter contains invalid value' do
       context 'when column is string' do
         let(:value) { 1 }
-        let(:errors) { { filter: [[0, [I18n.t('errors.filtering_value_valid?')]]] } }
+        let(:errors) { { 0 => [I18n.t('dry_validation.errors.filtering_value_valid?')] } }
 
         include_examples 'failed operation'
       end
@@ -173,7 +173,7 @@ RSpec.describe Api::V1::Lib::Operation::Filtering, type: :operation do
         let(:column) { 'attribute_2' }
         let(:predicate) { 'number_predicate' }
         let(:value) { 'string' }
-        let(:errors) { { filter: [[0, [I18n.t('errors.filtering_value_valid?')]]] } }
+        let(:errors) { { 0 => [I18n.t('dry_validation.errors.filtering_value_valid?')] } }
 
         include_examples 'failed operation'
       end
@@ -182,7 +182,7 @@ RSpec.describe Api::V1::Lib::Operation::Filtering, type: :operation do
         let(:column) { 'attribute_3' }
         let(:predicate) { 'bool_predicate' }
         let(:value) { 'string' }
-        let(:errors) { { filter: [[0, [I18n.t('errors.filtering_value_valid?')]]] } }
+        let(:errors) { { 0 => [I18n.t('dry_validation.errors.filtering_value_valid?')] } }
 
         include_examples 'failed operation'
       end
@@ -191,7 +191,7 @@ RSpec.describe Api::V1::Lib::Operation::Filtering, type: :operation do
         let(:column) { 'attribute_4' }
         let(:predicate) { 'date_predicate' }
         let(:value) { 'string' }
-        let(:errors) { { filter: [[0, [I18n.t('errors.filtering_value_valid?')]]] } }
+        let(:errors) { { 0 => [I18n.t('dry_validation.errors.filtering_value_valid?')] } }
 
         include_examples 'failed operation'
       end

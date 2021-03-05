@@ -70,30 +70,30 @@ RSpec.describe Api::V1::Lib::Operation::Pagination do
 
     context 'with wrong page type' do
       let(:params) { { page: 'not_a_hash' } }
-      let(:errors) { { page: [I18n.t('errors.hash?')] } }
+      let(:errors) { { page: [I18n.t('dry_schema.errors.hash?')] } }
 
       include_examples 'not successful operation'
     end
 
     context 'with wrong page number, size types' do
       let(:params) { { page: { number: 'not_integer', size: 'not_integer' } } }
-      let(:error)  { I18n.t('errors.int?') }
-      let(:errors) { { page: [[:number, [error]], [:size, [error]]] } }
+      let(:error)  { I18n.t('dry_schema.errors.int?') }
+      let(:errors) { { number: [error], size: [error] } }
 
       include_examples 'not successful operation'
     end
 
     context 'with page number, size < 1' do
       let(:params) { { page: { number: 0, size: 0 } } }
-      let(:error)  { I18n.t('errors.gteq?', num: JsonApi::Pagination::MINIMAL_VALUE) }
-      let(:errors) { { page: [[:number, [error]], [:size, [error]]] } }
+      let(:error)  { I18n.t('dry_schema.errors.gteq?', num: JsonApi::Pagination::MINIMAL_VALUE) }
+      let(:errors) { { number: [error], size: [error] } }
 
       include_examples 'not successful operation'
     end
 
     context 'when page overflow' do
       let(:params) { { page: { number: collection.size.next } } }
-      let(:errors) { { page: [[:number, [I18n.t('errors.pagination_overflow')]]] } }
+      let(:errors) { { page: [[:number, [I18n.t('dry_validation.errors.pagination_overflow')]]] } }
 
       it 'sets paginations errors' do
         expect(result['contract.uri_query'].errors.messages).to eq(errors)

@@ -27,7 +27,8 @@ RemoveEmptyHelpersCheck: { }
 #RemoveTabCheck: { }
 RemoveTrailingWhitespaceCheck: { }
 RemoveUnusedMethodsInControllersCheck: { except_methods: [
-                                          AuthorizedApiController#endpoint_options
+                                          AuthorizedApiController#endpoint_options,
+                                          ApiController#endpoint_options
                                         ] }
 RemoveUnusedMethodsInHelpersCheck: { except_methods: [] }
 RemoveUnusedMethodsInModelsCheck: { except_methods: [] }

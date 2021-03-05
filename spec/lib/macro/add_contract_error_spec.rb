@@ -12,11 +12,11 @@ RSpec.describe Macro do
 
     context 'when contract namespace not passed' do
       let(:contract_namespace) { 'default' }
-      let(:contract_error_expecatation) { { error: [I18n.t('errors.str?')] } }
+      let(:contract_error_expecatation) { { error: [I18n.t('dry_schema.errors.str?')] } }
       let(:operation) do
         Class.new(Trailblazer::Operation) do
           step Trailblazer::Operation::Contract::Build(constant: ApplicationContract)
-          step Macro::AddContractError(error: 'errors.str?')
+          step Macro::AddContractError(error: 'dry_schema.errors.str?')
         end
       end
 
@@ -25,11 +25,11 @@ RSpec.describe Macro do
 
     context 'when contract namespace passed' do
       let(:contract_namespace) { 'some_namespace' }
-      let(:contract_error_expecatation) { { error: [I18n.t('errors.str?')] } }
+      let(:contract_error_expecatation) { { error: [I18n.t('dry_schema.errors.str?')] } }
       let(:operation) do
         Class.new(Trailblazer::Operation) do
           step Trailblazer::Operation::Contract::Build(constant: ApplicationContract, name: 'some_namespace')
-          step Macro::AddContractError(name: :some_namespace, error: 'errors.str?')
+          step Macro::AddContractError(name: :some_namespace, error: 'dry_schema.errors.str?')
         end
       end
 
@@ -38,11 +38,12 @@ RSpec.describe Macro do
 
     context 'when error message is an array' do
       let(:contract_namespace) { 'default' }
-      let(:contract_error_expecatation) { { error: [[:nested_error, [I18n.t('errors.str?')]]] } }
+      let(:contract_error_expecatation) { { error: [:nested_error, [I18n.t('dry_schema.errors.str?')]] } }
+
       let(:operation) do
         Class.new(Trailblazer::Operation) do
           step Trailblazer::Operation::Contract::Build(constant: ApplicationContract)
-          step Macro::AddContractError(error: [:nested_error, [I18n.t('errors.str?')]])
+          step Macro::AddContractError(error: [:nested_error, [I18n.t('dry_schema.errors.str?')]])
         end
       end
 

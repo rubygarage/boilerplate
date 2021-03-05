@@ -10,14 +10,14 @@ RSpec.shared_examples 'nested inclusion errors' do
 
   context 'with invalid inclusion parameter' do
     let(:inclusion_params) { 'invalid_inclusion_parameter' }
-    let(:errors) { { include: [I18n.t('errors.inclusion_params_valid?')] } }
+    let(:errors) { { include: [I18n.t('dry_validation.errors.invalid_inclusion_params?')] } }
 
     include_examples 'not successful operation'
   end
 
   context 'with not uniq inclusion parameters' do
     let(:params) { { include: "#{inclusion_params},#{inclusion_params}" } }
-    let(:errors) { { include: [I18n.t('errors.inclusion_params_uniq?')] } }
+    let(:errors) { { include: [I18n.t('dry_validation.errors.unique_inclusion_params?')] } }
 
     include_examples 'not successful operation'
   end

@@ -25,7 +25,7 @@ module Service
           if attribute_errors.flatten.any? { |item| !item.is_a?(String) }
             compose_nested_errors(field, attribute_errors)
           else
-            { source: { pointer: field.to_s }, detail: attribute_errors.join }
+            { source: { pointer: field.to_s }, detail: attribute_errors.join(', ') }
           end
         end
       end
