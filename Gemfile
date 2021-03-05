@@ -51,7 +51,7 @@ gem 'sentry-raven', '~> 3.1'
 
 group :development, :test do
   gem 'factory_bot_rails', '~> 6.1'
-  gem 'ffaker', '~> 2.17'
+  gem 'ffaker', '~> 2.18'
   gem 'pry-byebug', '~> 3.9'
   gem 'pry-rails', '~> 0.3.9'
   gem 'rspec-rails', '~> 4.0'
@@ -59,7 +59,7 @@ group :development, :test do
   # Code quality
   gem 'brakeman', '~> 5.0', require: false
   gem 'bundle-audit', '~> 0.1.0', require: false
-  gem 'fasterer', '~> 0.8.3', require: false
+  gem 'fasterer', '~> 0.9.0', require: false
   gem 'i18n-tasks', '~> 0.9.34', require: false
   gem 'lefthook', '~> 0.7.2', require: false
   gem 'rails_best_practices', '~> 1.20', require: false
