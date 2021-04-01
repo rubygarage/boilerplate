@@ -74,7 +74,7 @@ end
 group :development do
   gem 'dip', '~> 6.1'
   gem 'letter_opener', '~> 1.7'
-  gem 'listen', '~> 3.4'
+  gem 'listen', '~> 3.5'
   gem 'spring', '~> 2.1'
   gem 'spring-watcher-listen', '~> 2.0', '>= 2.0.1'
 end
