@@ -8,7 +8,7 @@ ruby(File.read(File.join(File.dirname(__FILE__), '.ruby-version')).strip)
 gem 'pg', '~> 1.2', '>= 1.2.3'
 gem 'puma', '~> 5.2'
 gem 'rails', '~> 6.1'
-gem 'sidekiq', '~> 6.1'
+gem 'sidekiq', '~> 6.2'
 
 # Admin panel
 gem 'activeadmin', '~> 2.9'
