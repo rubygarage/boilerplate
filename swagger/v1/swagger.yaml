@@ -10,7 +10,7 @@ paths:
       tags:
       - Users
       parameters:
-      - name: Authorization
+      - name: authorization
         in: header
         schema:
           type: string
@@ -23,7 +23,7 @@ paths:
       tags:
       - Users
       parameters:
-      - name: Authorization
+      - name: authorization
         in: header
         schema:
           type: string
@@ -36,7 +36,7 @@ paths:
       tags:
       - Users
       parameters:
-      - name: Authorization
+      - name: authorization
         in: header
         schema:
           type: string
@@ -216,7 +216,7 @@ paths:
         '204':
           description: successful verifies user account
 servers:
-- url: https://{defaultHost}
+- url: http://{defaultHost}
   variables:
     defaultHost:
       default: localhost:3000
